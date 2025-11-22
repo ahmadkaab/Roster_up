@@ -1,4 +1,6 @@
+import { ErrorState } from '@/components/ErrorState';
 import { PlayerCard } from '@/components/PlayerCard';
+import { SkeletonPlayerCard } from '@/components/Skeletons';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { PlayerCardData, PlayerService } from '@/services/player';
@@ -6,7 +8,7 @@ import { useAuthStore } from '@/store/useAuthStore';
 import { useToastStore } from '@/store/useToastStore';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ProfileScreen() {
@@ -24,7 +26,7 @@ export default function ProfileScreen() {
   const [availability, setAvailability] = useState('');
 
   // Fetch Player Card
-  const { data: card, isLoading } = useQuery({
+  const { data: card, isLoading, isError, refetch } = useQuery({
     queryKey: ['playerCard', user?.id],
     queryFn: () => PlayerService.getPlayerCard(user!.id),
     enabled: !!user,
@@ -80,11 +82,18 @@ export default function ProfileScreen() {
     mutation.mutate(cardData);
   };
 
+  if (isError) {
+    return <ErrorState onRetry={refetch} />;
+  }
+
   if (isLoading) {
     return (
-      <View className="flex-1 bg-bg-main items-center justify-center">
-        <ActivityIndicator size="large" color="#4cc9f0" />
-      </View>
+      <SafeAreaView className="flex-1 bg-bg-main p-6">
+        <View className="flex-row justify-between items-center mb-6">
+          <Text className="text-3xl font-bold text-white">My Profile</Text>
+        </View>
+        <SkeletonPlayerCard />
+      </SafeAreaView>
     );
   }
 

@@ -1,9 +1,13 @@
+import { EmptyState } from '@/components/EmptyState';
+import { ErrorState } from '@/components/ErrorState';
+import { SkeletonCard } from '@/components/Skeletons';
 import { Button } from '@/components/ui/Button';
 import { TeamService } from '@/services/team';
 import { useAuthStore } from '@/store/useAuthStore';
 import { useQuery } from '@tanstack/react-query';
 import { router } from 'expo-router';
-import { Users } from 'lucide-react-native';
+import { ClipboardList, Users } from 'lucide-react-native';
+import { MotiView } from 'moti';
 import React from 'react';
 import { ActivityIndicator, FlatList, RefreshControl, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -11,17 +15,25 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 export default function TeamDashboardScreen() {
   const { user } = useAuthStore();
 
-  const { data: team, isLoading: teamLoading } = useQuery({
+  const { data: team, isLoading: teamLoading, isError: teamError, refetch: refetchTeam } = useQuery({
     queryKey: ['myTeam', user?.id],
     queryFn: () => TeamService.getMyTeam(user!.id),
     enabled: !!user,
   });
 
-  const { data: recruitments, isLoading: recruitmentsLoading, refetch } = useQuery({
+  const { data: recruitments, isLoading: recruitmentsLoading, isError: recruitmentsError, refetch: refetchRecruitments } = useQuery({
     queryKey: ['teamRecruitments', team?.id],
     queryFn: () => TeamService.getTeamRecruitments(team!.id),
     enabled: !!team,
   });
+
+  if (teamError) {
+    return <ErrorState onRetry={refetchTeam} message="Failed to load team data." />;
+  }
+
+  if (recruitmentsError) {
+    return <ErrorState onRetry={refetchRecruitments} message="Failed to load recruitments." />;
+  }
 
   if (teamLoading) {
     return (
@@ -32,11 +44,15 @@ export default function TeamDashboardScreen() {
   }
 
   if (!team) {
-    // Redirect to setup if no team found (handled in component or parent, but safe fallback here)
     return (
       <SafeAreaView className="flex-1 bg-bg-main items-center justify-center p-6">
-        <Text className="text-white text-xl font-bold mb-4">No Team Found</Text>
-        <Button label="Create Team" onPress={() => router.push('/team/setup')} />
+        <EmptyState
+          icon={Users}
+          title="No Team Found"
+          description="You haven't created a team yet. Set up your team to start recruiting."
+          actionLabel="Create Team"
+          onAction={() => router.push('/team/setup')}
+        />
       </SafeAreaView>
     );
   }
@@ -59,15 +75,22 @@ export default function TeamDashboardScreen() {
       <Text className="text-gray-400 font-bold mb-4 uppercase text-xs tracking-wider">Active Recruitments</Text>
 
       {recruitmentsLoading ? (
-        <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="#4cc9f0" />
+        <View>
+          {[1, 2].map((i) => (
+            <SkeletonCard key={i} />
+          ))}
         </View>
       ) : (
         <FlatList
           data={recruitments}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <View className="bg-gray-900/80 border border-gray-800 rounded-xl p-4 mb-3">
+          renderItem={({ item, index }) => (
+            <MotiView
+              from={{ opacity: 0, translateY: 20 }}
+              animate={{ opacity: 1, translateY: 0 }}
+              transition={{ type: 'timing', delay: index * 100 }}
+              className="bg-gray-900/80 border border-gray-800 rounded-xl p-4 mb-3"
+            >
               <View className="flex-row justify-between items-start mb-2">
                 <View>
                   <Text className="text-lg font-bold text-white">{item.games.name}</Text>
@@ -87,17 +110,20 @@ export default function TeamDashboardScreen() {
                 onPress={() => router.push(`/team/recruitment/${item.id}`)}
                 className="mt-2"
               />
-            </View>
+            </MotiView>
           )}
           contentContainerStyle={{ paddingBottom: 20 }}
           refreshControl={
-            <RefreshControl refreshing={recruitmentsLoading} onRefresh={refetch} tintColor="#4cc9f0" />
+            <RefreshControl refreshing={recruitmentsLoading} onRefresh={refetchRecruitments} tintColor="#4cc9f0" />
           }
           ListEmptyComponent={
-            <View className="items-center mt-10">
-              <Text className="text-gray-500">No active recruitments.</Text>
-              <Text className="text-gray-600 text-sm mt-1">Post a tryout to find players.</Text>
-            </View>
+            <EmptyState
+              icon={ClipboardList}
+              title="No Active Recruitments"
+              description="Post a tryout listing to find players for your team."
+              actionLabel="Post Recruitment"
+              onAction={() => router.push('/team/post-recruitment')}
+            />
           }
         />
       )}

@@ -3,22 +3,17 @@ import { Tabs } from 'expo-router';
 import { Briefcase, Home, User } from 'lucide-react-native';
 import React from 'react';
 
+import { GlassTabBar } from '@/components/GlassTabBar';
+
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
     <Tabs
+      tabBar={(props) => <GlassTabBar {...props} />}
       screenOptions={{
-        tabBarActiveTintColor: '#4cc9f0',
-        tabBarInactiveTintColor: '#94a3b8',
-        tabBarStyle: {
-          backgroundColor: '#0f1016',
-          borderTopColor: 'rgba(255,255,255,0.1)',
-          height: 60,
-          paddingBottom: 10,
-          paddingTop: 10,
-        },
         headerShown: false,
+        tabBarShowLabel: false,
       }}
     >
       <Tabs.Screen

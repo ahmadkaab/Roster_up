@@ -1,7 +1,10 @@
+import { EmptyState } from '@/components/EmptyState';
 import { RecruitmentService } from '@/services/recruitment';
 import { useAuthStore } from '@/store/useAuthStore';
 import { useQuery } from '@tanstack/react-query';
 import { clsx } from 'clsx';
+import { router } from 'expo-router';
+import { Briefcase } from 'lucide-react-native';
 import React from 'react';
 import { ActivityIndicator, FlatList, RefreshControl, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -65,9 +68,13 @@ export default function ApplicationsScreen() {
             <RefreshControl refreshing={isLoading} onRefresh={refetch} tintColor="#4cc9f0" />
           }
           ListEmptyComponent={
-            <View className="items-center mt-10">
-              <Text className="text-gray-500">You haven't applied to any tryouts yet.</Text>
-            </View>
+            <EmptyState
+              icon={Briefcase}
+              title="No Applications Yet"
+              description="You haven't applied to any tryouts. Browse tryouts and apply to teams."
+              actionLabel="Browse Tryouts"
+              onAction={() => router.push('/(tabs)')}
+            />
           }
         />
       )}

@@ -1,20 +1,28 @@
+import { EmptyState } from '@/components/EmptyState';
+import { ErrorState } from '@/components/ErrorState';
+import { SkeletonCard } from '@/components/Skeletons';
 import { TryoutCard } from '@/components/TryoutCard';
 import { Input } from '@/components/ui/Input';
 import { RecruitmentService } from '@/services/recruitment';
 import { useQuery } from '@tanstack/react-query';
 import { router } from 'expo-router';
 import { Filter } from 'lucide-react-native';
+import { MotiView } from 'moti';
 import React, { useState } from 'react';
-import { ActivityIndicator, FlatList, RefreshControl, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, RefreshControl, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function PlayerHomeScreen() {
   const [roleFilter, setRoleFilter] = useState('');
   
-  const { data: recruitments, isLoading, refetch } = useQuery({
+  const { data: recruitments, isLoading, isError, refetch } = useQuery({
     queryKey: ['recruitments', roleFilter],
     queryFn: () => RecruitmentService.getRecruitments({ role: roleFilter || undefined }),
   });
+
+  if (isError) {
+    return <ErrorState onRetry={refetch} />;
+  }
 
   return (
     <SafeAreaView className="flex-1 bg-bg-main p-4 pb-0">
@@ -37,31 +45,41 @@ export default function PlayerHomeScreen() {
       </View>
 
       {isLoading ? (
-        <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="#4cc9f0" />
+        <View>
+          {[1, 2, 3].map((i) => (
+            <SkeletonCard key={i} />
+          ))}
         </View>
       ) : (
         <FlatList
           data={recruitments}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <TryoutCard
-              teamName={item.teams.name}
-              game={item.games.name}
-              role={item.role_needed}
-              tier={item.teams.tier}
-              date={item.tryout_date}
-              onPress={() => router.push(`/tryout/${item.id}`)}
-            />
+          renderItem={({ item, index }) => (
+            <MotiView
+              from={{ opacity: 0, translateY: 20 }}
+              animate={{ opacity: 1, translateY: 0 }}
+              transition={{ type: 'timing', delay: index * 100 }}
+            >
+              <TryoutCard
+                teamName={item.teams.name}
+                game={item.games.name}
+                role={item.role_needed}
+                tier={item.teams.tier}
+                date={item.tryout_date}
+                onPress={() => router.push(`/tryout/${item.id}`)}
+              />
+            </MotiView>
           )}
           contentContainerStyle={{ paddingBottom: 20 }}
           refreshControl={
             <RefreshControl refreshing={isLoading} onRefresh={refetch} tintColor="#4cc9f0" />
           }
           ListEmptyComponent={
-            <View className="items-center mt-10">
-              <Text className="text-gray-500">No tryouts found matching your filters.</Text>
-            </View>
+            <EmptyState
+              icon={Filter}
+              title="No Tryouts Found"
+              description="Try adjusting your filters or check back later for new opportunities."
+            />
           }
         />
       )}
