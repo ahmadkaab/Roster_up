@@ -3,6 +3,18 @@ import { MotiView } from 'moti';
 import React from 'react';
 import { Text, View } from 'react-native';
 import { Button } from './ui/Button';
+import { Colors } from '@/constants/colors';
+
+interface EmptyStateProps {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  actionLabel?: string;
+import { LucideIcon } from 'lucide-react-native';
+import { MotiView } from 'moti';
+import React from 'react';
+import { Text, View } from 'react-native';
+import { Button } from './ui/Button';
 
 interface EmptyStateProps {
   icon: LucideIcon;
@@ -17,14 +29,13 @@ export const EmptyState = ({ icon: Icon, title, description, actionLabel, onActi
     <MotiView
       from={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ type: 'timing', duration: 500 }}
-      className="items-center justify-center py-10 px-4"
+      className="items-center justify-center p-6"
     >
-      <View className="w-20 h-20 bg-gray-900 rounded-full items-center justify-center mb-6 border border-gray-800">
-        <Icon size={40} color="#4cc9f0" />
+      <View className="w-16 h-16 rounded-full bg-gray-800 items-center justify-center mb-4">
+        <Icon size={32} color={Colors.gray[400]} />
       </View>
-      <Text className="text-xl font-bold text-white mb-2 text-center">{title}</Text>
-      <Text className="text-gray-400 text-center mb-6 max-w-xs">{description}</Text>
+      <Text className="text-white text-lg font-bold text-center">{title}</Text>
+      <Text className="text-gray-400 text-center mt-2 mb-6">{description}</Text>
       {actionLabel && onAction && (
         <Button label={actionLabel} onPress={onAction} size="md" />
       )}

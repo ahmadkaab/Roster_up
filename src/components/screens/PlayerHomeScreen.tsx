@@ -3,6 +3,7 @@ import { ErrorState } from '@/components/ErrorState';
 import { SkeletonCard } from '@/components/Skeletons';
 import { TryoutCard } from '@/components/TryoutCard';
 import { Input } from '@/components/ui/Input';
+import { Colors } from '@/constants/colors';
 import { RecruitmentService } from '@/services/recruitment';
 import { useQuery } from '@tanstack/react-query';
 import { router } from 'expo-router';
@@ -39,7 +40,7 @@ export default function PlayerHomeScreen() {
             />
           </View>
           <TouchableOpacity className="bg-gray-800 w-12 rounded-xl items-center justify-center border border-gray-700">
-            <Filter size={20} color="#4cc9f0" />
+            <Filter size={20} color={Colors.accent} />
           </TouchableOpacity>
         </View>
       </View>
@@ -72,7 +73,7 @@ export default function PlayerHomeScreen() {
           )}
           contentContainerStyle={{ paddingBottom: 20 }}
           refreshControl={
-            <RefreshControl refreshing={isLoading} onRefresh={refetch} tintColor="#4cc9f0" />
+            <RefreshControl refreshing={isLoading} onRefresh={refetch} tintColor={Colors.accent} />
           }
           ListEmptyComponent={
             <EmptyState

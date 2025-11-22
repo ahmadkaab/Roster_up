@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/Button';
+import { Colors } from '@/constants/colors';
 import { TeamService } from '@/services/team';
 import { useToastStore } from '@/store/useToastStore';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -35,7 +36,7 @@ export default function RecruitmentManagementScreen() {
   if (isLoading) {
     return (
       <View className="flex-1 bg-bg-main items-center justify-center">
-        <ActivityIndicator size="large" color="#4cc9f0" />
+        <ActivityIndicator size="large" color={Colors.accent} />
       </View>
     );
   }
@@ -54,7 +55,7 @@ export default function RecruitmentManagementScreen() {
           <View className="bg-gray-900/80 border border-gray-800 rounded-xl p-4 mb-3">
             <View className="flex-row items-center gap-3 mb-3">
               <View className="w-12 h-12 rounded-full bg-gray-800 items-center justify-center border border-gray-700">
-                <User size={24} color="#94a3b8" />
+                <User size={24} color={Colors.secondary} />
               </View>
               <View>
                 <Text className="text-lg font-bold text-white">{item.player_cards?.ign || item.profiles.full_name}</Text>
@@ -69,7 +70,7 @@ export default function RecruitmentManagementScreen() {
                     onPress={() => handleStatusUpdate(item.id, 'rejected')}
                     className="bg-red-500/10 border border-red-500/50 p-2 rounded-lg"
                   >
-                    <X size={20} color="#ef4444" />
+                    <X size={20} color={Colors.danger} />
                   </TouchableOpacity>
                   <TouchableOpacity 
                     onPress={() => handleStatusUpdate(item.id, 'shortlisted')}
@@ -84,7 +85,7 @@ export default function RecruitmentManagementScreen() {
                   onPress={() => handleStatusUpdate(item.id, 'selected')}
                   className="bg-green-500/10 border border-green-500/50 p-2 rounded-lg flex-row items-center gap-2 px-3"
                 >
-                  <Check size={20} color="#22c55e" />
+                  <Check size={20} color={Colors.success} />
                   <Text className="text-green-500 font-bold">Select</Text>
                 </TouchableOpacity>
               )}

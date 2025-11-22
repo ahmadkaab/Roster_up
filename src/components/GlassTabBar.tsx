@@ -1,3 +1,4 @@
+import { Colors } from '@/constants/colors';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { clsx } from 'clsx';
 import { BlurView } from 'expo-blur';
@@ -41,7 +42,7 @@ export function GlassTabBar({ state, descriptors, navigation }: BottomTabBarProp
                 'p-2 rounded-xl transition-all',
                 isFocused && 'bg-accent/10'
               )}>
-                {Icon && <Icon color={isFocused ? '#4cc9f0' : '#94a3b8'} size={24} focused={isFocused} />}
+                {Icon && <Icon color={isFocused ? Colors.accent : Colors.secondary} size={24} focused={isFocused} />}
               </View>
               {isFocused && (
                 <View className="w-1 h-1 rounded-full bg-accent mt-1" />

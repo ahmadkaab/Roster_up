@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/Button';
+import { Colors } from '@/constants/colors';
 import { RecruitmentService } from '@/services/recruitment';
 import { supabase } from '@/services/supabase';
 import { useAuthStore } from '@/store/useAuthStore';
@@ -46,7 +47,7 @@ export default function TryoutDetailScreen() {
   if (isLoading || !recruitment) {
     return (
       <View className="flex-1 bg-bg-main items-center justify-center">
-        <ActivityIndicator size="large" color="#4cc9f0" />
+        <ActivityIndicator size="large" color={Colors.accent} />
       </View>
     );
   }
@@ -75,17 +76,17 @@ export default function TryoutDetailScreen() {
           {/* Key Info Grid */}
           <View className="flex-row gap-3 mb-6">
             <View className="flex-1 bg-gray-900 p-3 rounded-xl border border-gray-800 items-center">
-              <Target size={20} color="#4cc9f0" className="mb-2" />
+              <Target size={20} color={Colors.accent} className="mb-2" />
               <Text className="text-gray-400 text-xs">GAME</Text>
               <Text className="text-white font-bold">{recruitment.games.name}</Text>
             </View>
             <View className="flex-1 bg-gray-900 p-3 rounded-xl border border-gray-800 items-center">
-              <Shield size={20} color="#4cc9f0" className="mb-2" />
+              <Shield size={20} color={Colors.accent} className="mb-2" />
               <Text className="text-gray-400 text-xs">ROLE</Text>
               <Text className="text-white font-bold">{recruitment.role_needed}</Text>
             </View>
             <View className="flex-1 bg-gray-900 p-3 rounded-xl border border-gray-800 items-center">
-              <Calendar size={20} color="#4cc9f0" className="mb-2" />
+              <Calendar size={20} color={Colors.accent} className="mb-2" />
               <Text className="text-gray-400 text-xs">DATE</Text>
               <Text className="text-white font-bold text-xs">
                 {new Date(recruitment.tryout_date).toLocaleDateString()}
@@ -110,6 +111,7 @@ export default function TryoutDetailScreen() {
             size="lg" 
             onPress={() => applyMutation.mutate()} 
             isLoading={applyMutation.isPending}
+
           />
           <Text className="text-gray-500 text-xs text-center mt-3">
             Your Player Card will be sent to the team.

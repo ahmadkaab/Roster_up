@@ -1,7 +1,8 @@
+import { Colors } from '@/constants/colors';
 import { AlertTriangle } from 'lucide-react-native';
 import { MotiView } from 'moti';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 import { Button } from './ui/Button';
 
 interface ErrorStateProps {
@@ -9,18 +10,24 @@ interface ErrorStateProps {
   onRetry?: () => void;
 }
 
-export const ErrorState = ({ message = 'Something went wrong.', onRetry }: ErrorStateProps) => {
+import React from 'react';
+
+interface ErrorStateProps {
+  message?: string;
+  title?: string;
+  onRetry?: () => void;
+}
+
+export const ErrorState = ({ message = 'Something went wrong.', title = 'Oops!', onRetry }: ErrorStateProps) => {
   return (
     <MotiView
-      from={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="flex-1 items-center justify-center p-6 bg-bg-main"
+      from={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="items-center justify-center p-6"
     >
-      <View className="w-16 h-16 bg-red-500/10 rounded-full items-center justify-center mb-4 border border-red-500/20">
-        <AlertTriangle size={32} color="#ef4444" />
-      </View>
-      <Text className="text-xl font-bold text-white mb-2 text-center">Oops!</Text>
-      <Text className="text-gray-400 text-center mb-6">{message}</Text>
+      <AlertTriangle size={48} color={Colors.danger} />
+      <Text className="text-white text-lg font-bold mt-4 text-center">{title}</Text>
+      <Text className="text-gray-400 text-center mt-2 mb-6">{message}</Text>
       {onRetry && (
         <Button label="Try Again" onPress={onRetry} variant="secondary" />
       )}

@@ -1,3 +1,4 @@
+import { Colors } from '@/constants/colors';
 import { clsx } from 'clsx';
 import React from 'react';
 import { ActivityIndicator, Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
@@ -54,7 +55,7 @@ export const Button = ({
       {...props}
     >
       {isLoading ? (
-        <ActivityIndicator color={variant === 'primary' ? '#0f1016' : '#ffffff'} />
+        <ActivityIndicator color={variant === 'primary' ? Colors.primary : Colors.white} />
       ) : (
         <Text className={clsx('text-base', textStyles[variant])}>{label}</Text>
       )}

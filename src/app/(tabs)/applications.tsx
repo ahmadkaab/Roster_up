@@ -1,4 +1,5 @@
 import { EmptyState } from '@/components/EmptyState';
+import { Colors } from '@/constants/colors';
 import { RecruitmentService } from '@/services/recruitment';
 import { useAuthStore } from '@/store/useAuthStore';
 import { useQuery } from '@tanstack/react-query';
@@ -43,7 +44,7 @@ export default function ApplicationsScreen() {
 
       {isLoading ? (
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="#4cc9f0" />
+          <ActivityIndicator size="large" color={Colors.accent} />
         </View>
       ) : (
         <FlatList
@@ -65,7 +66,7 @@ export default function ApplicationsScreen() {
           )}
           contentContainerStyle={{ paddingBottom: 20 }}
           refreshControl={
-            <RefreshControl refreshing={isLoading} onRefresh={refetch} tintColor="#4cc9f0" />
+            <RefreshControl refreshing={isLoading} onRefresh={refetch} tintColor={Colors.accent} />
           }
           ListEmptyComponent={
             <EmptyState

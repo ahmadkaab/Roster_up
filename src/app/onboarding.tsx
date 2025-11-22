@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/Button';
+import { Colors } from '@/constants/colors';
 import { supabase } from '@/services/supabase';
 import { useAuthStore } from '@/store/useAuthStore';
 import { useToastStore } from '@/store/useToastStore';
@@ -53,7 +54,7 @@ export default function OnboardingScreen() {
           )}
         >
           <View className="w-12 h-12 rounded-full bg-gray-800 items-center justify-center">
-            <User size={24} color={selectedRole === 'player' ? '#4cc9f0' : '#94a3b8'} />
+            <User size={24} color={selectedRole === 'player' ? Colors.accent : Colors.secondary} />
           </View>
           <View className="flex-1">
             <Text className={clsx('text-lg font-bold', selectedRole === 'player' ? 'text-white' : 'text-gray-400')}>
@@ -75,7 +76,7 @@ export default function OnboardingScreen() {
           )}
         >
           <View className="w-12 h-12 rounded-full bg-gray-800 items-center justify-center">
-            <Users size={24} color={selectedRole === 'team_admin' ? '#4cc9f0' : '#94a3b8'} />
+            <Users size={24} color={selectedRole === 'team_admin' ? Colors.accent : Colors.secondary} />
           </View>
           <View className="flex-1">
             <Text className={clsx('text-lg font-bold', selectedRole === 'team_admin' ? 'text-white' : 'text-gray-400')}>

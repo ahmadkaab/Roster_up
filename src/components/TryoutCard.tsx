@@ -1,3 +1,4 @@
+import { Colors } from '@/constants/colors';
 import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Calendar, Users } from 'lucide-react-native';
@@ -42,11 +43,11 @@ export const TryoutCard = ({ teamName, game, role, tier, date, onPress }: Tryout
 
               <View className="flex-row gap-4">
                 <View className="flex-row items-center gap-1">
-                  <Users size={14} color="#94a3b8" />
+                  <Users size={14} color={Colors.secondary} />
                   <Text className="text-gray-400 text-sm">{role}</Text>
                 </View>
                 <View className="flex-row items-center gap-1">
-                  <Calendar size={14} color="#94a3b8" />
+                  <Calendar size={14} color={Colors.secondary} />
                   <Text className="text-gray-400 text-sm">
                     {new Date(date).toLocaleDateString()}
                   </Text>

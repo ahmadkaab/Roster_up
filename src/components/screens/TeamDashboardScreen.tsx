@@ -2,6 +2,7 @@ import { EmptyState } from '@/components/EmptyState';
 import { ErrorState } from '@/components/ErrorState';
 import { SkeletonCard } from '@/components/Skeletons';
 import { Button } from '@/components/ui/Button';
+import { Colors } from '@/constants/colors';
 import { TeamService } from '@/services/team';
 import { useAuthStore } from '@/store/useAuthStore';
 import { useQuery } from '@tanstack/react-query';
@@ -38,7 +39,7 @@ export default function TeamDashboardScreen() {
   if (teamLoading) {
     return (
       <View className="flex-1 bg-bg-main items-center justify-center">
-        <ActivityIndicator size="large" color="#4cc9f0" />
+        <ActivityIndicator size="large" color={Colors.accent} />
       </View>
     );
   }
@@ -97,7 +98,7 @@ export default function TeamDashboardScreen() {
                   <Text className="text-gray-400 text-sm">{item.role_needed}</Text>
                 </View>
                 <View className="bg-gray-800 px-2 py-1 rounded flex-row items-center gap-1">
-                  <Users size={12} color="#94a3b8" />
+                  <Users size={12} color={Colors.secondary} />
                   <Text className="text-gray-400 font-bold text-xs">
                     {item.recruitment_applications[0]?.count || 0} Applicants
                   </Text>
@@ -114,7 +115,7 @@ export default function TeamDashboardScreen() {
           )}
           contentContainerStyle={{ paddingBottom: 20 }}
           refreshControl={
-            <RefreshControl refreshing={recruitmentsLoading} onRefresh={refetchRecruitments} tintColor="#4cc9f0" />
+            <RefreshControl refreshing={recruitmentsLoading} onRefresh={refetchRecruitments} tintColor={Colors.accent} />
           }
           ListEmptyComponent={
             <EmptyState

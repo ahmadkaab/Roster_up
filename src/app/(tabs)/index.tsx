@@ -1,5 +1,6 @@
 import PlayerHomeScreen from '@/components/screens/PlayerHomeScreen';
 import TeamDashboardScreen from '@/components/screens/TeamDashboardScreen';
+import { Colors } from '@/constants/colors';
 import { TeamService } from '@/services/team';
 import { useAuthStore } from '@/store/useAuthStore';
 import { useQuery } from '@tanstack/react-query';
@@ -28,7 +29,7 @@ export default function Index() {
   if (!profile) {
     return (
       <View className="flex-1 bg-bg-main items-center justify-center">
-        <ActivityIndicator size="large" color="#4cc9f0" />
+        <ActivityIndicator size="large" color={Colors.accent} />
       </View>
     );
   }
@@ -37,7 +38,7 @@ export default function Index() {
     if (isLoading) {
       return (
         <View className="flex-1 bg-bg-main items-center justify-center">
-          <ActivityIndicator size="large" color="#4cc9f0" />
+          <ActivityIndicator size="large" color={Colors.accent} />
         </View>
       );
     }

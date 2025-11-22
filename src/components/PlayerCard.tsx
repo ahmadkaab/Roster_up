@@ -1,3 +1,4 @@
+import { Colors } from '@/constants/colors';
 import { clsx } from 'clsx';
 import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -44,7 +45,7 @@ export const PlayerCard = ({
           <View className="flex-row justify-between items-start mb-6">
             <View className="flex-row items-center gap-3">
               <View className="w-16 h-16 rounded-full bg-gray-800 border-2 border-accent items-center justify-center overflow-hidden">
-                <User size={32} color="#4cc9f0" />
+                <User size={32} color={Colors.accent} />
               </View>
               <View>
                 <Text className="text-2xl font-bold text-white">{ign}</Text>
@@ -64,14 +65,14 @@ export const PlayerCard = ({
           <View className="flex-row gap-3 mb-4">
             <View className="flex-1 bg-black/20 p-3 rounded-xl border border-white/5">
               <View className="flex-row items-center gap-2 mb-1">
-                <Crosshair size={14} color="#94a3b8" />
+                <Crosshair size={14} color={Colors.secondary} />
                 <Text className="text-gray-400 text-xs">K/D Ratio</Text>
               </View>
               <Text className="text-xl font-bold text-white">{kd?.toFixed(2) || '-'}</Text>
             </View>
             <View className="flex-1 bg-black/20 p-3 rounded-xl border border-white/5">
               <View className="flex-row items-center gap-2 mb-1">
-                <Zap size={14} color="#94a3b8" />
+                <Zap size={14} color={Colors.secondary} />
                 <Text className="text-gray-400 text-xs">Avg Damage</Text>
               </View>
               <Text className="text-xl font-bold text-white">{damage || '-'}</Text>
@@ -81,11 +82,11 @@ export const PlayerCard = ({
           {/* Info Rows */}
           <View className="gap-2">
             <View className="flex-row items-center gap-2">
-              <Smartphone size={14} color="#64748b" />
+              <Smartphone size={14} color={Colors.gray[500]} />
               <Text className="text-gray-400 text-sm">{device || 'No device info'}</Text>
             </View>
             <View className="flex-row items-center gap-2">
-              <Clock size={14} color="#64748b" />
+              <Clock size={14} color={Colors.gray[500]} />
               <Text className="text-gray-400 text-sm">{availability || 'Availability not set'}</Text>
             </View>
           </View>

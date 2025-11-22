@@ -27,7 +27,7 @@ export const PlayerService = {
   async createOrUpdatePlayerCard(cardData: PlayerCardData) {
     const { data, error } = await supabase
       .from('player_cards')
-      .upsert(cardData)
+      .upsert(cardData, { onConflict: 'player_id' })
       .select()
       .single();
 
