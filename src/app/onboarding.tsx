@@ -6,7 +6,7 @@ import { useToastStore } from '@/store/useToastStore';
 import { clsx } from 'clsx';
 import { router } from 'expo-router';
 import { User, Users } from 'lucide-react-native';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -34,6 +34,7 @@ export default function OnboardingScreen() {
     setLoading(false);
   };
 
+
   return (
     <SafeAreaView className="flex-1 bg-bg-main p-6 justify-center">
       <View className="items-center mb-10">
@@ -58,7 +59,7 @@ export default function OnboardingScreen() {
           </View>
           <View className="flex-1">
             <Text className={clsx('text-lg font-bold', selectedRole === 'player' ? 'text-white' : 'text-gray-400')}>
-              I'm a Player
+              I&apos;m a Player
             </Text>
             <Text className="text-gray-500 text-sm">
               Build your card, find teams, and get scouted.

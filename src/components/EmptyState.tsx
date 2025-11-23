@@ -1,18 +1,6 @@
-import { LucideIcon } from 'lucide-react-native';
-import { MotiView } from 'moti';
-import React from 'react';
-import { Text, View } from 'react-native';
-import { Button } from './ui/Button';
 import { Colors } from '@/constants/colors';
-
-interface EmptyStateProps {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-  actionLabel?: string;
 import { LucideIcon } from 'lucide-react-native';
 import { MotiView } from 'moti';
-import React from 'react';
 import { Text, View } from 'react-native';
 import { Button } from './ui/Button';
 

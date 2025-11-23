@@ -7,7 +7,7 @@ import { PlayerCardData, PlayerService } from '@/services/player';
 import { useAuthStore } from '@/store/useAuthStore';
 import { useToastStore } from '@/store/useToastStore';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -159,7 +159,7 @@ export default function ProfileScreen() {
         ) : (
           <View className="items-center">
             <Text className="text-gray-500 text-center">
-              Tap "Edit Card" to update your stats and info.
+              Tap &quot;Edit Card&quot; to update your stats and info.
             </Text>
           </View>
         )}

@@ -1,16 +1,8 @@
 import { Colors } from '@/constants/colors';
 import { AlertTriangle } from 'lucide-react-native';
 import { MotiView } from 'moti';
-import React from 'react';
 import { Text } from 'react-native';
 import { Button } from './ui/Button';
-
-interface ErrorStateProps {
-  message?: string;
-  onRetry?: () => void;
-}
-
-import React from 'react';
 
 interface ErrorStateProps {
   message?: string;

@@ -13,7 +13,7 @@ export function useAuthProtection() {
     });
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [setSession]);
 
   useEffect(() => {
     const inAuthGroup = segments[0] === '(auth)';
@@ -40,5 +40,5 @@ export function useAuthProtection() {
         }
       }
     }
-  }, [session, profile, segments]);
+  }, [session, profile, segments, setSession]);
 }

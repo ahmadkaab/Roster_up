@@ -7,7 +7,7 @@
     "icon": "./assets/images/rosterup-icon.png",
     "scheme": "rosterup",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "ios": {
       "supportsTablet": true
     },
@@ -25,7 +25,6 @@
       "favicon": "./assets/images/rosterup-icon.png"
     },
     "plugins": [
-      "expo-router",
       [
         "expo-splash-screen",
         {
@@ -37,11 +36,14 @@
             "backgroundColor": "#111827"
           }
         }
-      ]
+      ],
+      "expo-font",
+      "expo-router",
+      "expo-secure-store",
+      "expo-web-browser"
     ],
     "experiments": {
-      "typedRoutes": true,
-      "reactCompiler": true
+      "typedRoutes": true
     },
     "extra": {
       "router": {},
