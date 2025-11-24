@@ -70,7 +70,7 @@ export default function RecruitmentManagementScreen() {
                     onPress={() => handleStatusUpdate(item.id, 'rejected')}
                     className="bg-red-500/10 border border-red-500/50 p-2 rounded-lg"
                   >
-                    <X size={20} color={Colors.danger} />
+                    <X size={20} color={Colors.status.danger} />
                   </TouchableOpacity>
                   <TouchableOpacity 
                     onPress={() => handleStatusUpdate(item.id, 'shortlisted')}
@@ -85,7 +85,7 @@ export default function RecruitmentManagementScreen() {
                   onPress={() => handleStatusUpdate(item.id, 'selected')}
                   className="bg-green-500/10 border border-green-500/50 p-2 rounded-lg flex-row items-center gap-2 px-3"
                 >
-                  <Check size={20} color={Colors.success} />
+                  <Check size={20} color={Colors.status.success} />
                   <Text className="text-green-500 font-bold">Select</Text>
                 </TouchableOpacity>
               )}

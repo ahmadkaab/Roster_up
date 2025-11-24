@@ -98,72 +98,120 @@ export default function ProfileScreen() {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-bg-main">
-      <ScrollView className="flex-1 p-6">
-        <View className="flex-row justify-between items-center mb-6">
-          <Text className="text-3xl font-bold text-white">My Profile</Text>
-          {!isEditing && (
-            <Button 
-              label="Edit Card" 
-              size="sm" 
-              variant="secondary" 
-              onPress={() => setIsEditing(true)} 
+    <View className="flex-1 bg-bg-main">
+      <SafeAreaView className="flex-1" edges={['top']}>
+        <ScrollView className="flex-1 p-4" showsVerticalScrollIndicator={false}>
+          <View className="flex-row justify-between items-center mb-6">
+            <Text className="text-3xl font-bold text-text-primary">My Profile</Text>
+            {!isEditing && (
+              <Button 
+                label="Edit Card" 
+                size="sm" 
+                variant="secondary" 
+                onPress={() => setIsEditing(true)} 
+              />
+            )}
+          </View>
+
+          {/* Live Preview Section */}
+          <View className="mb-8">
+            <View className="flex-row items-center gap-2 mb-4">
+              <View className="w-1 h-6 bg-accent rounded-full" />
+              <Text className="text-text-secondary font-bold tracking-wider text-xs uppercase">Live Preview</Text>
+            </View>
+            <PlayerCard
+              ign={ign || 'Your IGN'}
+              role={role || 'Role'}
+              game="BGMI" // Static for MVP
+              kd={kd ? parseFloat(kd) : undefined}
+              damage={damage ? parseInt(damage) : undefined}
+              device={device}
+              availability={availability}
+              tier="T3" // Static for MVP
             />
+          </View>
+
+          {/* Edit Form */}
+          {isEditing ? (
+            <View className="gap-5 mb-20">
+              <View className="flex-row items-center gap-2 mb-2">
+                <View className="w-1 h-6 bg-accent-secondary rounded-full" />
+                <Text className="text-text-secondary font-bold tracking-wider text-xs uppercase">Edit Details</Text>
+              </View>
+              
+              <View className="gap-4">
+                <Input 
+                  label="In-Game Name (IGN)" 
+                  value={ign} 
+                  onChangeText={setIgn} 
+                  placeholder="e.g. Jonathan" 
+                  containerClassName="bg-glass border-glass-stroke"
+                />
+                <Input 
+                  label="Primary Role" 
+                  value={role} 
+                  onChangeText={setRole} 
+                  placeholder="e.g. IGL, Assaulter" 
+                  containerClassName="bg-glass border-glass-stroke"
+                />
+                
+                <View className="flex-row gap-4">
+                  <View className="flex-1">
+                    <Input 
+                      label="K/D Ratio" 
+                      value={kd} 
+                      onChangeText={setKd} 
+                      keyboardType="numeric" 
+                      placeholder="3.5" 
+                      containerClassName="bg-glass border-glass-stroke"
+                    />
+                  </View>
+                  <View className="flex-1">
+                    <Input 
+                      label="Avg Damage" 
+                      value={damage} 
+                      onChangeText={setDamage} 
+                      keyboardType="numeric" 
+                      placeholder="850" 
+                      containerClassName="bg-glass border-glass-stroke"
+                    />
+                  </View>
+                </View>
+
+                <Input 
+                  label="Device Model" 
+                  value={device} 
+                  onChangeText={setDevice} 
+                  placeholder="e.g. iPhone 14 Pro" 
+                  containerClassName="bg-glass border-glass-stroke"
+                />
+                <Input 
+                  label="Availability" 
+                  value={availability} 
+                  onChangeText={setAvailability} 
+                  placeholder="e.g. 6 PM - 10 PM" 
+                  containerClassName="bg-glass border-glass-stroke"
+                />
+              </View>
+
+              <View className="flex-row gap-4 mt-4">
+                <View className="flex-1">
+                  <Button label="Cancel" variant="ghost" onPress={() => setIsEditing(false)} />
+                </View>
+                <View className="flex-1">
+                  <Button label="Save Card" onPress={handleSave} isLoading={mutation.isPending} />
+                </View>
+              </View>
+            </View>
+          ) : (
+            <View className="items-center py-8">
+              <Text className="text-text-muted text-center">
+                Tap &quot;Edit Card&quot; above to update your stats and info.
+              </Text>
+            </View>
           )}
-        </View>
-
-        {/* Preview Section */}
-        <View className="mb-8">
-          <Text className="text-gray-400 mb-4 font-medium">PREVIEW</Text>
-          <PlayerCard
-            ign={ign || 'Your IGN'}
-            role={role || 'Role'}
-            game="BGMI" // Static for MVP
-            kd={kd ? parseFloat(kd) : undefined}
-            damage={damage ? parseInt(damage) : undefined}
-            device={device}
-            availability={availability}
-            tier="T3" // Static for MVP
-          />
-        </View>
-
-        {/* Edit Form */}
-        {isEditing ? (
-          <View className="gap-4 mb-10">
-            <Text className="text-xl font-bold text-white mb-2">Edit Details</Text>
-            
-            <Input label="In-Game Name (IGN)" value={ign} onChangeText={setIgn} placeholder="e.g. Jonathan" />
-            <Input label="Primary Role" value={role} onChangeText={setRole} placeholder="e.g. IGL, Assaulter" />
-            
-            <View className="flex-row gap-4">
-              <View className="flex-1">
-                <Input label="K/D Ratio" value={kd} onChangeText={setKd} keyboardType="numeric" placeholder="3.5" />
-              </View>
-              <View className="flex-1">
-                <Input label="Avg Damage" value={damage} onChangeText={setDamage} keyboardType="numeric" placeholder="850" />
-              </View>
-            </View>
-
-            <Input label="Device Model" value={device} onChangeText={setDevice} placeholder="e.g. iPhone 14 Pro" />
-            <Input label="Availability" value={availability} onChangeText={setAvailability} placeholder="e.g. 6 PM - 10 PM" />
-
-            <View className="flex-row gap-4 mt-4">
-              <View className="flex-1">
-                <Button label="Cancel" variant="ghost" onPress={() => setIsEditing(false)} />
-              </View>
-              <View className="flex-1">
-                <Button label="Save Card" onPress={handleSave} isLoading={mutation.isPending} />
-              </View>
-            </View>
-          </View>
-        ) : (
-          <View className="items-center">
-            <Text className="text-gray-500 text-center">
-              Tap &quot;Edit Card&quot; to update your stats and info.
-            </Text>
-          </View>
-        )}
-      </ScrollView>
-    </SafeAreaView>
+        </ScrollView>
+      </SafeAreaView>
+    </View>
   );
 }

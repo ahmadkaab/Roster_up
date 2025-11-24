@@ -20,7 +20,7 @@ export const EmptyState = ({ icon: Icon, title, description, actionLabel, onActi
       className="items-center justify-center p-6"
     >
       <View className="w-16 h-16 rounded-full bg-gray-800 items-center justify-center mb-4">
-        <Icon size={32} color={Colors.gray[400]} />
+        <Icon size={32} color={Colors.text.secondary} />
       </View>
       <Text className="text-white text-lg font-bold text-center">{title}</Text>
       <Text className="text-gray-400 text-center mt-2 mb-6">{description}</Text>

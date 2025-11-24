@@ -22,22 +22,22 @@ export const Button = ({
   const baseStyles = 'flex-row items-center justify-center rounded-xl';
   
   const variants = {
-    primary: 'bg-accent',
-    secondary: 'bg-gray-800 border border-gray-700',
+    primary: 'bg-accent', // We might want to use LinearGradient here in the future
+    secondary: 'bg-bg-secondary border border-white/10',
     ghost: 'bg-transparent',
     danger: 'bg-danger',
   };
 
   const sizes = {
     sm: 'px-4 py-2',
-    md: 'px-6 py-3',
+    md: 'px-6 py-3.5',
     lg: 'px-8 py-4',
   };
 
   const textStyles = {
-    primary: 'text-bg-main font-bold',
-    secondary: 'text-white font-medium',
-    ghost: 'text-gray-400 font-medium',
+    primary: 'text-bg-main font-bold text-lg',
+    secondary: 'text-text-primary font-medium',
+    ghost: 'text-text-secondary font-medium',
     danger: 'text-white font-bold',
   };
 
