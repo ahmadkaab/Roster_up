@@ -1,0 +1,143 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/contexts/ToastContext";
+import { createClient } from "@/lib/supabase/client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2, Users } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+
+const teamTiers = ['T1', 'T2', 'T3', 'T4', 'Amateur'] as const;
+
+const formSchema = z.object({
+  name: z.string().min(3, "Team name must be at least 3 characters"),
+  tier: z.enum(teamTiers),
+  region: z.string().min(2, "Region is required"),
+  logo_url: z.string().url("Must be a valid URL").optional().or(z.literal("")),
+});
+
+type FormData = z.infer<typeof formSchema>;
+
+export function TeamSetupForm() {
+  const { user } = useAuth();
+  const { toast } = useToast();
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const supabase = createClient();
+
+  const form = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      tier: "Amateur",
+      region: "India",
+      logo_url: "",
+    },
+  });
+
+  const onSubmit = async (data: FormData) => {
+    if (!user) return;
+    setLoading(true);
+
+    try {
+      const payload = {
+        owner_id: user.id,
+        name: data.name,
+        tier: data.tier,
+        region: data.region,
+        logo_url: data.logo_url || null,
+      };
+
+      const { error } = await supabase
+        .from("teams")
+        .insert(payload);
+
+      if (error) throw error;
+
+      toast("Team created successfully!", "success");
+      router.push("/dashboard");
+      router.refresh();
+    } catch (error: any) {
+      console.error("Error creating team:", error);
+      toast(error.message || "Failed to create team", "error");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Card className="border-white/10 bg-white/5 backdrop-blur-md">
+      <CardHeader>
+        <CardTitle>Team Registration</CardTitle>
+        <CardDescription>
+          Register your organization to start recruiting players.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <div className="space-y-2">
+            <label className="text-sm font-medium">Team Name</label>
+            <Input {...form.register("name")} placeholder="e.g. GodLike Esports" />
+            {form.formState.errors.name && (
+              <p className="text-xs text-destructive">{form.formState.errors.name.message}</p>
+            )}
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Tier</label>
+              <select
+                {...form.register("tier")}
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {teamTiers.map((tier) => (
+                  <option key={tier} value={tier}>
+                    {tier}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Region</label>
+              <Input {...form.register("region")} placeholder="e.g. India" />
+              {form.formState.errors.region && (
+                <p className="text-xs text-destructive">{form.formState.errors.region.message}</p>
+              )}
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-sm font-medium">Logo URL (Optional)</label>
+            <Input {...form.register("logo_url")} placeholder="https://..." />
+            {form.formState.errors.logo_url && (
+              <p className="text-xs text-destructive">{form.formState.errors.logo_url.message}</p>
+            )}
+          </div>
+
+          <div className="flex justify-end">
+            <Button type="submit" disabled={loading} className="w-full md:w-auto">
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Creating Team...
+                </>
+              ) : (
+                <>
+                  <Users className="mr-2 h-4 w-4" />
+                  Register Team
+                </>
+              )}
+            </Button>
+          </div>
+        </form>
+      </CardContent>
+    </Card>
+  );
+}

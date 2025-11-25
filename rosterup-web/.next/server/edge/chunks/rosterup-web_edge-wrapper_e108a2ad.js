@@ -1,0 +1,3 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["chunks/rosterup-web_edge-wrapper_e108a2ad.js",11838,(e,t,r)=>{self._ENTRIES||={};let h=Promise.resolve().then(()=>e.i(77435));h.catch(()=>{}),self._ENTRIES.middleware_middleware=new Proxy(h,{get(e,t){if("then"===t)return(t,r)=>e.then(t,r);let r=(...r)=>e.then(e=>(0,e[t])(...r));return r.then=(r,h)=>e.then(e=>e[t]).then(r,h),r}})}]);
+
+//# sourceMappingURL=rosterup-web_edge-wrapper_e108a2ad.js.map

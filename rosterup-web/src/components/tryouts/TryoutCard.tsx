@@ -7,7 +7,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/contexts/ToastContext";
 import { createClient } from "@/lib/supabase/client";
 import { Calendar, Check, Crosshair, Loader2, Swords, Trophy, Users } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Tryout = {
   id: string;
@@ -32,6 +32,10 @@ export function TryoutCard({ tryout, isApplied = false }: { tryout: Tryout; isAp
   const [loading, setLoading] = useState(false);
   const [applied, setApplied] = useState(isApplied);
   const supabase = createClient();
+
+  useEffect(() => {
+    setApplied(isApplied);
+  }, [isApplied]);
 
   const handleApply = async () => {
     if (!user) return;
@@ -61,7 +65,15 @@ export function TryoutCard({ tryout, isApplied = false }: { tryout: Tryout; isAp
       setApplied(true);
       toast("Application sent successfully!", "success");
     } catch (error: any) {
-      console.error("Error applying:", error);
+      console.error("Error applying:", JSON.stringify(error, null, 2));
+      
+      // Handle duplicate application (already applied)
+      if (error.code === "23505") {
+        setApplied(true);
+        toast("You have already applied to this tryout!", "info");
+        return;
+      }
+
       toast(error.message || "Failed to apply", "error");
     } finally {
       setLoading(false);

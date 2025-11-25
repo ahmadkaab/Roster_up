@@ -1,6 +1,7 @@
 "use client";
 
 import { PlayerDashboard } from "@/components/dashboard/PlayerDashboard";
+import { TeamDashboard } from "@/components/dashboard/TeamDashboard";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
@@ -39,12 +40,7 @@ export default function DashboardPage() {
       {profile?.user_type === "player" ? (
         <PlayerDashboard />
       ) : (
-        <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4 text-center">
-          <h2 className="text-2xl font-bold">Team Dashboard Coming Soon! 🏆</h2>
-          <p className="text-muted-foreground">
-            We're building the ultimate recruitment tools for you.
-          </p>
-        </div>
+        <TeamDashboard />
       )}
     </div>
   );

@@ -6,23 +6,6 @@ import { createClient } from "@/lib/supabase/client";
 import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 
-type Tryout = {
-  id: string;
-  role_needed: string;
-  tier_target: string;
-  min_kd: number;
-  description: string;
-  tryout_date: string;
-  teams: {
-    name: string;
-    logo_url: string | null;
-    tier: string;
-  };
-  games: {
-    name: string;
-  };
-};
-
 import { useAuth } from "@/contexts/AuthContext";
 
 type Tryout = {

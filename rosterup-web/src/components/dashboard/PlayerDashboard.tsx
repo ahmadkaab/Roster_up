@@ -1,164 +1,229 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/contexts/AuthContext";
 import { createClient } from "@/lib/supabase/client";
-import { ArrowRight, Edit, Swords, User } from "lucide-react";
+import { Crosshair, Edit, Gamepad2, Instagram, Swords, Trophy, Youtube } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-type PlayerCard = {
-  id: string;
-  ign: string;
-  primary_role: string;
-  kd_ratio: number;
-  avg_damage: number;
-};
-
 export function PlayerDashboard() {
   const { user } = useAuth();
-  const [playerCard, setPlayerCard] = useState<PlayerCard | null>(null);
+  const [playerCard, setPlayerCard] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const supabase = createClient();
 
   useEffect(() => {
     async function fetchPlayerCard() {
       if (!user) return;
-
-      try {
-        const { data, error } = await supabase
-          .from("player_cards")
-          .select("*")
-          .eq("player_id", user.id)
-          .single();
-
-        if (error && error.code !== "PGRST116") {
-          console.error("Error fetching player card:", error);
-        }
-
-        if (data) {
-          setPlayerCard(data);
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      } finally {
-        setLoading(false);
-      }
+      const { data, error } = await supabase
+        .from("player_cards")
+        .select("*, games(name)")
+        .eq("player_id", user.id)
+        .single();
+      
+      if (data) setPlayerCard(data);
+      setLoading(false);
     }
-
     fetchPlayerCard();
   }, [user, supabase]);
 
   if (loading) {
-    return <div className="text-muted-foreground">Loading player data...</div>;
+    return <div className="animate-pulse space-y-4">
+      <div className="h-32 rounded-xl bg-white/5" />
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="h-40 rounded-xl bg-white/5" />
+        <div className="h-40 rounded-xl bg-white/5" />
+      </div>
+    </div>;
+  }
+
+  if (!playerCard) {
+    return (
+      <div className="flex flex-col items-center justify-center space-y-4 rounded-xl border border-dashed border-white/10 bg-white/5 p-8 text-center">
+        <div className="rounded-full bg-primary/10 p-4">
+          <Gamepad2 className="h-8 w-8 text-primary" />
+        </div>
+        <h2 className="text-xl font-bold">Create Your Player Card</h2>
+        <p className="max-w-md text-muted-foreground">
+          To start applying for teams, you need to set up your player profile with your stats and roles.
+        </p>
+        <Link href="/profile/create">
+          <Button>Create Profile</Button>
+        </Link>
+      </div>
+    );
   }
 
   return (
     <div className="space-y-6">
       {/* Welcome Section */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between rounded-xl border border-white/10 bg-gradient-to-r from-primary/20 to-accent/20 p-6">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight text-primary">
-            Welcome back, {playerCard?.ign || "Player"}! 👋
-          </h2>
-          <p className="text-muted-foreground">
-            Here's what's happening with your gaming career.
-          </p>
+          <h1 className="text-2xl font-bold text-white">Welcome back, {playerCard.ign}!</h1>
+          <p className="text-white/80">Ready to find your next team?</p>
         </div>
-        {playerCard && (
-          <Button asChild variant="outline" className="gap-2">
-            <Link href="/profile/edit">
-              <Edit className="h-4 w-4" />
+        <div className="flex gap-2">
+          <Link href={`/player/${user?.id}`}>
+            <Button variant="outline" className="border-white/20 bg-white/10 hover:bg-white/20">
+              <User className="mr-2 h-4 w-4" />
+              Public Profile
+            </Button>
+          </Link>
+          <Link href="/profile/create">
+            <Button variant="outline" className="border-white/20 bg-white/10 hover:bg-white/20">
+              <Edit className="mr-2 h-4 w-4" />
               Edit Profile
-            </Link>
-          </Button>
-        )}
+            </Button>
+          </Link>
+        </div>
       </div>
 
-      {/* Stats Overview */}
+      {/* Stats Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card className="border-white/10 bg-white/5 backdrop-blur-md">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">K/D Ratio</CardTitle>
-            <Swords className="h-4 w-4 text-muted-foreground" />
+            <Swords className="h-4 w-4 text-accent" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-primary">
-              {playerCard?.kd_ratio || "-"}
-            </div>
+            <div className="text-2xl font-bold">{playerCard.kd_ratio}</div>
             <p className="text-xs text-muted-foreground">Lifetime stats</p>
           </CardContent>
         </Card>
         <Card className="border-white/10 bg-white/5 backdrop-blur-md">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Avg Damage</CardTitle>
-            <Swords className="h-4 w-4 text-muted-foreground" />
+            <Crosshair className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-accent">
-              {playerCard?.avg_damage || "-"}
-            </div>
+            <div className="text-2xl font-bold">{playerCard.avg_damage}</div>
             <p className="text-xs text-muted-foreground">Per match</p>
           </CardContent>
         </Card>
         <Card className="border-white/10 bg-white/5 backdrop-blur-md">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Role</CardTitle>
-            <User className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">Primary Role</CardTitle>
+            <Gamepad2 className="h-4 w-4 text-green-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold capitalize">
-              {playerCard?.primary_role || "-"}
-            </div>
-            <p className="text-xs text-muted-foreground">Primary role</p>
+            <div className="text-2xl font-bold">{playerCard.primary_role}</div>
+            <p className="text-xs text-muted-foreground">
+              {playerCard.secondary_role ? `+ ${playerCard.secondary_role}` : "No secondary"}
+            </p>
+          </CardContent>
+        </Card>
+        <Card className="border-white/10 bg-white/5 backdrop-blur-md">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Experience</CardTitle>
+            <Trophy className="h-4 w-4 text-yellow-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{playerCard.experience_years || 0} Years</div>
+            <p className="text-xs text-muted-foreground">Competitive play</p>
           </CardContent>
         </Card>
       </div>
 
-      {/* Action Cards */}
-      <div className="grid gap-4 md:grid-cols-2">
-        {!playerCard && (
-          <Card className="border-primary/50 bg-primary/5">
-            <CardHeader>
-              <CardTitle className="text-primary">
-                Complete Your Profile
-              </CardTitle>
-              <CardDescription>
-                Create your player card to start applying for teams.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button asChild className="w-full gap-2">
-                <Link href="/profile/create">
-                  Create Player Card <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-            </CardContent>
-          </Card>
-        )}
-
+      <div className="grid gap-6 md:grid-cols-2">
+        {/* Achievements */}
         <Card className="border-white/10 bg-white/5 backdrop-blur-md">
           <CardHeader>
-            <CardTitle>Find Teams</CardTitle>
-            <CardDescription>
-              Browse active tryouts and find your next squad.
-            </CardDescription>
+            <CardTitle>Achievements</CardTitle>
           </CardHeader>
           <CardContent>
-            <Button asChild variant="secondary" className="w-full gap-2">
-              <Link href="/tryouts">
-                Browse Tryouts <Swords className="h-4 w-4" />
-              </Link>
-            </Button>
+            <div className="flex flex-wrap gap-2">
+              {playerCard.achievements && playerCard.achievements.length > 0 ? (
+                playerCard.achievements.map((achievement: string, i: number) => (
+                  <Badge key={i} variant="secondary" className="bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20">
+                    <Trophy className="mr-1 h-3 w-3" />
+                    {achievement}
+                  </Badge>
+                ))
+              ) : (
+                <p className="text-sm text-muted-foreground">No achievements added yet.</p>
+              )}
+            </div>
           </CardContent>
         </Card>
+
+        {/* Socials & Info */}
+        <Card className="border-white/10 bg-white/5 backdrop-blur-md">
+          <CardHeader>
+            <CardTitle>Socials & Info</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex items-center gap-4">
+              {playerCard.socials?.discord && (
+                <div className="flex items-center gap-2 text-sm">
+                  <div className="rounded-full bg-[#5865F2]/20 p-2 text-[#5865F2]">
+                    <Gamepad2 className="h-4 w-4" />
+                  </div>
+                  <span>{playerCard.socials.discord}</span>
+                </div>
+              )}
+              {playerCard.socials?.instagram && (
+                <div className="flex items-center gap-2 text-sm">
+                  <div className="rounded-full bg-[#E1306C]/20 p-2 text-[#E1306C]">
+                    <Instagram className="h-4 w-4" />
+                  </div>
+                  <span>{playerCard.socials.instagram}</span>
+                </div>
+              )}
+              {playerCard.socials?.youtube && (
+                <div className="flex items-center gap-2 text-sm">
+                  <div className="rounded-full bg-[#FF0000]/20 p-2 text-[#FF0000]">
+                    <Youtube className="h-4 w-4" />
+                  </div>
+                  <a href={playerCard.socials.youtube} target="_blank" rel="noreferrer" className="hover:underline">
+                    Channel
+                  </a>
+                </div>
+              )}
+            </div>
+            <div className="border-t border-white/10 pt-4">
+               <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Device:</span>
+                  <span>{playerCard.device_model || "Not specified"}</span>
+               </div>
+               <div className="flex justify-between text-sm mt-2">
+                  <span className="text-muted-foreground">Availability:</span>
+                  <span>{playerCard.availability || "Not specified"}</span>
+               </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Actions */}
+      <div className="grid gap-4 md:grid-cols-2">
+        <Link href="/tryouts">
+          <Card className="group cursor-pointer border-white/10 bg-gradient-to-br from-primary/10 to-transparent transition-all hover:border-primary/50">
+            <CardContent className="flex items-center justify-between p-6">
+              <div>
+                <h3 className="font-semibold text-primary group-hover:underline">Browse Tryouts</h3>
+                <p className="text-sm text-muted-foreground">Find teams looking for players like you.</p>
+              </div>
+              <Swords className="h-8 w-8 text-primary opacity-50 transition-opacity group-hover:opacity-100" />
+            </CardContent>
+          </Card>
+        </Link>
+        <Link href="/applications">
+          <Card className="group cursor-pointer border-white/10 bg-gradient-to-br from-accent/10 to-transparent transition-all hover:border-accent/50">
+            <CardContent className="flex items-center justify-between p-6">
+              <div>
+                <h3 className="font-semibold text-accent group-hover:underline">My Applications</h3>
+                <p className="text-sm text-muted-foreground">Check the status of your applications.</p>
+              </div>
+              <div className="relative">
+                <div className="absolute -right-1 -top-1 h-3 w-3 animate-ping rounded-full bg-accent opacity-50" />
+                <div className="h-3 w-3 rounded-full bg-accent" />
+              </div>
+            </CardContent>
+          </Card>
+        </Link>
       </div>
     </div>
   );

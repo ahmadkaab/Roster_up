@@ -1,9 +1,24 @@
 {
   "app": {
+    "[project]/rosterup-web/src/app/(auth)/login/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/rosterup-web/src/app/(auth)/onboarding/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/rosterup-web/src/app/(auth)/register/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
     "[project]/rosterup-web/src/app/(dashboard)/dashboard/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
     "[project]/rosterup-web/src/app/(dashboard)/profile/create/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/rosterup-web/src/app/(dashboard)/recruitments/new/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/rosterup-web/src/app/(dashboard)/team/setup/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
     "[project]/rosterup-web/src/app/(dashboard)/tryouts/page": [

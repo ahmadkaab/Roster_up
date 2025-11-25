@@ -6,10 +6,10 @@ import { Input } from "@/components/ui/input";
 import { useAuth } from "@/contexts/AuthContext";
 import { createClient } from "@/lib/supabase/client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, Save } from "lucide-react";
+import { Loader2, Plus, Save, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import * as z from "zod";
 
 const gameRoles = ['IGL', 'Scout', 'Sniper', 'Support', 'Flex', 'Entry Fragger'] as const;
@@ -24,6 +24,13 @@ const formSchema = z.object({
   avg_damage: z.coerce.number().min(0, "Damage must be positive"),
   device_model: z.string().optional(),
   availability: z.string().optional(),
+  experience_years: z.coerce.number().min(0).max(20).default(0),
+  achievements: z.array(z.object({ value: z.string() })).optional(),
+  socials: z.object({
+    discord: z.string().optional(),
+    instagram: z.string().optional(),
+    youtube: z.string().optional(),
+  }).optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -36,7 +43,7 @@ export function PlayerCardForm({ initialData }: { initialData?: any }) {
   const supabase = createClient();
 
   const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(formSchema) as any,
     defaultValues: {
       ign: initialData?.ign || "",
       game: initialData?.game || "BGMI",
@@ -46,7 +53,15 @@ export function PlayerCardForm({ initialData }: { initialData?: any }) {
       avg_damage: initialData?.avg_damage || 0,
       device_model: initialData?.device_model || "",
       availability: initialData?.availability || "",
-    },
+      experience_years: initialData?.experience_years || 0,
+      achievements: initialData?.achievements?.map((a: string) => ({ value: a })) || [],
+      socials: initialData?.socials || { discord: "", instagram: "", youtube: "" },
+    } as any,
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control: form.control,
+    name: "achievements",
   });
 
   const onSubmit = async (data: FormData) => {
@@ -55,9 +70,6 @@ export function PlayerCardForm({ initialData }: { initialData?: any }) {
     setError("");
 
     try {
-      // First get the game ID (simplified: assuming we know the ID or just storing the name if schema allowed, 
-      // but schema requires UUID. For MVP, let's fetch the game ID first)
-      
       const { data: gameData, error: gameError } = await supabase
         .from("games")
         .select("id")
@@ -76,6 +88,9 @@ export function PlayerCardForm({ initialData }: { initialData?: any }) {
         avg_damage: data.avg_damage,
         device_model: data.device_model,
         availability: data.availability,
+        experience_years: data.experience_years,
+        achievements: data.achievements?.map(a => a.value) || [],
+        socials: data.socials,
       };
 
       const { error: upsertError } = await supabase
@@ -103,102 +118,174 @@ export function PlayerCardForm({ initialData }: { initialData?: any }) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           {error && (
             <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
               {error}
             </div>
           )}
 
-          <div className="grid gap-4 md:grid-cols-2">
-            <div className="space-y-2">
-              <label className="text-sm font-medium">In-Game Name (IGN)</label>
-              <Input {...form.register("ign")} placeholder="e.g. Jonathan" />
-              {form.formState.errors.ign && (
-                <p className="text-xs text-destructive">{form.formState.errors.ign.message}</p>
-              )}
-            </div>
+          {/* Basic Info */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Basic Info</h3>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="space-y-2">
+                <label className="text-sm font-medium">In-Game Name (IGN)</label>
+                <Input {...form.register("ign")} placeholder="e.g. Jonathan" />
+                {form.formState.errors.ign && (
+                  <p className="text-xs text-destructive">{form.formState.errors.ign.message}</p>
+                )}
+              </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Game</label>
-              <select
-                {...form.register("game")}
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                {games.map((game) => (
-                  <option key={game} value={game}>
-                    {game}
-                  </option>
-                ))}
-              </select>
-            </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Game</label>
+                <select
+                  {...form.register("game")}
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {games.map((game) => (
+                    <option key={game} value={game}>
+                      {game}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Primary Role</label>
-              <select
-                {...form.register("primary_role")}
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                {gameRoles.map((role) => (
-                  <option key={role} value={role}>
-                    {role}
-                  </option>
-                ))}
-              </select>
-            </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Primary Role</label>
+                <select
+                  {...form.register("primary_role")}
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {gameRoles.map((role) => (
+                    <option key={role} value={role}>
+                      {role}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Secondary Role (Optional)</label>
-              <select
-                {...form.register("secondary_role")}
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                <option value="">None</option>
-                {gameRoles.map((role) => (
-                  <option key={role} value={role}>
-                    {role}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium">K/D Ratio</label>
-              <Input
-                type="number"
-                step="0.01"
-                {...form.register("kd_ratio")}
-                placeholder="e.g. 3.5"
-              />
-              {form.formState.errors.kd_ratio && (
-                <p className="text-xs text-destructive">{form.formState.errors.kd_ratio.message}</p>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Avg Damage</label>
-              <Input
-                type="number"
-                {...form.register("avg_damage")}
-                placeholder="e.g. 800"
-              />
-              {form.formState.errors.avg_damage && (
-                <p className="text-xs text-destructive">{form.formState.errors.avg_damage.message}</p>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Device Model</label>
-              <Input {...form.register("device_model")} placeholder="e.g. iPhone 14 Pro" />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Availability</label>
-              <Input {...form.register("availability")} placeholder="e.g. 6pm - 10pm IST" />
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Secondary Role (Optional)</label>
+                <select
+                  {...form.register("secondary_role")}
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <option value="">None</option>
+                  {gameRoles.map((role) => (
+                    <option key={role} value={role}>
+                      {role}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
 
-          <div className="flex justify-end">
+          {/* Stats & Details */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Stats & Details</h3>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="space-y-2">
+                <label className="text-sm font-medium">K/D Ratio</label>
+                <Input
+                  type="number"
+                  step="0.01"
+                  {...form.register("kd_ratio")}
+                  placeholder="e.g. 3.5"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Avg Damage</label>
+                <Input
+                  type="number"
+                  {...form.register("avg_damage")}
+                  placeholder="e.g. 800"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Experience (Years)</label>
+                <Input
+                  type="number"
+                  {...form.register("experience_years")}
+                  placeholder="e.g. 2"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Device Model</label>
+                <Input {...form.register("device_model")} placeholder="e.g. iPhone 14 Pro" />
+              </div>
+
+              <div className="space-y-2 md:col-span-2">
+                <label className="text-sm font-medium">Availability</label>
+                <Input {...form.register("availability")} placeholder="e.g. 6pm - 10pm IST" />
+              </div>
+            </div>
+          </div>
+
+          {/* Achievements */}
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-semibold">Achievements</h3>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => append({ value: "" })}
+              >
+                <Plus className="mr-2 h-4 w-4" />
+                Add
+              </Button>
+            </div>
+            <div className="space-y-2">
+              {fields.map((field, index) => (
+                <div key={field.id} className="flex gap-2">
+                  <Input
+                    {...form.register(`achievements.${index}.value`)}
+                    placeholder="e.g. PMCO Finalist 2023"
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => remove(index)}
+                    className="text-destructive hover:bg-destructive/10"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </div>
+              ))}
+              {fields.length === 0 && (
+                <p className="text-sm text-muted-foreground italic">
+                  No achievements added yet.
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Socials */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Socials</h3>
+            <div className="grid gap-4 md:grid-cols-3">
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Discord ID</label>
+                <Input {...form.register("socials.discord")} placeholder="username#1234" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Instagram</label>
+                <Input {...form.register("socials.instagram")} placeholder="@username" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">YouTube</label>
+                <Input {...form.register("socials.youtube")} placeholder="Channel Link" />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-end pt-4">
             <Button type="submit" disabled={loading} className="w-full md:w-auto">
               {loading ? (
                 <>

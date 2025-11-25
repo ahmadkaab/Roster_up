@@ -224,6 +224,11 @@ function TryoutCard({ tryout, isApplied = false }) {
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [applied, setApplied] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(isApplied);
     const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createClient"])();
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        setApplied(isApplied);
+    }, [
+        isApplied
+    ]);
     const handleApply = async ()=>{
         if (!user) return;
         setLoading(true);
@@ -243,7 +248,13 @@ function TryoutCard({ tryout, isApplied = false }) {
             setApplied(true);
             toast("Application sent successfully!", "success");
         } catch (error) {
-            console.error("Error applying:", error);
+            console.error("Error applying:", JSON.stringify(error, null, 2));
+            // Handle duplicate application (already applied)
+            if (error.code === "23505") {
+                setApplied(true);
+                toast("You have already applied to this tryout!", "info");
+                return;
+            }
             toast(error.message || "Failed to apply", "error");
         } finally{
             setLoading(false);
@@ -260,7 +271,7 @@ function TryoutCard({ tryout, isApplied = false }) {
                         children: tryout.teams.name.substring(0, 2).toUpperCase()
                     }, void 0, false, {
                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                        lineNumber: 74,
+                        lineNumber: 86,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -274,7 +285,7 @@ function TryoutCard({ tryout, isApplied = false }) {
                                         children: tryout.teams.name
                                     }, void 0, false, {
                                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                        lineNumber: 79,
+                                        lineNumber: 91,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Badge"], {
@@ -283,13 +294,13 @@ function TryoutCard({ tryout, isApplied = false }) {
                                         children: tryout.games.name
                                     }, void 0, false, {
                                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                        lineNumber: 80,
+                                        lineNumber: 92,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                lineNumber: 78,
+                                lineNumber: 90,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -299,7 +310,7 @@ function TryoutCard({ tryout, isApplied = false }) {
                                         className: "h-3 w-3"
                                     }, void 0, false, {
                                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                        lineNumber: 85,
+                                        lineNumber: 97,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -309,25 +320,25 @@ function TryoutCard({ tryout, isApplied = false }) {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                        lineNumber: 86,
+                                        lineNumber: 98,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                lineNumber: 84,
+                                lineNumber: 96,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                        lineNumber: 77,
+                        lineNumber: 89,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                lineNumber: 73,
+                lineNumber: 85,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -343,7 +354,7 @@ function TryoutCard({ tryout, isApplied = false }) {
                                         className: "h-4 w-4 text-primary"
                                     }, void 0, false, {
                                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                        lineNumber: 93,
+                                        lineNumber: 105,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -351,7 +362,7 @@ function TryoutCard({ tryout, isApplied = false }) {
                                         children: "Role:"
                                     }, void 0, false, {
                                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                        lineNumber: 94,
+                                        lineNumber: 106,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -359,13 +370,13 @@ function TryoutCard({ tryout, isApplied = false }) {
                                         children: tryout.role_needed
                                     }, void 0, false, {
                                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                        lineNumber: 95,
+                                        lineNumber: 107,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                lineNumber: 92,
+                                lineNumber: 104,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -375,7 +386,7 @@ function TryoutCard({ tryout, isApplied = false }) {
                                         className: "h-4 w-4 text-accent"
                                     }, void 0, false, {
                                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                        lineNumber: 98,
+                                        lineNumber: 110,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -383,7 +394,7 @@ function TryoutCard({ tryout, isApplied = false }) {
                                         children: "Min K/D:"
                                     }, void 0, false, {
                                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                        lineNumber: 99,
+                                        lineNumber: 111,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -391,13 +402,13 @@ function TryoutCard({ tryout, isApplied = false }) {
                                         children: tryout.min_kd
                                     }, void 0, false, {
                                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                        lineNumber: 100,
+                                        lineNumber: 112,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                lineNumber: 97,
+                                lineNumber: 109,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -407,7 +418,7 @@ function TryoutCard({ tryout, isApplied = false }) {
                                         className: "h-4 w-4 text-blue-400"
                                     }, void 0, false, {
                                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                        lineNumber: 103,
+                                        lineNumber: 115,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -415,7 +426,7 @@ function TryoutCard({ tryout, isApplied = false }) {
                                         children: "Target:"
                                     }, void 0, false, {
                                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                        lineNumber: 104,
+                                        lineNumber: 116,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -423,13 +434,13 @@ function TryoutCard({ tryout, isApplied = false }) {
                                         children: tryout.tier_target
                                     }, void 0, false, {
                                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                        lineNumber: 105,
+                                        lineNumber: 117,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                lineNumber: 102,
+                                lineNumber: 114,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -439,7 +450,7 @@ function TryoutCard({ tryout, isApplied = false }) {
                                         className: "h-4 w-4 text-green-400"
                                     }, void 0, false, {
                                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                        lineNumber: 108,
+                                        lineNumber: 120,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -447,7 +458,7 @@ function TryoutCard({ tryout, isApplied = false }) {
                                         children: "Date:"
                                     }, void 0, false, {
                                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                        lineNumber: 109,
+                                        lineNumber: 121,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -455,19 +466,19 @@ function TryoutCard({ tryout, isApplied = false }) {
                                         children: new Date(tryout.tryout_date).toLocaleDateString()
                                     }, void 0, false, {
                                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                        lineNumber: 110,
+                                        lineNumber: 122,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                lineNumber: 107,
+                                lineNumber: 119,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                        lineNumber: 91,
+                        lineNumber: 103,
                         columnNumber: 9
                     }, this),
                     tryout.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -475,13 +486,13 @@ function TryoutCard({ tryout, isApplied = false }) {
                         children: tryout.description
                     }, void 0, false, {
                         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                        lineNumber: 116,
+                        lineNumber: 128,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                lineNumber: 90,
+                lineNumber: 102,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardFooter"], {
@@ -494,14 +505,14 @@ function TryoutCard({ tryout, isApplied = false }) {
                             className: "h-4 w-4"
                         }, void 0, false, {
                             fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                            lineNumber: 124,
+                            lineNumber: 136,
                             columnNumber: 13
                         }, this),
                         "Applied"
                     ]
                 }, void 0, true, {
                     fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                    lineNumber: 123,
+                    lineNumber: 135,
                     columnNumber: 11
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
                     className: "w-full",
@@ -513,7 +524,7 @@ function TryoutCard({ tryout, isApplied = false }) {
                                 className: "mr-2 h-4 w-4 animate-spin"
                             }, void 0, false, {
                                 fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                                lineNumber: 131,
+                                lineNumber: 143,
                                 columnNumber: 17
                             }, this),
                             "Applying..."
@@ -521,18 +532,18 @@ function TryoutCard({ tryout, isApplied = false }) {
                     }, void 0, true) : "Apply Now"
                 }, void 0, false, {
                     fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                    lineNumber: 128,
+                    lineNumber: 140,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-                lineNumber: 121,
+                lineNumber: 133,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/rosterup-web/src/components/tryouts/TryoutCard.tsx",
-        lineNumber: 72,
+        lineNumber: 84,
         columnNumber: 5
     }, this);
 }
