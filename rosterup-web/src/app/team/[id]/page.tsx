@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/client";
-import { ArrowLeft, Gamepad2, Globe, MapPin, Shield, Trophy, Users } from "lucide-react";
+import { ArrowLeft, Gamepad2, Globe, MapPin, MessageSquare, Shield, Trophy, Users } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -28,6 +28,8 @@ type RosterPlayer = {
 
 export default function PublicTeamPage() {
   const params = useParams();
+  const router = useRouter();
+  const { user } = useAuth();
   const [team, setTeam] = useState<Team | null>(null);
   const [rosterByGame, setRosterByGame] = useState<Record<string, RosterPlayer[]>>({});
   const [loading, setLoading] = useState(true);
@@ -199,7 +201,48 @@ export default function PublicTeamPage() {
             {/* Stats/Actions */}
             <div className="flex flex-col gap-3">
                <Button className="w-full md:w-auto">Apply to Join</Button>
-               <Button variant="outline" className="w-full md:w-auto">Contact Manager</Button>
+               {user && user.id !== team.owner_id && (
+                 <Button 
+                   variant="outline" 
+                   className="w-full md:w-auto gap-2"
+                   onClick={async () => {
+                     try {
+                       // 1. Check if conversation exists
+                       const { data: existingConvs } = await supabase
+                         .from("conversations")
+                         .select("id")
+                         .or(`and(user1_id.eq.${user.id},user2_id.eq.${team.owner_id}),and(user1_id.eq.${team.owner_id},user2_id.eq.${user.id})`);
+                       
+                       let conversationId;
+
+                       if (existingConvs && existingConvs.length > 0) {
+                         conversationId = existingConvs[0].id;
+                       } else {
+                         // 2. Create new conversation
+                         const { data: newConv, error } = await supabase
+                           .from("conversations")
+                           .insert({
+                             user1_id: user.id,
+                             user2_id: team.owner_id,
+                           })
+                           .select()
+                           .single();
+                         
+                         if (error) throw error;
+                         conversationId = newConv.id;
+                       }
+
+                       // 3. Redirect to chat
+                       router.push(`/messages?c=${conversationId}`);
+                     } catch (error) {
+                       console.error("Error starting conversation:", error);
+                     }
+                   }}
+                 >
+                   <MessageSquare className="h-4 w-4" />
+                   Message Manager
+                 </Button>
+               )}
             </div>
           </div>
           

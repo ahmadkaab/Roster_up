@@ -30570,3 +30570,80 @@ Import traces:
     ./rosterup-web/src/components/layout/MainLayout.tsx [Server Component]
     ./rosterup-web/src/app/(dashboard)/layout.tsx [Server Component]
 [00:39:07.255] Server  LOG      ✓ Compiled in 16.5s
+[00:54:20.023] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:55:16.097] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:56:34.731] Server  LOG      ○ Compiling /register ...
+[00:56:39.150] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:57:16.504] Server  LOG      ○ Compiling /onboarding ...
+[00:58:14.206] Browser LOG     Attempting to update profile for user: 72401ea5-d67a-4c5a-b678-38d47e54a2c8 with type: player
+[00:58:15.112] Browser LOG     Supabase update data: [{"avatar_url":null,"created_at":"2025-11-25T18:51:20.488831+00:00","email":"finaltest@example.com","full_name":null,"id":"72401ea5-d67a-4c5a-b678-38d47e54a2c8","updated_at":"2025-11-25T18:51:20.488831+00:00","user_type":"player"}]
+[00:58:15.112] Browser LOG     Supabase update error: null
+[00:58:15.112] Browser LOG     Profile updated, redirecting to dashboard...
+[00:58:43.524] Server  LOG      ○ Compiling /profile/create ...
+[01:04:54.587] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:06:22.918] Server  LOG      ✓ Compiled in 1063ms
+[01:07:14.385] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:08:13.676] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:09:29.596] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:25:56.775] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:27:35.757] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:30:00.956] Server  LOG      ○ Compiling /messages ...
+[01:30:17.972] Server  ERROR   D:\Roster_up\rosterup-web\.next\dev\server\chunks\ssr\rosterup-web_src_1eefec14._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:30:17.994] Server  ERROR    ⨯ ReferenceError: cn is not defined
+[01:30:19.220] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:30:19.805] Browser ERROR   uncaughtError: ReferenceError: cn is not defined
+[01:32:07.272] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:34:34.834] Server  ERROR   D:\Roster_up\rosterup-web\.next\dev\server\chunks\ssr\rosterup-web_src_1eefec14._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:34:34.980] Server  ERROR    ⨯ ReferenceError: cn is not defined
+[01:34:36.340] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:34:36.901] Browser ERROR   uncaughtError: ReferenceError: cn is not defined
+[01:35:31.234] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:36:36.128] Server  ERROR   D:\Roster_up\rosterup-web\.next\dev\server\chunks\ssr\rosterup-web_src_1eefec14._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:36:36.146] Server  ERROR    ⨯ ReferenceError: cn is not defined
+[01:36:37.330] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:36:37.794] Browser ERROR   uncaughtError: ReferenceError: cn is not defined
+[01:37:12.490] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:38:23.439] Server  ERROR   D:\Roster_up\rosterup-web\.next\dev\server\chunks\ssr\rosterup-web_src_1eefec14._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:38:23.561] Server  ERROR    ⨯ ReferenceError: cn is not defined
+[01:38:24.946] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:38:25.424] Browser ERROR   uncaughtError: ReferenceError: cn is not defined
+[01:39:21.018] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:40:03.234] Server  ERROR   D:\Roster_up\rosterup-web\.next\dev\server\chunks\ssr\rosterup-web_src_1eefec14._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:40:03.367] Server  ERROR    ⨯ ReferenceError: cn is not defined
+[01:40:05.098] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:40:06.860] Browser ERROR   uncaughtError: ReferenceError: cn is not defined
+[01:40:26.475] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:44:02.903] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:44:23.400] Server  LOG      ✓ Compiled in 47.1s
+[01:44:25.507] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:44:25.637] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:44:25.959] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:44:26.247] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:44:41.635] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:44:41.797] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:44:41.949] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:44:42.139] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:44:42.266] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:44:42.327] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:45:33.930] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:45:33.995] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:45:38.336] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:45:38.652] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:45:39.961] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:52:51.203] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:54:08.513] Browser LOG     Attempting to update profile for user: 868df32f-fed1-44ca-b3c9-2e902e8f2811 with type: team_admin
+[01:54:09.341] Browser LOG     Supabase update data: [{"avatar_url":null,"created_at":"2025-11-25T19:47:46.644953+00:00","email":"team_e2e_1764100000000@test.com","full_name":null,"id":"868df32f-fed1-44ca-b3c9-2e902e8f2811","updated_at":"2025-11-25T19:47:46.644953+00:00","user_type":"team_admin"}]
+[01:54:09.341] Browser LOG     Supabase update error: null
+[01:54:09.341] Browser LOG     Profile updated, redirecting to dashboard...
+[01:55:04.726] Server  LOG      ○ Compiling /_not-found/page ...
+[01:56:17.067] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:56:30.748] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:56:47.504] Server  LOG      ○ Compiling /team/setup ...
+[01:57:00.866] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:59:25.363] Server  LOG      ○ Compiling /recruitments/new ...
+[02:08:54.319] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:10:12.700] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:12:26.719] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:15:41.943] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:16:54.171] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:20:36.521] Browser ERROR   uncaughtError: ReferenceError: useRouter is not defined

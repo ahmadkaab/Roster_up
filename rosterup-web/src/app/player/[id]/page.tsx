@@ -4,13 +4,15 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/client";
-import { ArrowLeft, Crosshair, Gamepad2, Instagram, Swords, Trophy, User, Youtube } from "lucide-react";
+import { ArrowLeft, Crosshair, Gamepad2, Instagram, MessageSquare, Swords, Trophy, User, Youtube } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function PublicProfilePage() {
   const params = useParams();
+  const router = useRouter();
+  const { user } = useAuth();
   const [playerCard, setPlayerCard] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const supabase = createClient();
@@ -85,7 +87,48 @@ export default function PublicProfilePage() {
             </div>
           </div>
           <div className="flex gap-4">
-             {/* Placeholder for "Invite to Team" button if we add that feature */}
+            {user && user.id !== playerCard.player_id && (
+              <Button 
+                onClick={async () => {
+                  try {
+                    // 1. Check if conversation exists
+                    // We need to check both combinations: (me, them) or (them, me)
+                    const { data: existingConvs } = await supabase
+                      .from("conversations")
+                      .select("id")
+                      .or(`and(user1_id.eq.${user.id},user2_id.eq.${playerCard.player_id}),and(user1_id.eq.${playerCard.player_id},user2_id.eq.${user.id})`);
+                    
+                    let conversationId;
+
+                    if (existingConvs && existingConvs.length > 0) {
+                      conversationId = existingConvs[0].id;
+                    } else {
+                      // 2. Create new conversation
+                      const { data: newConv, error } = await supabase
+                        .from("conversations")
+                        .insert({
+                          user1_id: user.id,
+                          user2_id: playerCard.player_id,
+                        })
+                        .select()
+                        .single();
+                      
+                      if (error) throw error;
+                      conversationId = newConv.id;
+                    }
+
+                    // 3. Redirect to chat
+                    router.push(`/messages?c=${conversationId}`);
+                  } catch (error) {
+                    console.error("Error starting conversation:", error);
+                  }
+                }}
+                className="gap-2"
+              >
+                <MessageSquare className="h-4 w-4" />
+                Message
+              </Button>
+            )}
           </div>
         </div>
 

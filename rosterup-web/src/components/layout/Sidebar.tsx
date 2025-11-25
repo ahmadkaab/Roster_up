@@ -2,7 +2,7 @@
 
 import { useAuth } from "@/contexts/AuthContext";
 import { cn } from "@/lib/utils";
-import { ClipboardList, LayoutDashboard, PlusCircle, Swords, UserCircle, Users } from "lucide-react";
+import { ClipboardList, LayoutDashboard, MessageSquare, PlusCircle, Swords, UserCircle, Users } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -33,6 +33,11 @@ export function Sidebar() {
       href: "/profile",
       icon: UserCircle,
     },
+    {
+      name: "Messages",
+      href: "/messages",
+      icon: MessageSquare,
+    },
   ];
 
   const teamNav = [
@@ -55,6 +60,11 @@ export function Sidebar() {
       name: "Applicants",
       href: "/recruitments/manage",
       icon: ClipboardList,
+    },
+    {
+      name: "Messages",
+      href: "/messages",
+      icon: MessageSquare,
     },
   ];
 

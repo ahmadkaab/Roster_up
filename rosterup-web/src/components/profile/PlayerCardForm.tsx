@@ -19,7 +19,7 @@ const formSchema = z.object({
   ign: z.string().min(2, "IGN must be at least 2 characters"),
   game: z.enum(games).default('BGMI'),
   primary_role: z.enum(gameRoles),
-  secondary_role: z.enum(gameRoles).optional(),
+  secondary_role: z.union([z.enum(gameRoles), z.literal("")]).optional(),
   kd_ratio: z.coerce.number().min(0, "K/D must be positive").max(100, "K/D seems too high"),
   avg_damage: z.coerce.number().min(0, "Damage must be positive"),
   device_model: z.string().optional(),
