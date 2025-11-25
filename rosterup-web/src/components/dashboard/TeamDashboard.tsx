@@ -1,10 +1,11 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/contexts/AuthContext";
 import { createClient } from "@/lib/supabase/client";
-import { ArrowRight, ClipboardList, Plus, Trophy, Users } from "lucide-react";
+import { ArrowRight, ClipboardList, Gamepad2, Plus, Trophy, Users } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -21,10 +22,20 @@ type TeamStats = {
   pendingApplications: number;
 };
 
+type RosterPlayer = {
+  player_id: string;
+  ign: string;
+  primary_role: string;
+  kd_ratio: number;
+  avg_damage: number;
+  game_name: string;
+};
+
 export function TeamDashboard() {
   const { user } = useAuth();
   const [team, setTeam] = useState<Team | null>(null);
   const [stats, setStats] = useState<TeamStats>({ activeRecruitments: 0, pendingApplications: 0 });
+  const [rosterByGame, setRosterByGame] = useState<Record<string, RosterPlayer[]>>({});
   const [loading, setLoading] = useState(true);
   const supabase = createClient();
 
@@ -54,30 +65,56 @@ export function TeamDashboard() {
             .eq("team_id", teamData.id)
             .eq("status", "open");
 
-          // For applications, we need to join with recruitments for this team
-          // But Supabase simple count is easier if we just fetch recruitments IDs first
+          // Fetch Recruitments to get IDs and Game Names
           const { data: recruitments } = await supabase
             .from("recruitments")
-            .select("id")
+            .select("id, games(name)")
             .eq("team_id", teamData.id);
             
-  // ... inside TeamDashboard component
-  const [roster, setRoster] = useState<any[]>([]);
+          let applicationCount = 0;
+          
+          if (recruitments && recruitments.length > 0) {
+            const ids = recruitments.map(r => r.id);
+            
+            // Get Pending Applications Count
+            const { count } = await supabase
+              .from("recruitment_applications")
+              .select("*", { count: "exact", head: true })
+              .in("recruitment_id", ids)
+              .eq("status", "pending");
+            applicationCount = count || 0;
 
-  // ... inside fetchTeamData
-          // Fetch Roster (Accepted Applicants)
-          // We need to find all recruitments for this team, then find accepted applications
-          // This is a bit complex with Supabase simple queries, ideally we'd use a view or a join
-          // For now: Get all recruitments -> Get accepted apps -> Get player details
-          
-          const { data: acceptedApps } = await supabase
-            .from("recruitment_applications")
-            .select("*, player_cards(*)")
-            .in("recruitment_id", recruitments?.map(r => r.id) || [])
-            .eq("status", "accepted");
-          
-          if (acceptedApps) {
-            setRoster(acceptedApps.map(app => app.player_cards));
+            // Get Accepted Applications (Roster)
+            const { data: acceptedApps } = await supabase
+              .from("recruitment_applications")
+              .select("*, player_cards(*)")
+              .in("recruitment_id", ids)
+              .eq("status", "accepted");
+
+            if (acceptedApps) {
+              const grouped: Record<string, RosterPlayer[]> = {};
+              
+              acceptedApps.forEach(app => {
+                const recruitment = recruitments.find(r => r.id === app.recruitment_id);
+                const gameName = (recruitment?.games as any)?.name || "Unknown Game";
+                
+                if (!grouped[gameName]) {
+                  grouped[gameName] = [];
+                }
+
+                if (app.player_cards) {
+                  grouped[gameName].push({
+                    player_id: app.player_cards.player_id,
+                    ign: app.player_cards.ign,
+                    primary_role: app.player_cards.primary_role,
+                    kd_ratio: app.player_cards.kd_ratio,
+                    avg_damage: app.player_cards.avg_damage,
+                    game_name: gameName,
+                  });
+                }
+              });
+              setRosterByGame(grouped);
+            }
           }
 
           setStats({
@@ -100,7 +137,6 @@ export function TeamDashboard() {
   }
 
   if (!team) {
-    // ... (registration card)
     return (
       <Card className="border-primary/50 bg-primary/5">
         <CardHeader>
@@ -188,32 +224,45 @@ export function TeamDashboard() {
       </div>
 
       {/* Active Roster */}
-      <div className="space-y-4">
+      <div className="space-y-6">
         <h3 className="text-xl font-semibold text-white">Active Roster</h3>
-        {roster.length > 0 ? (
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {roster.map((player) => (
-              <Card key={player.id} className="border-white/10 bg-white/5 backdrop-blur-md">
-                <CardHeader className="flex flex-row items-center gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20">
-                    <Users className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-base">{player.ign}</CardTitle>
-                    <CardDescription>{player.primary_role}</CardDescription>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">K/D: {player.kd_ratio}</span>
-                    <Link href={`/player/${player.player_id}`} className="text-primary hover:underline">
-                      View Profile
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        
+        {Object.keys(rosterByGame).length > 0 ? (
+          Object.entries(rosterByGame).map(([game, players]) => (
+            <div key={game} className="space-y-3">
+              <div className="flex items-center gap-2">
+                <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">
+                  <Gamepad2 className="mr-1 h-3 w-3" />
+                  {game}
+                </Badge>
+                <span className="text-sm text-muted-foreground">{players.length} Players</span>
+              </div>
+              
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {players.map((player) => (
+                  <Card key={player.player_id} className="border-white/10 bg-white/5 backdrop-blur-md">
+                    <CardHeader className="flex flex-row items-center gap-4">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20">
+                        <Users className="h-5 w-5 text-primary" />
+                      </div>
+                      <div>
+                        <CardTitle className="text-base">{player.ign}</CardTitle>
+                        <CardDescription>{player.primary_role}</CardDescription>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">K/D: {player.kd_ratio}</span>
+                        <Link href={`/player/${player.player_id}`} className="text-primary hover:underline">
+                          View Profile
+                        </Link>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          ))
         ) : (
           <Card className="border-dashed border-white/10 bg-white/5">
             <CardContent className="flex flex-col items-center justify-center p-8 text-center">

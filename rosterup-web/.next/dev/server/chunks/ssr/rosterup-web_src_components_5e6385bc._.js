@@ -208,11 +208,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modu
 ;
 ;
 const teamTiers = [
-    'T1',
-    'T2',
-    'T3',
-    'T4',
-    'Amateur'
+    "T1",
+    "T2",
+    "T3",
+    "T4",
+    "Amateur"
 ];
 const formSchema = __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$zod$2f$v4$2f$classic$2f$schemas$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["object"]({
     name: __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$zod$2f$v4$2f$classic$2f$schemas$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["string"]().min(3, "Team name must be at least 3 characters"),
@@ -220,7 +220,7 @@ const formSchema = __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$w
     region: __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$zod$2f$v4$2f$classic$2f$schemas$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["string"]().min(2, "Region is required"),
     logo_url: __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$zod$2f$v4$2f$classic$2f$schemas$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["string"]().url("Must be a valid URL").optional().or(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$zod$2f$v4$2f$classic$2f$schemas$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["literal"](""))
 });
-function TeamSetupForm() {
+function TeamSetupForm({ initialData }) {
     const { user } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$contexts$2f$AuthContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useAuth"])();
     const { toast } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$contexts$2f$ToastContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useToast"])();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
@@ -229,10 +229,10 @@ function TeamSetupForm() {
     const form = (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$react$2d$hook$2d$form$2f$dist$2f$index$2e$esm$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useForm"])({
         resolver: (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f40$hookform$2f$resolvers$2f$zod$2f$dist$2f$zod$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["zodResolver"])(formSchema),
         defaultValues: {
-            name: "",
-            tier: "Amateur",
-            region: "India",
-            logo_url: ""
+            name: initialData?.name || "",
+            tier: initialData?.tier || "Amateur",
+            region: initialData?.region || "India",
+            logo_url: initialData?.logo_url || ""
         }
     });
     const onSubmit = async (data)=>{
@@ -246,14 +246,23 @@ function TeamSetupForm() {
                 region: data.region,
                 logo_url: data.logo_url || null
             };
-            const { error } = await supabase.from("teams").insert(payload);
+            let error;
+            if (initialData?.id) {
+                // Update existing team
+                const { error: updateError } = await supabase.from("teams").update(payload).eq("id", initialData.id);
+                error = updateError;
+            } else {
+                // Create new team
+                const { error: insertError } = await supabase.from("teams").insert(payload);
+                error = insertError;
+            }
             if (error) throw error;
-            toast("Team created successfully!", "success");
+            toast(initialData ? "Team updated successfully!" : "Team created successfully!", "success");
             router.push("/dashboard");
             router.refresh();
         } catch (error) {
-            console.error("Error creating team:", error);
-            toast(error.message || "Failed to create team", "error");
+            console.error("Error saving team:", error);
+            toast(error.message || "Failed to save team", "error");
         } finally{
             setLoading(false);
         }
@@ -264,23 +273,23 @@ function TeamSetupForm() {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardHeader"], {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardTitle"], {
-                        children: "Team Registration"
+                        children: initialData ? "Edit Team Profile" : "Team Registration"
                     }, void 0, false, {
                         fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                        lineNumber: 77,
+                        lineNumber: 101,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardDescription"], {
-                        children: "Register your organization to start recruiting players."
+                        children: initialData ? "Update your team details." : "Register your organization to start recruiting players."
                     }, void 0, false, {
                         fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                        lineNumber: 78,
+                        lineNumber: 104,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                lineNumber: 76,
+                lineNumber: 100,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -296,7 +305,7 @@ function TeamSetupForm() {
                                     children: "Team Name"
                                 }, void 0, false, {
                                     fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                                    lineNumber: 85,
+                                    lineNumber: 113,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -304,7 +313,7 @@ function TeamSetupForm() {
                                     placeholder: "e.g. GodLike Esports"
                                 }, void 0, false, {
                                     fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                                    lineNumber: 86,
+                                    lineNumber: 114,
                                     columnNumber: 13
                                 }, this),
                                 form.formState.errors.name && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -312,13 +321,13 @@ function TeamSetupForm() {
                                     children: form.formState.errors.name.message
                                 }, void 0, false, {
                                     fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                                    lineNumber: 88,
+                                    lineNumber: 119,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                            lineNumber: 84,
+                            lineNumber: 112,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -332,7 +341,7 @@ function TeamSetupForm() {
                                             children: "Tier"
                                         }, void 0, false, {
                                             fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                                            lineNumber: 94,
+                                            lineNumber: 127,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -343,18 +352,18 @@ function TeamSetupForm() {
                                                     children: tier
                                                 }, tier, false, {
                                                     fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                                                    lineNumber: 100,
+                                                    lineNumber: 133,
                                                     columnNumber: 19
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                                            lineNumber: 95,
+                                            lineNumber: 128,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                                    lineNumber: 93,
+                                    lineNumber: 126,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -365,7 +374,7 @@ function TeamSetupForm() {
                                             children: "Region"
                                         }, void 0, false, {
                                             fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                                            lineNumber: 108,
+                                            lineNumber: 141,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -373,7 +382,7 @@ function TeamSetupForm() {
                                             placeholder: "e.g. India"
                                         }, void 0, false, {
                                             fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                                            lineNumber: 109,
+                                            lineNumber: 142,
                                             columnNumber: 15
                                         }, this),
                                         form.formState.errors.region && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -381,19 +390,19 @@ function TeamSetupForm() {
                                             children: form.formState.errors.region.message
                                         }, void 0, false, {
                                             fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                                            lineNumber: 111,
+                                            lineNumber: 144,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                                    lineNumber: 107,
+                                    lineNumber: 140,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                            lineNumber: 92,
+                            lineNumber: 125,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -404,7 +413,7 @@ function TeamSetupForm() {
                                     children: "Logo URL (Optional)"
                                 }, void 0, false, {
                                     fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                                    lineNumber: 117,
+                                    lineNumber: 152,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -412,7 +421,7 @@ function TeamSetupForm() {
                                     placeholder: "https://..."
                                 }, void 0, false, {
                                     fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                                    lineNumber: 118,
+                                    lineNumber: 153,
                                     columnNumber: 13
                                 }, this),
                                 form.formState.errors.logo_url && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -420,13 +429,13 @@ function TeamSetupForm() {
                                     children: form.formState.errors.logo_url.message
                                 }, void 0, false, {
                                     fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                                    lineNumber: 120,
+                                    lineNumber: 155,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                            lineNumber: 116,
+                            lineNumber: 151,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -441,10 +450,10 @@ function TeamSetupForm() {
                                             className: "mr-2 h-4 w-4 animate-spin"
                                         }, void 0, false, {
                                             fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                                            lineNumber: 128,
+                                            lineNumber: 169,
                                             columnNumber: 19
                                         }, this),
-                                        "Creating Team..."
+                                        initialData ? "Updating..." : "Creating Team..."
                                     ]
                                 }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                                     children: [
@@ -452,37 +461,37 @@ function TeamSetupForm() {
                                             className: "mr-2 h-4 w-4"
                                         }, void 0, false, {
                                             fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                                            lineNumber: 133,
+                                            lineNumber: 174,
                                             columnNumber: 19
                                         }, this),
-                                        "Register Team"
+                                        initialData ? "Save Changes" : "Register Team"
                                     ]
                                 }, void 0, true)
                             }, void 0, false, {
                                 fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                                lineNumber: 125,
+                                lineNumber: 162,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                            lineNumber: 124,
+                            lineNumber: 161,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                    lineNumber: 83,
+                    lineNumber: 111,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-                lineNumber: 82,
+                lineNumber: 110,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/rosterup-web/src/components/team/TeamSetupForm.tsx",
-        lineNumber: 75,
+        lineNumber: 99,
         columnNumber: 5
     }, this);
 }

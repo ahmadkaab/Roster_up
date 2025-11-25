@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/contexts/AuthContext";
 import { createClient } from "@/lib/supabase/client";
-import { Crosshair, Edit, Gamepad2, Instagram, Swords, Trophy, Youtube } from "lucide-react";
+import { Crosshair, Edit, Gamepad2, Instagram, Swords, Trophy, User, Youtube } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
