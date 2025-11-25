@@ -13,8 +13,51 @@ export function Sidebar() {
   const { profile } = useAuth();
 
   const playerNav = [
-// ... (rest of nav items)
-// ...
+    {
+      name: "Dashboard",
+      href: "/dashboard",
+      icon: LayoutDashboard,
+    },
+    {
+      name: "Tryouts",
+      href: "/tryouts",
+      icon: Swords,
+    },
+    {
+      name: "My Applications",
+      href: "/applications",
+      icon: ClipboardList,
+    },
+    {
+      name: "Profile",
+      href: "/profile",
+      icon: UserCircle,
+    },
+  ];
+
+  const teamNav = [
+    {
+      name: "Dashboard",
+      href: "/dashboard",
+      icon: LayoutDashboard,
+    },
+    {
+      name: "My Team",
+      href: "/team/setup",
+      icon: Users,
+    },
+    {
+      name: "Post Recruitment",
+      href: "/recruitments/new",
+      icon: PlusCircle,
+    },
+    {
+      name: "Applicants",
+      href: "/recruitments/manage",
+      icon: ClipboardList,
+    },
+  ];
+
   const navItems = profile?.user_type === "team_admin" ? teamNav : playerNav;
 
   return (
