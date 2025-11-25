@@ -10,6 +10,7 @@ import { useState } from "react";
 
 type Applicant = {
   id: string;
+  player_id: string;
   status: "pending" | "shortlisted" | "rejected" | "selected";
   created_at: string;
   player: {
@@ -42,12 +43,26 @@ export function ApplicantCard({
   const handleStatusUpdate = async (newStatus: "selected" | "rejected") => {
     setLoading(newStatus === "selected" ? "accept" : "reject");
     try {
+      // 1. Update Application Status
       const { error } = await supabase
         .from("recruitment_applications")
-        .update({ status: newStatus })
+        .update({ status: newStatus === "selected" ? "accepted" : "rejected" }) // Map 'selected' to 'accepted' if DB uses 'accepted'
         .eq("id", application.id);
 
       if (error) throw error;
+
+      // 2. Send Notification to Player
+      const notificationMsg = newStatus === "selected" 
+        ? `Congratulations! You have been accepted to ${application.recruitment.game.name} roster.`
+        : `Update: Your application for ${application.recruitment.game.name} was not selected.`;
+
+      await supabase.from("notifications").insert({
+        user_id: application.player_id,
+        type: "application_status",
+        title: newStatus === "selected" ? "Application Accepted! 🎉" : "Application Update",
+        message: notificationMsg,
+        link: "/applications",
+      });
 
       toast(`Applicant ${newStatus === "selected" ? "accepted" : "rejected"} successfully`, "success");
       onUpdate();

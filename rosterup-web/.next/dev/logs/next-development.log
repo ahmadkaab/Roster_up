@@ -7,3 +7,21 @@
 [00:13:12.011] Server  LOG      ○ Compiling /team/setup ...
 [00:13:25.746] Server  LOG      ○ Compiling /recruitments/new ...
 [00:18:58.518] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:27:35.242] Server  LOG      ✓ Compiled in 493ms
+[00:32:02.736] Browser ERROR   ./rosterup-web/src/components/layout/Sidebar.tsx:18:3
+Parsing ecmascript source code failed
+  16 | // ... (rest of nav items)
+  17 | // ...
+> 18 |   const navItems = profile?.user_type === "team_admin" ? teamNav : playerNav;
+     |   ^^^^^
+  19 |
+  20 |   return (
+  21 |     <div className="hidden border-r border-white/10 bg-white/5 backdrop-blur-md lg:block lg:w-64 lg:flex-col">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/layout/Sidebar.tsx
+    ./rosterup-web/src/components/layout/MainLayout.tsx
+    ./rosterup-web/src/app/(dashboard)/layout.tsx

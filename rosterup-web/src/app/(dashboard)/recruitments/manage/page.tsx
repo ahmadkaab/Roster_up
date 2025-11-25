@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 
 type Applicant = {
   id: string;
+  player_id: string;
   status: "pending" | "shortlisted" | "rejected" | "selected";
   created_at: string;
   player: {
@@ -67,6 +68,7 @@ export default function ManageApplicationsPage() {
         .from("recruitment_applications")
         .select(`
           id,
+          player_id,
           status,
           created_at,
           player:player_cards!player_id (

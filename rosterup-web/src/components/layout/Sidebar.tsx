@@ -6,62 +6,22 @@ import { ClipboardList, LayoutDashboard, PlusCircle, Swords, UserCircle, Users }
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { NotificationsPopover } from "@/components/notifications/NotificationsPopover";
+
 export function Sidebar() {
   const pathname = usePathname();
   const { profile } = useAuth();
 
   const playerNav = [
-    {
-      name: "Dashboard",
-      href: "/dashboard",
-      icon: LayoutDashboard,
-    },
-    {
-      name: "Tryouts",
-      href: "/tryouts",
-      icon: Swords,
-    },
-    {
-      name: "My Applications",
-      href: "/applications",
-      icon: ClipboardList,
-    },
-    {
-      name: "Profile",
-      href: "/profile",
-      icon: UserCircle,
-    },
-  ];
-
-  const teamNav = [
-    {
-      name: "Dashboard",
-      href: "/dashboard",
-      icon: LayoutDashboard,
-    },
-    {
-      name: "My Team",
-      href: "/team/setup", // Or /team/dashboard if we had a dedicated page, but setup handles edit too
-      icon: Users,
-    },
-    {
-      name: "Post Recruitment",
-      href: "/recruitments/new",
-      icon: PlusCircle,
-    },
-    {
-      name: "Applicants",
-      href: "/recruitments/manage",
-      icon: ClipboardList,
-    },
-  ];
-
+// ... (rest of nav items)
+// ...
   const navItems = profile?.user_type === "team_admin" ? teamNav : playerNav;
 
   return (
     <div className="hidden border-r border-white/10 bg-white/5 backdrop-blur-md lg:block lg:w-64 lg:flex-col">
-      <div className="flex h-16 items-center border-b border-white/10 px-6">
+      <div className="flex h-16 items-center justify-between border-b border-white/10 px-6">
         <h1 className="text-xl font-bold text-primary">RosterUp</h1>
+        <NotificationsPopover />
       </div>
       <div className="flex flex-1 flex-col gap-2 p-4">
         {navItems.map((item) => {
