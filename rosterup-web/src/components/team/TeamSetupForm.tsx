@@ -1,7 +1,13 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/contexts/ToastContext";
@@ -13,7 +19,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-const teamTiers = ['T1', 'T2', 'T3', 'T4', 'Amateur'] as const;
+const teamTiers = ["T1", "T2", "T3", "T4", "Amateur"] as const;
 
 const formSchema = z.object({
   name: z.string().min(3, "Team name must be at least 3 characters"),
@@ -24,7 +30,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export function TeamSetupForm() {
+export function TeamSetupForm({ initialData }: { initialData?: any }) {
   const { user } = useAuth();
   const { toast } = useToast();
   const router = useRouter();
@@ -34,10 +40,10 @@ export function TeamSetupForm() {
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      tier: "Amateur",
-      region: "India",
-      logo_url: "",
+      name: initialData?.name || "",
+      tier: initialData?.tier || "Amateur",
+      region: initialData?.region || "India",
+      logo_url: initialData?.logo_url || "",
     },
   });
 
@@ -54,18 +60,36 @@ export function TeamSetupForm() {
         logo_url: data.logo_url || null,
       };
 
-      const { error } = await supabase
-        .from("teams")
-        .insert(payload);
+      let error;
+
+      if (initialData?.id) {
+        // Update existing team
+        const { error: updateError } = await supabase
+          .from("teams")
+          .update(payload)
+          .eq("id", initialData.id);
+        error = updateError;
+      } else {
+        // Create new team
+        const { error: insertError } = await supabase
+          .from("teams")
+          .insert(payload);
+        error = insertError;
+      }
 
       if (error) throw error;
 
-      toast("Team created successfully!", "success");
+      toast(
+        initialData
+          ? "Team updated successfully!"
+          : "Team created successfully!",
+        "success"
+      );
       router.push("/dashboard");
       router.refresh();
     } catch (error: any) {
-      console.error("Error creating team:", error);
-      toast(error.message || "Failed to create team", "error");
+      console.error("Error saving team:", error);
+      toast(error.message || "Failed to save team", "error");
     } finally {
       setLoading(false);
     }
@@ -74,18 +98,27 @@ export function TeamSetupForm() {
   return (
     <Card className="border-white/10 bg-white/5 backdrop-blur-md">
       <CardHeader>
-        <CardTitle>Team Registration</CardTitle>
+        <CardTitle>
+          {initialData ? "Edit Team Profile" : "Team Registration"}
+        </CardTitle>
         <CardDescription>
-          Register your organization to start recruiting players.
+          {initialData
+            ? "Update your team details."
+            : "Register your organization to start recruiting players."}
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-2">
             <label className="text-sm font-medium">Team Name</label>
-            <Input {...form.register("name")} placeholder="e.g. GodLike Esports" />
+            <Input
+              {...form.register("name")}
+              placeholder="e.g. GodLike Esports"
+            />
             {form.formState.errors.name && (
-              <p className="text-xs text-destructive">{form.formState.errors.name.message}</p>
+              <p className="text-xs text-destructive">
+                {form.formState.errors.name.message}
+              </p>
             )}
           </div>
 
@@ -108,7 +141,9 @@ export function TeamSetupForm() {
               <label className="text-sm font-medium">Region</label>
               <Input {...form.register("region")} placeholder="e.g. India" />
               {form.formState.errors.region && (
-                <p className="text-xs text-destructive">{form.formState.errors.region.message}</p>
+                <p className="text-xs text-destructive">
+                  {form.formState.errors.region.message}
+                </p>
               )}
             </div>
           </div>
@@ -117,21 +152,27 @@ export function TeamSetupForm() {
             <label className="text-sm font-medium">Logo URL (Optional)</label>
             <Input {...form.register("logo_url")} placeholder="https://..." />
             {form.formState.errors.logo_url && (
-              <p className="text-xs text-destructive">{form.formState.errors.logo_url.message}</p>
+              <p className="text-xs text-destructive">
+                {form.formState.errors.logo_url.message}
+              </p>
             )}
           </div>
 
           <div className="flex justify-end">
-            <Button type="submit" disabled={loading} className="w-full md:w-auto">
+            <Button
+              type="submit"
+              disabled={loading}
+              className="w-full md:w-auto"
+            >
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Creating Team...
+                  {initialData ? "Updating..." : "Creating Team..."}
                 </>
               ) : (
                 <>
                   <Users className="mr-2 h-4 w-4" />
-                  Register Team
+                  {initialData ? "Save Changes" : "Register Team"}
                 </>
               )}
             </Button>
