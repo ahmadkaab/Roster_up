@@ -1,8 +1,70 @@
-[00:00:24.273] Server  LOG      ○ Compiling middleware ...
-[00:00:38.052] Server  LOG      ✓ Ready in 31.1s
-[00:00:48.031] Server  LOG      ○ Compiling /register ...
-[00:01:27.531] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:29.124] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:20.205] Server  LOG      ○ Compiling middleware ...
+[00:00:25.562] Server  LOG      ✓ Ready in 21s
+[00:00:28.607] Server  LOG      ○ Compiling /dashboard ...
+[00:00:43.266] Server  ERROR    ⨯ ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx:4:10
+Ecmascript file had an error
+  2 | import { Button } from "@/components/ui/button";
+  3 | import { useAuth } from "@/contexts/AuthContext";
+> 4 | import { useRouter } from "next/navigation";
+    |          ^^^^^^^^^
+  5 |
+  6 | export default function DashboardPage() {
+  7 |   const { user, profile, signOut, loading } = useAuth();
+
+You're importing a component that needs `useRouter`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+[00:00:46.338] Server  LOG      ○ Compiling /_error ...
+[00:00:50.409] Browser ERROR   uncaughtError: Error: ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx:4:10
+Ecmascript file had an error
+  2 | import { Button } from "@/components/ui/button";
+  3 | import { useAuth } from "@/contexts/AuthContext";
+> 4 | import { useRouter } from "next/navigation";
+    |          ^^^^^^^^^
+  5 |
+  6 | export default function DashboardPage() {
+  7 |   const { user, profile, signOut, loading } = useAuth();
+
+You're importing a component that needs `useRouter`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+[00:00:51.315] Browser ERROR   ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx:4:10
+Ecmascript file had an error
+  2 | import { Button } from "@/components/ui/button";
+  3 | import { useAuth } from "@/contexts/AuthContext";
+> 4 | import { useRouter } from "next/navigation";
+    |          ^^^^^^^^^
+  5 |
+  6 | export default function DashboardPage() {
+  7 |   const { user, profile, signOut, loading } = useAuth();
+
+You're importing a component that needs `useRouter`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:00:51.786] Browser ERROR   ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx:4:10
+Ecmascript file had an error
+  2 | import { Button } from "@/components/ui/button";
+  3 | import { useAuth } from "@/contexts/AuthContext";
+> 4 | import { useRouter } from "next/navigation";
+    |          ^^^^^^^^^
+  5 |
+  6 | export default function DashboardPage() {
+  7 |   const { user, profile, signOut, loading } = useAuth();
+
+You're importing a component that needs `useRouter`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+[00:02:32.738] Server  LOG      ✓ Compiled in 575ms
+[00:02:36.962] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:37.387] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -20,7 +82,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/register" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/dashboard" notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -35,7 +97,50 @@ It can also happen if the client has a browser extension installed which messes 
                         <html
                           lang="en"
                           className="dark"
--                         data-jetski-tab-id="2026908521"
+-                         data-jetski-tab-id="2026908631"
+                        >
+                          <body
+                            className="inter_5972bc34-module__OU16Qa__className bg-background text-foreground antialiased"
+-                           data-new-gr-c-s-check-loaded="14.1264.0"
+-                           data-gr-ext-installed=""
+                          >
+                  ...
+
+[00:02:49.009] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:50.288] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/dashboard" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/rosterup-...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="en"
+                          className="dark"
+-                         data-jetski-tab-id="2026908633"
                         >
                           <body
 +                           className="inter_5972bc34-module__OU16Qa__className bg-background text-foreground antialiased"
@@ -45,3 +150,761 @@ It can also happen if the client has a browser extension installed which messes 
                           >
                   ...
 
+[00:03:16.840] Server  LOG      ○ Compiling /profile/create ...
+[00:03:18.420] Server  ERROR    ⨯ ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:03:18.598] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:03:19.049] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:03:19.049] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:03:19.058] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:03:19.765] Server  ERROR    ⨯ ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:03:20.172] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:03:20.173] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:03:20.732] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:03:22.042] Browser ERROR   uncaughtError: Error: ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:03:22.340] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:03:22.448] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:03:22.711] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:53.927] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:53.928] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:54.541] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:54.541] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:54.541] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:54.650] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:54.650] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:54.790] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:54.790] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:54.957] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:54.957] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:55.370] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:55.370] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:55.370] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:55.370] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:55.370] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:55.422] Server  LOG      ✓ Compiled in 211ms
+[00:04:58.218] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:58.218] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:58.218] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:04:58.218] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:8:1
+Module not found: Can't resolve '@hookform/resolvers/zod'
+   6 | import { useAuth } from "@/contexts/AuthContext";
+   7 | import { createClient } from "@/lib/supabase/client";
+>  8 | import { zodResolver } from "@hookform/resolvers/zod";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { Loader2, Save } from "lucide-react";
+  10 | import { useRouter } from "next/navigation";
+  11 | import { useState } from "react";
+
+Import trace:
+  Server Component:
+    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
+    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:05:06.942] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:08.020] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/profile/c..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/rosterup-...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="en"
+                          className="dark"
+-                         data-jetski-tab-id="2026908631"
+                        >
+                          <body
+                            className="inter_5972bc34-module__OU16Qa__className bg-background text-foreground antialiased"
+-                           data-new-gr-c-s-check-loaded="14.1264.0"
+-                           data-gr-ext-installed=""
+                          >
+                  ...
+
+[00:05:31.373] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:32.320] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/dashboard" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/rosterup-...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" className="dark">
+                          <body
++                           className="inter_5972bc34-module__OU16Qa__className bg-background text-foreground antialiased"
+-                           className="inter_5972bc34-module__OU16Qa__className bg-background text-foreground antialia..."
+-                           data-new-gr-c-s-check-loaded="14.1264.0"
+-                           data-gr-ext-installed=""
+                          >
+                  ...
+
+[00:12:07.631] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:12:09.811] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:12:10.275] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/dashboard" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/rosterup-...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="en"
+                          className="dark"
+-                         data-jetski-tab-id="2026908634"
+                        >
+                  ...
+
+[00:12:12.480] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:12:14.904] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:22:48.635] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:22:54.183] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:25:18.445] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:25:18.773] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/rosterup-...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="en"
+                          className="dark"
+-                         data-jetski-tab-id="2026908759"
+                        >
+                          <body
+                            className="inter_5972bc34-module__OU16Qa__className bg-background text-foreground antialiased"
+-                           data-new-gr-c-s-check-loaded="14.1264.0"
+-                           data-gr-ext-installed=""
+                          >
+                  ...
+
+[00:38:01.945] Server  LOG      ✓ Compiled in 2.3s
+[00:38:06.538] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:38:08.029] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/tryouts" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/rosterup-...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="en"
+                          className="dark"
+-                         data-jetski-tab-id="2026908759"
+                        >
+                          <body
+                            className="inter_5972bc34-module__OU16Qa__className bg-background text-foreground antialiased"
+-                           data-new-gr-c-s-check-loaded="14.1264.0"
+-                           data-gr-ext-installed=""
+                          >
+                  ...
+
+[00:38:10.721] Server  LOG      ✓ Compiled in 697ms
+[00:38:12.880] Server  LOG      ✓ Compiled in 1125ms
+[00:38:29.489] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

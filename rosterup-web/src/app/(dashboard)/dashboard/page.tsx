@@ -1,7 +1,7 @@
 "use client";
 
+import { PlayerDashboard } from "@/components/dashboard/PlayerDashboard";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 
@@ -29,36 +29,23 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-primary">Dashboard</h1>
-        <Button variant="outline" onClick={handleSignOut}>
+      {/* Top Bar Actions */}
+      <div className="flex justify-end">
+        <Button variant="ghost" size="sm" onClick={handleSignOut} className="text-muted-foreground hover:text-destructive">
           Sign Out
         </Button>
       </div>
 
-      <Card className="border-white/10 bg-white/5 backdrop-blur-md">
-        <CardHeader>
-          <CardTitle>Welcome to RosterUp! 🎮</CardTitle>
-          <CardDescription>
-            You're logged in as a {profile?.user_type || "user"}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-2">
-            <p className="text-sm text-muted-foreground">Email:</p>
-            <p className="font-medium">{user.email}</p>
-          </div>
-          <div className="space-y-2">
-            <p className="text-sm text-muted-foreground">User Type:</p>
-            <p className="font-medium capitalize">{profile?.user_type || "Not set"}</p>
-          </div>
-          <div className="rounded-lg bg-primary/10 p-4 border border-primary/20">
-            <p className="text-sm text-primary">
-              🚧 This is a placeholder dashboard. Phase 3 will add the full player/team experience!
-            </p>
-          </div>
-        </CardContent>
-      </Card>
+      {profile?.user_type === "player" ? (
+        <PlayerDashboard />
+      ) : (
+        <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4 text-center">
+          <h2 className="text-2xl font-bold">Team Dashboard Coming Soon! 🏆</h2>
+          <p className="text-muted-foreground">
+            We're building the ultimate recruitment tools for you.
+          </p>
+        </div>
+      )}
     </div>
   );
 }

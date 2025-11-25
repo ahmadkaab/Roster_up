@@ -1,5 +1,5 @@
 import { AuthProvider } from "@/contexts/AuthContext";
-import { cn } from "@/lib/utils";
+import { ToastProvider } from "@/contexts/ToastContext";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -7,8 +7,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "RosterUp",
-  description: "Find your dream team.",
+  title: "RosterUp - Esports Recruitment Platform",
+  description: "Find your dream team or build your roster.",
 };
 
 export default function RootLayout({
@@ -18,9 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={cn(inter.className, "bg-background text-foreground antialiased")}>
+      <body className={`${inter.className} bg-background text-foreground antialiased`}>
         <AuthProvider>
-          {children}
+          <ToastProvider>{children}</ToastProvider>
         </AuthProvider>
       </body>
     </html>
