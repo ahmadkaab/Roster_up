@@ -3,5 +3,6 @@
   "/(dashboard)/recruitments/manage/page": "app/(dashboard)/recruitments/manage/page.js",
   "/(dashboard)/recruitments/new/page": "app/(dashboard)/recruitments/new/page.js",
   "/(dashboard)/team/setup/page": "app/(dashboard)/team/setup/page.js",
-  "/player/[id]/page": "app/player/[id]/page.js"
+  "/player/[id]/page": "app/player/[id]/page.js",
+  "/team/[id]/page": "app/team/[id]/page.js"
 }
