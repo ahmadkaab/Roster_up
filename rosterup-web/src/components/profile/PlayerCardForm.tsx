@@ -7,21 +7,6 @@ import { useAuth } from "@/contexts/AuthContext";
 import { createClient } from "@/lib/supabase/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Plus, Save, Trash2 } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
-import * as z from "zod";
-
-const gameRoles = ['IGL', 'Scout', 'Sniper', 'Support', 'Flex', 'Entry Fragger'] as const;
-const games = ['BGMI', 'Valorant', 'Free Fire', 'COD Mobile'] as const;
-
-const formSchema = z.object({
-  ign: z.string().min(2, "IGN must be at least 2 characters"),
-  game: z.enum(games).default('BGMI'),
-  primary_role: z.enum(gameRoles),
-  secondary_role: z.union([z.enum(gameRoles), z.literal("")]).optional(),
-  kd_ratio: z.coerce.number().min(0, "K/D must be positive").max(100, "K/D seems too high"),
-  avg_damage: z.coerce.number().min(0, "Damage must be positive"),
   device_model: z.string().optional(),
   availability: z.string().optional(),
   experience_years: z.coerce.number().min(0).max(20).default(0),

@@ -8,7 +8,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
-import { Loader2, Send } from "lucide-react";
+import { ArrowLeft, Loader2, Send } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { ChatUser, Conversation, Message } from "./types";
 
@@ -105,6 +105,14 @@ export function ChatWindow({ conversation, currentUser }: ChatWindowProps) {
     <div className="flex h-full flex-col">
       {/* Header */}
       <div className="flex items-center gap-3 border-b border-white/10 p-4">
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          className="md:hidden" 
+          onClick={() => window.history.back()}
+        >
+          <ArrowLeft className="h-5 w-5" />
+        </Button>
         <Avatar>
           <AvatarImage src={otherUser?.avatar_url} />
           <AvatarFallback>

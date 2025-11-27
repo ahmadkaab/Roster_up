@@ -1,5 +1,6 @@
 "use client";
 
+import { sendEmail } from "@/actions/email";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -42,6 +43,17 @@ export default function RegisterPage() {
       });
 
       if (error) throw error;
+
+      // Send Welcome Email
+      await sendEmail({
+        to: email,
+        subject: "Welcome to RosterUp! 🚀",
+        html: `
+          <h1>Welcome to RosterUp!</h1>
+          <p>Thanks for joining the ultimate esports recruitment platform.</p>
+          <p>Get started by creating your profile and finding your dream team.</p>
+        `
+      });
 
       // Redirect to onboarding to select role
       router.push("/onboarding");

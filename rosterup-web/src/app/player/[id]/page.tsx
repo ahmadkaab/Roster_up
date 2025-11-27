@@ -3,15 +3,17 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useAuth } from "@/contexts/AuthContext";
 import { createClient } from "@/lib/supabase/client";
 import { ArrowLeft, Crosshair, Gamepad2, Instagram, MessageSquare, Swords, Trophy, User, Youtube } from "lucide-react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function PublicProfilePage() {
   const params = useParams();
   const router = useRouter();
+
   const { user } = useAuth();
   const [playerCard, setPlayerCard] = useState<any>(null);
   const [loading, setLoading] = useState(true);

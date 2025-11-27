@@ -1,5 +1,6 @@
 "use client";
 
+import { sendEmail } from "@/actions/email";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
@@ -45,7 +46,7 @@ export function TryoutCard({ tryout, isApplied = false }: { tryout: Tryout; isAp
       // Check if user has a player card first
       const { data: playerCard } = await supabase
         .from("player_cards")
-        .select("id")
+        .select("id, ign")
         .eq("player_id", user.id)
         .single();
 
@@ -61,6 +62,34 @@ export function TryoutCard({ tryout, isApplied = false }: { tryout: Tryout; isAp
       });
 
       if (error) throw error;
+
+      // Send Email Notification to Team Owner (Mock for now as we don't have owner email easily accessible here without another fetch)
+      // Ideally we fetch owner email or do it via Database Trigger + Edge Function.
+      // For this MVP, let's fetch the team owner's email.
+      
+      const { data: teamData } = await supabase
+        .from("teams")
+        .select("owner_id, profiles(email)")
+        .eq("name", tryout.teams.name)
+        .single();
+
+      // Supabase join returns an array for one-to-many, or object for one-to-one. 
+      // Based on lint error, it's returning an array.
+      const ownerEmail = Array.isArray(teamData?.profiles) 
+        ? teamData.profiles[0]?.email 
+        : (teamData?.profiles as any)?.email;
+
+      if (ownerEmail) {
+         await sendEmail({
+           to: ownerEmail,
+           subject: `New Applicant for ${tryout.role_needed} - ${tryout.games.name}`,
+           html: `
+             <h1>New Application Received! 🎮</h1>
+             <p><strong>${playerCard.ign}</strong> has applied for your <strong>${tryout.role_needed}</strong> position.</p>
+             <p>Check your dashboard to review their profile.</p>
+           `
+         });
+      }
 
       setApplied(true);
       toast("Application sent successfully!", "success");

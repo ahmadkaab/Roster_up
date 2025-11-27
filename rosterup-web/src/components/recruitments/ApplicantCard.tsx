@@ -1,5 +1,6 @@
 "use client";
 
+import { sendEmail } from "@/actions/email";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -63,6 +64,27 @@ export function ApplicantCard({
         message: notificationMsg,
         link: "/applications",
       });
+
+      // Send Email Notification to Player
+      // We need to fetch player's email first.
+      const { data: playerData } = await supabase
+        .from("profiles")
+        .select("email")
+        .eq("id", application.player_id)
+        .single();
+
+      if (playerData?.email) {
+        await sendEmail({
+          to: playerData.email,
+          subject: newStatus === "selected" ? "You're In! Application Accepted 🎉" : "Application Status Update",
+          html: `
+            <h1>Application Update</h1>
+            <p>Hi ${application.player.ign},</p>
+            <p>${notificationMsg}</p>
+            <p>Check your dashboard for more details.</p>
+          `
+        });
+      }
 
       toast(`Applicant ${newStatus === "selected" ? "accepted" : "rejected"} successfully`, "success");
       onUpdate();

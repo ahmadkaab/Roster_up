@@ -1,4 +1,3 @@
-import { BottomNav } from "./BottomNav";
 import { Sidebar } from "./Sidebar";
 import { TopBar } from "./TopBar";
 
@@ -18,9 +17,6 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
           {children}
         </main>
       </div>
-
-      {/* Bottom Nav (Mobile) */}
-      <BottomNav />
     </div>
   );
 }

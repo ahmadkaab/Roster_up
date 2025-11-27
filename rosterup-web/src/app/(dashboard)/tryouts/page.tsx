@@ -98,10 +98,14 @@ export default function TryoutsPage() {
         </div>
       </div>
 
+import { Skeleton } from "@/components/ui/skeleton";
+
+// ...
+
       {loading ? (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="h-[300px] rounded-xl bg-white/5 animate-pulse" />
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <Skeleton key={i} className="h-[300px] rounded-xl" />
           ))}
         </div>
       ) : filteredTryouts.length > 0 ? (

@@ -10,20 +10,6 @@ import { createClient } from "@/lib/supabase/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarIcon, Loader2, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-
-const gameRoles = ['IGL', 'Scout', 'Sniper', 'Support', 'Flex', 'Entry Fragger'] as const;
-const teamTiers = ['T1', 'T2', 'T3', 'T4', 'Amateur'] as const;
-const gamesList = ['BGMI', 'Valorant', 'Free Fire', 'COD Mobile'] as const;
-
-const formSchema = z.object({
-  game: z.enum(gamesList),
-  role_needed: z.enum(gameRoles),
-  tier_target: z.enum(teamTiers),
-  min_kd: z.coerce.number().min(0),
-  description: z.string().min(10, "Description must be at least 10 characters"),
   tryout_date: z.string().refine((date) => new Date(date) > new Date(), {
     message: "Tryout date must be in the future",
   }),

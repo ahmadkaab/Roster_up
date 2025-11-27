@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 32, "column": 0}, "map": {"version":3,"sources":["file:///D:/Roster_up/rosterup-web/src/app/%28dashboard%29/profile/create/page.tsx"],"sourcesContent":["import { PlayerCardForm } from \"@/components/profile/PlayerCardForm\";\r\n\r\nexport default function CreateProfilePage() {\r\n  return (\r\n    <div className=\"max-w-2xl mx-auto space-y-6\">\r\n      <div>\r\n        <h1 className=\"text-3xl font-bold text-primary\">Create Player Card</h1>\r\n        <p className=\"text-muted-foreground\">\r\n          Set up your profile to start your journey.\r\n        </p>\r\n      </div>\r\n      <PlayerCardForm />\r\n    </div>\r\n  );\r\n}\r\n"],"names":[],"mappings":";;;;;AAAA;;;AAEe,SAAS;IACtB,qBACE,iQAAC;QAAI,WAAU;;0BACb,iQAAC;;kCACC,iQAAC;wBAAG,WAAU;kCAAkC;;;;;;kCAChD,iQAAC;wBAAE,WAAU;kCAAwB;;;;;;;;;;;;0BAIvC,iQAAC,oLAAc;;;;;;;;;;;AAGrB"}}]
+}
