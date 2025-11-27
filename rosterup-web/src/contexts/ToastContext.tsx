@@ -27,6 +27,33 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     }, 3000);
   };
 
+  return (
+    <ToastContext.Provider value={{ toast }}>
+      {children}
+      <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2">
+        {toasts.map((t) => (
+          <div
+            key={t.id}
+            className={`flex items-center gap-2 rounded-lg border p-4 shadow-lg backdrop-blur-md animate-in slide-in-from-right-full duration-300 ${
+              t.type === "success"
+                ? "border-green-500/20 bg-green-500/10 text-green-500"
+                : t.type === "error"
+                ? "border-destructive/20 bg-destructive/10 text-destructive"
+                : "border-primary/20 bg-primary/10 text-primary"
+            }`}
+          >
+            <span>{t.message}</span>
+            <button
+              onClick={() => setToasts((prev) => prev.filter((item) => item.id !== t.id))}
+              className="ml-2 hover:opacity-70"
+            >
+              ×
+            </button>
+          </div>
+        ))}
+      </div>
+    </ToastContext.Provider>
+  );
 }
 
 export function useToast() {

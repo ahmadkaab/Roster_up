@@ -3,6 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/contexts/AuthContext";
 import { createClient } from "@/lib/supabase/client";
 import { ArrowRight, ClipboardList, Gamepad2, Plus, Trophy, Users } from "lucide-react";
@@ -129,10 +130,10 @@ export function TeamDashboard() {
       }
     }
 
-import { Skeleton } from "@/components/ui/skeleton";
 
-  useEffect(() => {
-    async function fetchTeamData() {
+
+    fetchTeamData();
+  }, [user, supabase]);
 
 // ...
 

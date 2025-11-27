@@ -1,243 +1,603 @@
-[00:00:26.703] Server  LOG      ○ Compiling middleware ...
-[00:00:31.259] Server  LOG      ✓ Ready in 19.3s
-[00:00:31.890] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:31.890] Browser ERROR   unhandledRejection: Error: Failed to load chunk /_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_c8c997ce._.js from module [turbopack]/browser/dev/hmr-client/hmr-client.ts [app-client] (ecmascript, async loader)
-[00:00:34.629] Server  LOG      ○ Compiling /profile/create ...
-[00:00:58.600] Server  ERROR    ⨯ ./rosterup-web/src/components/profile/PlayerCardForm.tsx:11:15
+[00:00:19.546] Server  LOG      ○ Compiling middleware ...
+[00:00:23.029] Server  LOG      ✓ Ready in 17.1s
+[00:00:26.296] Server  LOG      ○ Compiling /dashboard ...
+[00:00:44.919] Server  ERROR    ⨯ ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:132:1
 Parsing ecmascript source code failed
-   9 | import { Loader2, Plus, Save, Trash2 } from "lucide-react";
-  10 |   device_model: z.string().optional(),
-> 11 |   availability: z.string().optional(),
-     |               ^
-  12 |   experience_years: z.coerce.number().min(0).max(20).default(0),
-  13 |   achievements: z.array(z.object({ value: z.string() })).optional(),
-  14 |   socials: z.object({
+  130 |     }
+  131 |
+> 132 | import { Skeleton } from "@/components/ui/skeleton";
+      | ^^^^^^
+  133 |
+  134 |   useEffect(() => {
+  135 |     async function fetchTeamData() {
 
-Expected ';', '}' or <eof>
+'import', and 'export' cannot be used outside of module code
 
-Import trace:
-  Server Component:
-    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
-    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
 
-
-
-./rosterup-web/src/components/layout/Sidebar.tsx:5:1
-Module not found: Can't resolve '@/components/ui/sheet'
-  3 | import { NotificationsPopover } from "@/components/notifications/NotificationsPopover";
-  4 | import { Button } from "@/components/ui/button";
-> 5 | import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  6 | import { useAuth } from "@/contexts/AuthContext";
-  7 | import { cn } from "@/lib/utils";
-  8 | import { ClipboardList, LayoutDashboard, Menu, MessageSquare, PlusCircle, Swords, UserCircle, Users } from "lucide-react";
-
-Import map: aliased to relative './src/components/ui/sheet' inside of [project]/rosterup-web
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
 
 
-Import trace:
-  Server Component:
-    ./rosterup-web/src/components/layout/Sidebar.tsx
-    ./rosterup-web/src/components/layout/MainLayout.tsx
-    ./rosterup-web/src/app/(dashboard)/layout.tsx
-
-https://nextjs.org/docs/messages/module-not-found
-
-
-
-./rosterup-web/src/components/layout/TopBar.tsx:7:1
-Module not found: Can't resolve '@/components/ui/sheet'
-   5 | import { Button } from "@/components/ui/button";
-   6 | import { Input } from "@/components/ui/input";
->  7 | import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-   8 | import { useAuth } from "@/contexts/AuthContext";
-   9 | import { cn } from "@/lib/utils";
-  10 | import { ClipboardList, LayoutDashboard, Menu, MessageSquare, PlusCircle, Search, Swords, UserCircle, Users } from "lucide-react";
-
-Import map: aliased to relative './src/components/ui/sheet' inside of [project]/rosterup-web
-
-
-Import trace:
-  Server Component:
-    ./rosterup-web/src/components/layout/TopBar.tsx
-    ./rosterup-web/src/components/layout/MainLayout.tsx
-    ./rosterup-web/src/app/(dashboard)/layout.tsx
-
-https://nextjs.org/docs/messages/module-not-found
-
-
-[00:00:58.731] Server  ERROR    ⨯ ./rosterup-web/src/components/profile/PlayerCardForm.tsx:11:15
+[00:00:47.979] Server  LOG      ○ Compiling /_error ...
+[00:00:51.430] Server  ERROR    ⨯ ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:132:1
 Parsing ecmascript source code failed
-   9 | import { Loader2, Plus, Save, Trash2 } from "lucide-react";
-  10 |   device_model: z.string().optional(),
-> 11 |   availability: z.string().optional(),
-     |               ^
-  12 |   experience_years: z.coerce.number().min(0).max(20).default(0),
-  13 |   achievements: z.array(z.object({ value: z.string() })).optional(),
-  14 |   socials: z.object({
+  130 |     }
+  131 |
+> 132 | import { Skeleton } from "@/components/ui/skeleton";
+      | ^^^^^^
+  133 |
+  134 |   useEffect(() => {
+  135 |     async function fetchTeamData() {
 
-Expected ';', '}' or <eof>
+'import', and 'export' cannot be used outside of module code
 
-Import trace:
-  Server Component:
-    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
-    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
 
-
-
-./rosterup-web/src/components/layout/Sidebar.tsx:5:1
-Module not found: Can't resolve '@/components/ui/sheet'
-  3 | import { NotificationsPopover } from "@/components/notifications/NotificationsPopover";
-  4 | import { Button } from "@/components/ui/button";
-> 5 | import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  6 | import { useAuth } from "@/contexts/AuthContext";
-  7 | import { cn } from "@/lib/utils";
-  8 | import { ClipboardList, LayoutDashboard, Menu, MessageSquare, PlusCircle, Swords, UserCircle, Users } from "lucide-react";
-
-Import map: aliased to relative './src/components/ui/sheet' inside of [project]/rosterup-web
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
 
 
-Import trace:
-  Server Component:
-    ./rosterup-web/src/components/layout/Sidebar.tsx
-    ./rosterup-web/src/components/layout/MainLayout.tsx
-    ./rosterup-web/src/app/(dashboard)/layout.tsx
-
-https://nextjs.org/docs/messages/module-not-found
-
-
-
-./rosterup-web/src/components/layout/TopBar.tsx:7:1
-Module not found: Can't resolve '@/components/ui/sheet'
-   5 | import { Button } from "@/components/ui/button";
-   6 | import { Input } from "@/components/ui/input";
->  7 | import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-   8 | import { useAuth } from "@/contexts/AuthContext";
-   9 | import { cn } from "@/lib/utils";
-  10 | import { ClipboardList, LayoutDashboard, Menu, MessageSquare, PlusCircle, Search, Swords, UserCircle, Users } from "lucide-react";
-
-Import map: aliased to relative './src/components/ui/sheet' inside of [project]/rosterup-web
-
-
-Import trace:
-  Server Component:
-    ./rosterup-web/src/components/layout/TopBar.tsx
-    ./rosterup-web/src/components/layout/MainLayout.tsx
-    ./rosterup-web/src/app/(dashboard)/layout.tsx
-
-https://nextjs.org/docs/messages/module-not-found
-
-
-[00:01:01.183] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:11:15
+[00:00:53.401] Browser ERROR   uncaughtError: Error: ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:132:1
 Parsing ecmascript source code failed
-   9 | import { Loader2, Plus, Save, Trash2 } from "lucide-react";
-  10 |   device_model: z.string().optional(),
-> 11 |   availability: z.string().optional(),
-     |               ^
-  12 |   experience_years: z.coerce.number().min(0).max(20).default(0),
-  13 |   achievements: z.array(z.object({ value: z.string() })).optional(),
-  14 |   socials: z.object({
+  130 |     }
+  131 |
+> 132 | import { Skeleton } from "@/components/ui/skeleton";
+      | ^^^^^^
+  133 |
+  134 |   useEffect(() => {
+  135 |     async function fetchTeamData() {
 
-Expected ';', '}' or <eof>
+'import', and 'export' cannot be used outside of module code
 
-Import trace:
-  Server Component:
-    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
-    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
-[00:01:01.185] Browser ERROR   ./rosterup-web/src/components/layout/Sidebar.tsx:5:1
-Module not found: Can't resolve '@/components/ui/sheet'
-  3 | import { NotificationsPopover } from "@/components/notifications/NotificationsPopover";
-  4 | import { Button } from "@/components/ui/button";
-> 5 | import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  6 | import { useAuth } from "@/contexts/AuthContext";
-  7 | import { cn } from "@/lib/utils";
-  8 | import { ClipboardList, LayoutDashboard, Menu, MessageSquare, PlusCircle, Swords, UserCircle, Users } from "lucide-react";
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
 
-Import map: aliased to relative './src/components/ui/sheet' inside of [project]/rosterup-web
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
 
-Import trace:
-  Server Component:
-    ./rosterup-web/src/components/layout/Sidebar.tsx
-    ./rosterup-web/src/components/layout/MainLayout.tsx
-    ./rosterup-web/src/app/(dashboard)/layout.tsx
 
-https://nextjs.org/docs/messages/module-not-found
-[00:01:01.185] Browser ERROR   ./rosterup-web/src/components/layout/TopBar.tsx:7:1
-Module not found: Can't resolve '@/components/ui/sheet'
-   5 | import { Button } from "@/components/ui/button";
-   6 | import { Input } from "@/components/ui/input";
->  7 | import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-   8 | import { useAuth } from "@/contexts/AuthContext";
-   9 | import { cn } from "@/lib/utils";
-  10 | import { ClipboardList, LayoutDashboard, Menu, MessageSquare, PlusCircle, Search, Swords, UserCircle, Users } from "lucide-react";
-
-Import map: aliased to relative './src/components/ui/sheet' inside of [project]/rosterup-web
-
-Import trace:
-  Server Component:
-    ./rosterup-web/src/components/layout/TopBar.tsx
-    ./rosterup-web/src/components/layout/MainLayout.tsx
-    ./rosterup-web/src/app/(dashboard)/layout.tsx
-
-https://nextjs.org/docs/messages/module-not-found
-[00:01:01.700] Server  LOG      ○ Compiling /_error ...
-[00:01:04.212] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:04.456] Browser ERROR   ./rosterup-web/src/components/profile/PlayerCardForm.tsx:11:15
+[00:00:53.925] Browser ERROR   uncaughtError: Error: ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:132:1
 Parsing ecmascript source code failed
-   9 | import { Loader2, Plus, Save, Trash2 } from "lucide-react";
-  10 |   device_model: z.string().optional(),
-> 11 |   availability: z.string().optional(),
-     |               ^
-  12 |   experience_years: z.coerce.number().min(0).max(20).default(0),
-  13 |   achievements: z.array(z.object({ value: z.string() })).optional(),
-  14 |   socials: z.object({
+  130 |     }
+  131 |
+> 132 | import { Skeleton } from "@/components/ui/skeleton";
+      | ^^^^^^
+  133 |
+  134 |   useEffect(() => {
+  135 |     async function fetchTeamData() {
 
-Expected ';', '}' or <eof>
+'import', and 'export' cannot be used outside of module code
 
-Import trace:
-  Server Component:
-    ./rosterup-web/src/components/profile/PlayerCardForm.tsx
-    ./rosterup-web/src/app/(dashboard)/profile/create/page.tsx
-[00:01:04.456] Browser ERROR   ./rosterup-web/src/components/layout/Sidebar.tsx:5:1
-Module not found: Can't resolve '@/components/ui/sheet'
-  3 | import { NotificationsPopover } from "@/components/notifications/NotificationsPopover";
-  4 | import { Button } from "@/components/ui/button";
-> 5 | import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  6 | import { useAuth } from "@/contexts/AuthContext";
-  7 | import { cn } from "@/lib/utils";
-  8 | import { ClipboardList, LayoutDashboard, Menu, MessageSquare, PlusCircle, Swords, UserCircle, Users } from "lucide-react";
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
 
-Import map: aliased to relative './src/components/ui/sheet' inside of [project]/rosterup-web
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
 
-Import trace:
-  Server Component:
-    ./rosterup-web/src/components/layout/Sidebar.tsx
-    ./rosterup-web/src/components/layout/MainLayout.tsx
-    ./rosterup-web/src/app/(dashboard)/layout.tsx
 
-https://nextjs.org/docs/messages/module-not-found
-[00:01:04.457] Browser ERROR   ./rosterup-web/src/components/layout/TopBar.tsx:7:1
-Module not found: Can't resolve '@/components/ui/sheet'
-   5 | import { Button } from "@/components/ui/button";
-   6 | import { Input } from "@/components/ui/input";
->  7 | import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-   8 | import { useAuth } from "@/contexts/AuthContext";
-   9 | import { cn } from "@/lib/utils";
-  10 | import { ClipboardList, LayoutDashboard, Menu, MessageSquare, PlusCircle, Search, Swords, UserCircle, Users } from "lucide-react";
+[00:00:54.299] Browser ERROR   ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:132:1
+Parsing ecmascript source code failed
+  130 |     }
+  131 |
+> 132 | import { Skeleton } from "@/components/ui/skeleton";
+      | ^^^^^^
+  133 |
+  134 |   useEffect(() => {
+  135 |     async function fetchTeamData() {
 
-Import map: aliased to relative './src/components/ui/sheet' inside of [project]/rosterup-web
+'import', and 'export' cannot be used outside of module code
 
-Import trace:
-  Server Component:
-    ./rosterup-web/src/components/layout/TopBar.tsx
-    ./rosterup-web/src/components/layout/MainLayout.tsx
-    ./rosterup-web/src/app/(dashboard)/layout.tsx
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
 
-https://nextjs.org/docs/messages/module-not-found
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+[00:00:54.579] Browser ERROR   ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:132:1
+Parsing ecmascript source code failed
+  130 |     }
+  131 |
+> 132 | import { Skeleton } from "@/components/ui/skeleton";
+      | ^^^^^^
+  133 |
+  134 |   useEffect(() => {
+  135 |     async function fetchTeamData() {
+
+'import', and 'export' cannot be used outside of module code
+
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+[00:01:23.191] Browser ERROR   ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:132:1
+Parsing ecmascript source code failed
+  130 |     }
+  131 |
+> 132 | import { Skeleton } from "@/components/ui/skeleton";
+      | ^^^^^^
+  133 |
+  134 |   useEffect(() => {
+  135 |     async function fetchTeamData() {
+
+'import', and 'export' cannot be used outside of module code
+
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+[00:01:23.191] Browser ERROR   ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:132:1
+Parsing ecmascript source code failed
+  130 |     }
+  131 |
+> 132 | import { Skeleton } from "@/components/ui/skeleton";
+      | ^^^^^^
+  133 |
+  134 |   useEffect(() => {
+  135 |     async function fetchTeamData() {
+
+'import', and 'export' cannot be used outside of module code
+
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+[00:02:21.693] Browser ERROR   ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:346:2
+Parsing ecmascript source code failed
+  344 |     </div>
+  345 |   );
+> 346 | }
+      |  ^
+  347 |
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+[00:02:23.370] Browser ERROR   ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:346:2
+Parsing ecmascript source code failed
+  344 |     </div>
+  345 |   );
+> 346 | }
+      |  ^
+  347 |
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+[00:02:25.391] Browser ERROR   ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:347:2
+Parsing ecmascript source code failed
+  345 |     </div>
+  346 |   );
+> 347 | }
+      |  ^
+  348 |
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+[00:02:25.795] Browser ERROR   ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:347:2
+Parsing ecmascript source code failed
+  345 |     </div>
+  346 |   );
+> 347 | }
+      |  ^
+  348 |
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+[00:02:48.244] Server  ERROR    ⨯ ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:347:2
+Parsing ecmascript source code failed
+  345 |     </div>
+  346 |   );
+> 347 | }
+      |  ^
+  348 |
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+
+[00:02:50.077] Browser ERROR   uncaughtError: Error: ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:347:2
+Parsing ecmascript source code failed
+  345 |     </div>
+  346 |   );
+> 347 | }
+      |  ^
+  348 |
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+
+[00:02:50.421] Browser ERROR   ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:347:2
+Parsing ecmascript source code failed
+  345 |     </div>
+  346 |   );
+> 347 | }
+      |  ^
+  348 |
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+[00:02:50.718] Browser ERROR   ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:347:2
+Parsing ecmascript source code failed
+  345 |     </div>
+  346 |   );
+> 347 | }
+      |  ^
+  348 |
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+[00:03:01.750] Browser ERROR   ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:347:2
+Parsing ecmascript source code failed
+  345 |     </div>
+  346 |   );
+> 347 | }
+      |  ^
+  348 |
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+[00:03:01.750] Browser ERROR   ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:347:2
+Parsing ecmascript source code failed
+  345 |     </div>
+  346 |   );
+> 347 | }
+      |  ^
+  348 |
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+[00:03:01.750] Browser ERROR   ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:347:2
+Parsing ecmascript source code failed
+  345 |     </div>
+  346 |   );
+> 347 | }
+      |  ^
+  348 |
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+[00:03:02.920] Browser ERROR   ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:347:2
+Parsing ecmascript source code failed
+  345 |     </div>
+  346 |   );
+> 347 | }
+      |  ^
+  348 |
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+[00:03:02.921] Browser ERROR   ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:347:2
+Parsing ecmascript source code failed
+  345 |     </div>
+  346 |   );
+> 347 | }
+      |  ^
+  348 |
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+[00:03:02.922] Browser ERROR   ./rosterup-web/src/components/dashboard/TeamDashboard.tsx:347:2
+Parsing ecmascript source code failed
+  345 |     </div>
+  346 |   );
+> 347 | }
+      |  ^
+  348 |
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component Browser]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./rosterup-web/src/components/dashboard/TeamDashboard.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Client Component SSR]
+    ./rosterup-web/src/app/(dashboard)/dashboard/page.tsx [Server Component]
+[00:04:23.866] Server  LOG      ✓ Compiled in 831ms
+[00:04:31.792] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:35.737] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:35.860] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:49.182] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:00.370] Server  LOG      ○ Compiling /tryouts ...
+[00:06:03.931] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:42.419] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:02.091] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:10:40.530] Server  LOG      ✓ Compiled in 612ms
+[00:10:40.576] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./rosterup-web/src/contexts/ToastContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:10:43.913] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./rosterup-web/src/contexts/ToastContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:10:43.923] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./rosterup-web/src/contexts/ToastContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:10:46.101] Server  ERROR   D:\Roster_up\rosterup-web\.next\dev\server\chunks\ssr\rosterup-web_da18a5a2._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:10:46.115] Server  ERROR    ⨯ ReferenceError: Skeleton is not defined
+[00:10:46.350] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./rosterup-web/src/contexts/ToastContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:10:46.358] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./rosterup-web/src/contexts/ToastContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:10:46.364] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./rosterup-web/src/contexts/ToastContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:10:46.393] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./rosterup-web/src/contexts/ToastContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:10:53.521] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:11:02.190] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:11:02.472] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:11:05.256] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:11:05.576] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:11:13.626] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:18.091] Browser ERROR   {}
+[00:13:39.006] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:39.072] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:39.621] Browser ERROR   {}
+[00:13:39.621] Browser ERROR   {}
+[00:14:16.150] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:15:27.345] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:35:09.102] Server  LOG      ○ Compiling / ...
+[00:35:16.473] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  <... title=... description=... icon={{$$typeof: ..., render: ...}} delay=...>
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[00:35:16.491] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  <... title=... description=... icon={{$$typeof: ..., render: ...}} delay=...>
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[00:35:16.500] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  <... title=... description=... icon={{$$typeof: ..., render: ...}} delay=...>
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[00:35:16.505] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  <... title=... description=... icon={{$$typeof: ..., render: ...}} delay=...>
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[00:35:16.509] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  <... title=... description=... icon={{$$typeof: ..., render: ...}} delay=...>
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[00:35:16.514] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  <... title=... description=... icon={{$$typeof: ..., render: ...}} delay=...>
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[00:35:16.638] Server  ERROR   D:\Roster_up\rosterup-web\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:35:17.321] Server  ERROR    ⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Search}
+                          ^^^^^^^^^^^^^^^
+[00:35:17.333] Server  ERROR   D:\Roster_up\rosterup-web\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:35:17.337] Server  ERROR    ⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Users}
+                          ^^^^^^^^^^^^^^
+[00:35:17.350] Server  ERROR   D:\Roster_up\rosterup-web\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:35:17.353] Server  ERROR    ⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Swords}
+                          ^^^^^^^^^^^^^^^
+[00:35:17.358] Server  ERROR   D:\Roster_up\rosterup-web\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:35:17.361] Server  ERROR    ⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Gamepad2}
+                          ^^^^^^^^^^^^^^^^^
+[00:35:17.371] Server  ERROR   D:\Roster_up\rosterup-web\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:35:17.374] Server  ERROR    ⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function ClipboardList}
+                          ^^^^^^^^^^^^^^^^^^^^^^
+[00:35:17.383] Server  ERROR   D:\Roster_up\rosterup-web\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:35:17.387] Server  ERROR    ⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Shield}
+                          ^^^^^^^^^^^^^^^
+[00:35:23.344] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:35:26.139] Browser ERROR   {"digest":"1933767030","environmentName":"Server","name":"Error"}
+[00:36:39.483] Server  LOG      ✓ Compiled in 967ms
+[00:36:45.732] Server  LOG      ✓ Compiled in 991ms
+[00:37:31.953] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:40:21.246] Server  LOG      ✓ Compiled in 8.6s
+[00:40:23.706] Browser ERROR   uncaughtError: Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: object. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+[00:40:31.326] Server  LOG      ✓ Compiled in 4.3s
+[00:40:33.144] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:40:55.113] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:41:20.651] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:44:17.095] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:44:34.057] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:44:36.149] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <Popover open={false} onOpenChange={function bound dispatchSetState}>
+      <Popper __scopePopper={{Popper:[...]}}>
+        <PopperProvider scope={{Popper:[...]}} anchor={null} onAnchorChange={function bound dispatchSetState}>
+          <PopoverProvider scope={undefined} contentId="radix-_R_4..." triggerRef={{current:null}} open={false} ...>
+            <PopoverTrigger asChild={true}>
+              <PopperAnchor asChild={true} __scopePopper={{Popper:[...]}}>
+                <Primitive.div asChild={true} ref={function}>
+                  <Primitive.div.Slot ref={function}>
+                    <Primitive.div.SlotClone ref={function}>
+                      <Primitive.button type="button" aria-haspopup="dialog" aria-expanded={false} ...>
+                        <Primitive.button.Slot type="button" aria-haspopup="dialog" aria-expanded={false} ...>
+                          <Primitive.button.SlotClone type="button" aria-haspopup="dialog" aria-expanded={false} ...>
+                            <_c variant="ghost" size="icon" className="relative" type="button" aria-haspopup="dialog" ...>
+                              <button
+                                className="inline-flex items-center justify-center whitespace-nowrap rounded-xl text-s..."
+                                ref={function}
+                                type="button"
+                                aria-haspopup="dialog"
+                                aria-expanded={false}
++                               aria-controls="radix-_R_4qbbdlb_"
+-                               aria-controls="radix-_R_iqbbdlb_"
+                                data-state="closed"
+                                onClick={function handleEvent}
+                              >
+            ...
+
+[00:45:49.156] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:16:29.607] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:20:13.851] Server  LOG      ○ Compiling /profile/create ...
+[01:21:07.443] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

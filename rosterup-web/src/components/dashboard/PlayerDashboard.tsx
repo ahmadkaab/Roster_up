@@ -197,6 +197,13 @@ export function PlayerDashboard() {
         </Card>
       </div>
 
+import { FriendsList } from "@/components/friends/FriendsList";
+
+// ...
+
+      {/* Friends Section */}
+      <FriendsList />
+
       {/* Actions */}
       <div className="grid gap-4 md:grid-cols-2">
         <Link href="/tryouts">

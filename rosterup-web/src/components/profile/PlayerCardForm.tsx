@@ -2,15 +2,35 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { ImageUpload } from "@/components/ui/image-upload";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/contexts/AuthContext";
 import { createClient } from "@/lib/supabase/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Plus, Save, Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useFieldArray, useForm } from "react-hook-form";
+import * as z from "zod";
+
+const games = ["BGMI", "Valorant", "CS2", "Dota 2", "Pokemon Unite", "Free Fire", "COD Mobile"];
+const gameRoles = ["IGL", "Entry Fragger", "Support", "Sniper", "Assaulter", "Lurker", "Coach"];
+
+const formSchema = z.object({
+  ign: z.string().min(2, "IGN must be at least 2 characters"),
+  game: z.string().min(1, "Please select a game"),
+  primary_role: z.string().min(1, "Please select a primary role"),
+  secondary_role: z.string().optional(),
+  kd_ratio: z.coerce.number().min(0).max(100).default(0),
+  avg_damage: z.coerce.number().min(0).default(0),
   device_model: z.string().optional(),
   availability: z.string().optional(),
   experience_years: z.coerce.number().min(0).max(20).default(0),
-  achievements: z.array(z.object({ value: z.string() })).optional(),
+  avatar_url: z.string().optional(),
+  achievements: z.array(z.object({ 
+    value: z.string().min(1, "Achievement title is required"),
+    image: z.string().optional() 
+  })).optional(),
   socials: z.object({
     discord: z.string().optional(),
     instagram: z.string().optional(),
@@ -39,7 +59,10 @@ export function PlayerCardForm({ initialData }: { initialData?: any }) {
       device_model: initialData?.device_model || "",
       availability: initialData?.availability || "",
       experience_years: initialData?.experience_years || 0,
-      achievements: initialData?.achievements?.map((a: string) => ({ value: a })) || [],
+      avatar_url: initialData?.avatar_url || "",
+      achievements: initialData?.achievements?.map((a: any) => 
+        typeof a === 'string' ? { value: a, image: "" } : { value: a.value, image: a.image }
+      ) || [],
       socials: initialData?.socials || { discord: "", instagram: "", youtube: "" },
     } as any,
   });
@@ -74,7 +97,8 @@ export function PlayerCardForm({ initialData }: { initialData?: any }) {
         device_model: data.device_model,
         availability: data.availability,
         experience_years: data.experience_years,
-        achievements: data.achievements?.map(a => a.value) || [],
+        avatar_url: data.avatar_url,
+        achievements: data.achievements || [],
         socials: data.socials,
       };
 
@@ -109,6 +133,18 @@ export function PlayerCardForm({ initialData }: { initialData?: any }) {
               {error}
             </div>
           )}
+
+          {/* Avatar Upload */}
+          <div className="flex flex-col items-center justify-center space-y-4">
+            <label className="text-sm font-medium">Profile Picture</label>
+            <ImageUpload
+              bucket="avatars"
+              value={form.watch("avatar_url")}
+              onChange={(url) => form.setValue("avatar_url", url)}
+              onRemove={() => form.setValue("avatar_url", "")}
+              className="rounded-full"
+            />
+          </div>
 
           {/* Basic Info */}
           <div className="space-y-4">
@@ -219,28 +255,41 @@ export function PlayerCardForm({ initialData }: { initialData?: any }) {
                 type="button"
                 variant="outline"
                 size="sm"
-                onClick={() => append({ value: "" })}
+                onClick={() => append({ value: "", image: "" })}
               >
                 <Plus className="mr-2 h-4 w-4" />
                 Add
               </Button>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-4">
               {fields.map((field, index) => (
-                <div key={field.id} className="flex gap-2">
-                  <Input
-                    {...form.register(`achievements.${index}.value`)}
-                    placeholder="e.g. PMCO Finalist 2023"
-                  />
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => remove(index)}
-                    className="text-destructive hover:bg-destructive/10"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
+                <div key={field.id} className="flex flex-col gap-2 rounded-lg border border-white/5 bg-white/5 p-4">
+                  <div className="flex gap-2">
+                    <Input
+                      {...form.register(`achievements.${index}.value`)}
+                      placeholder="e.g. PMCO Finalist 2023"
+                      className="flex-1"
+                    />
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => remove(index)}
+                      className="text-destructive hover:bg-destructive/10"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="text-xs text-muted-foreground">Proof (Optional):</span>
+                    <ImageUpload
+                      bucket="achievements"
+                      value={form.watch(`achievements.${index}.image`)}
+                      onChange={(url) => form.setValue(`achievements.${index}.image`, url)}
+                      onRemove={() => form.setValue(`achievements.${index}.image`, "")}
+                      className="h-20 w-20"
+                    />
+                  </div>
                 </div>
               ))}
               {fields.length === 0 && (

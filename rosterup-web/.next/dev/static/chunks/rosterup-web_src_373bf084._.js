@@ -133,7 +133,9 @@ __turbopack_context__.s([
     "useToast",
     ()=>useToast
 ]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/rosterup-web/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/rosterup-web/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+;
 var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature();
 "use client";
 ;
@@ -155,6 +157,50 @@ function ToastProvider({ children }) {
             setToasts((prev)=>prev.filter((t)=>t.id !== id));
         }, 3000);
     };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ToastContext.Provider, {
+        value: {
+            toast
+        },
+        children: [
+            children,
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "fixed bottom-4 right-4 z-50 flex flex-col gap-2",
+                children: toasts.map((t)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: `flex items-center gap-2 rounded-lg border p-4 shadow-lg backdrop-blur-md animate-in slide-in-from-right-full duration-300 ${t.type === "success" ? "border-green-500/20 bg-green-500/10 text-green-500" : t.type === "error" ? "border-destructive/20 bg-destructive/10 text-destructive" : "border-primary/20 bg-primary/10 text-primary"}`,
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                children: t.message
+                            }, void 0, false, {
+                                fileName: "[project]/rosterup-web/src/contexts/ToastContext.tsx",
+                                lineNumber: 45,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: ()=>setToasts((prev)=>prev.filter((item)=>item.id !== t.id)),
+                                className: "ml-2 hover:opacity-70",
+                                children: "×"
+                            }, void 0, false, {
+                                fileName: "[project]/rosterup-web/src/contexts/ToastContext.tsx",
+                                lineNumber: 46,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, t.id, true, {
+                        fileName: "[project]/rosterup-web/src/contexts/ToastContext.tsx",
+                        lineNumber: 35,
+                        columnNumber: 11
+                    }, this))
+            }, void 0, false, {
+                fileName: "[project]/rosterup-web/src/contexts/ToastContext.tsx",
+                lineNumber: 33,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/rosterup-web/src/contexts/ToastContext.tsx",
+        lineNumber: 31,
+        columnNumber: 5
+    }, this);
 }
 _s(ToastProvider, "nD8TBOiFYf9ajstmZpZK2DP4rNo=");
 _c = ToastProvider;

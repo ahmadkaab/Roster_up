@@ -1,5 +1,21 @@
 {
-  "node": {},
+  "node": {
+    "40880eba1bad0648fb0988402ddbb80ddc2c0f4adf": {
+      "workers": {
+        "app/(dashboard)/tryouts/page": {
+          "moduleId": "[project]/rosterup-web/.next-internal/server/app/(dashboard)/tryouts/page/actions.js { ACTIONS_MODULE0 => \"[project]/rosterup-web/src/actions/email.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "sendEmail",
+          "filename": "rosterup-web/src/actions/email.ts"
+        }
+      },
+      "layer": {
+        "app/(dashboard)/tryouts/page": "action-browser"
+      },
+      "filename": "rosterup-web/src/actions/email.ts",
+      "exportedName": "sendEmail"
+    }
+  },
   "edge": {},
   "encryptionKey": "MxOkKZHWbilRmTdW2caAPAlS0sJDKmT/sYtxwxMn3Mk="
 }

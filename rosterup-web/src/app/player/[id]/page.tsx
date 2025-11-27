@@ -88,10 +88,16 @@ export default function PublicProfilePage() {
               )}
             </div>
           </div>
+import { AddFriendButton } from "@/components/friends/AddFriendButton";
+
+// ...
+
           <div className="flex gap-4">
             {user && user.id !== playerCard.player_id && (
-              <Button 
-                onClick={async () => {
+              <>
+                <AddFriendButton friendId={playerCard.player_id} />
+                <Button 
+                  onClick={async () => {
                   try {
                     // 1. Check if conversation exists
                     // We need to check both combinations: (me, them) or (them, me)
