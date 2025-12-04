@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/contexts/AuthContext";
 
 type Tryout = {
@@ -98,9 +99,6 @@ export default function TryoutsPage() {
         </div>
       </div>
 
-import { Skeleton } from "@/components/ui/skeleton";
-
-// ...
 
       {loading ? (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

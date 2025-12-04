@@ -58,6 +58,17 @@ async function updateSession(request) {
     //    return myNewResponse
     // If this is not done, you may be causing the browser and server to go out
     // of sync and terminate the user's session prematurely!
+    if (!user && !request.nextUrl.pathname.startsWith('/login') && !request.nextUrl.pathname.startsWith('/register') && !request.nextUrl.pathname.startsWith('/auth') && !request.nextUrl.pathname.startsWith('/forgot-password') && !request.nextUrl.pathname.startsWith('/update-password') && request.nextUrl.pathname !== '/') {
+        // no user, potentially respond by redirecting the user to the login page
+        const url = request.nextUrl.clone();
+        url.pathname = '/login';
+        return __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$exports$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(url);
+    }
+    if (user && (request.nextUrl.pathname.startsWith('/login') || request.nextUrl.pathname.startsWith('/register'))) {
+        const url = request.nextUrl.clone();
+        url.pathname = '/dashboard';
+        return __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$exports$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(url);
+    }
     return supabaseResponse;
 }
 }),

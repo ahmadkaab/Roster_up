@@ -24,7 +24,12 @@ export function NotificationsPopover() {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const supabase = createClient();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!user) return;
@@ -87,6 +92,8 @@ export function NotificationsPopover() {
     setUnreadCount(0);
     await supabase.from("notifications").update({ read: true }).eq("user_id", user?.id);
   };
+
+  if (!mounted) return null;
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

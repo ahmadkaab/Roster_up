@@ -102,16 +102,24 @@ export function PlayerCardForm({ initialData }: { initialData?: any }) {
         socials: data.socials,
       };
 
+      console.log("Submitting payload:", payload);
+
       const { error: upsertError } = await supabase
         .from("player_cards")
         .upsert(payload, { onConflict: "player_id" });
 
-      if (upsertError) throw upsertError;
+      if (upsertError) {
+        console.error("Supabase Upsert Error:", upsertError);
+        throw upsertError;
+      }
 
       router.push("/dashboard");
       router.refresh();
     } catch (err: any) {
-      console.error(err);
+      console.error("Full Error Object:", err);
+      console.error("Error Message:", err.message);
+      console.error("Error Details:", err.details);
+      console.error("Error Hint:", err.hint);
       setError(err.message || "Failed to save profile");
     } finally {
       setLoading(false);

@@ -366,14 +366,21 @@ function PlayerCardForm({ initialData }) {
                 achievements: data.achievements || [],
                 socials: data.socials
             };
+            console.log("Submitting payload:", payload);
             const { error: upsertError } = await supabase.from("player_cards").upsert(payload, {
                 onConflict: "player_id"
             });
-            if (upsertError) throw upsertError;
+            if (upsertError) {
+                console.error("Supabase Upsert Error:", upsertError);
+                throw upsertError;
+            }
             router.push("/dashboard");
             router.refresh();
         } catch (err) {
-            console.error(err);
+            console.error("Full Error Object:", err);
+            console.error("Error Message:", err.message);
+            console.error("Error Details:", err.details);
+            console.error("Error Hint:", err.hint);
             setError(err.message || "Failed to save profile");
         } finally{
             setLoading(false);
@@ -388,20 +395,20 @@ function PlayerCardForm({ initialData }) {
                         children: "Player Profile"
                     }, void 0, false, {
                         fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                        lineNumber: 124,
+                        lineNumber: 132,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardDescription"], {
                         children: "Create your player card to showcase your stats and find a team."
                     }, void 0, false, {
                         fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                        lineNumber: 125,
+                        lineNumber: 133,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                lineNumber: 123,
+                lineNumber: 131,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -414,7 +421,7 @@ function PlayerCardForm({ initialData }) {
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                            lineNumber: 132,
+                            lineNumber: 140,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -425,7 +432,7 @@ function PlayerCardForm({ initialData }) {
                                     children: "Profile Picture"
                                 }, void 0, false, {
                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                    lineNumber: 139,
+                                    lineNumber: 147,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$image$2d$upload$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ImageUpload"], {
@@ -436,13 +443,13 @@ function PlayerCardForm({ initialData }) {
                                     className: "rounded-full"
                                 }, void 0, false, {
                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                    lineNumber: 140,
+                                    lineNumber: 148,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                            lineNumber: 138,
+                            lineNumber: 146,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -453,7 +460,7 @@ function PlayerCardForm({ initialData }) {
                                     children: "Basic Info"
                                 }, void 0, false, {
                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                    lineNumber: 151,
+                                    lineNumber: 159,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -467,7 +474,7 @@ function PlayerCardForm({ initialData }) {
                                                     children: "In-Game Name (IGN)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 154,
+                                                    lineNumber: 162,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -475,7 +482,7 @@ function PlayerCardForm({ initialData }) {
                                                     placeholder: "e.g. Jonathan"
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 155,
+                                                    lineNumber: 163,
                                                     columnNumber: 17
                                                 }, this),
                                                 form.formState.errors.ign && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -483,41 +490,8 @@ function PlayerCardForm({ initialData }) {
                                                     children: form.formState.errors.ign.message
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 157,
+                                                    lineNumber: 165,
                                                     columnNumber: 19
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                            lineNumber: 153,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "space-y-2",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                    className: "text-sm font-medium",
-                                                    children: "Game"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 162,
-                                                    columnNumber: 17
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
-                                                    ...form.register("game"),
-                                                    className: "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-                                                    children: games.map((game)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                                            value: game,
-                                                            children: game
-                                                        }, game, false, {
-                                                            fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                            lineNumber: 168,
-                                                            columnNumber: 21
-                                                        }, this))
-                                                }, void 0, false, {
-                                                    fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 163,
-                                                    columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
@@ -530,10 +504,43 @@ function PlayerCardForm({ initialData }) {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                     className: "text-sm font-medium",
+                                                    children: "Game"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
+                                                    lineNumber: 170,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                                                    ...form.register("game"),
+                                                    className: "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+                                                    children: games.map((game)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                            value: game,
+                                                            children: game
+                                                        }, game, false, {
+                                                            fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
+                                                            lineNumber: 176,
+                                                            columnNumber: 21
+                                                        }, this))
+                                                }, void 0, false, {
+                                                    fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
+                                                    lineNumber: 171,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
+                                            lineNumber: 169,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "space-y-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                    className: "text-sm font-medium",
                                                     children: "Primary Role"
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 176,
+                                                    lineNumber: 184,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -544,18 +551,18 @@ function PlayerCardForm({ initialData }) {
                                                             children: role
                                                         }, role, false, {
                                                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                            lineNumber: 182,
+                                                            lineNumber: 190,
                                                             columnNumber: 21
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 177,
+                                                    lineNumber: 185,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                            lineNumber: 175,
+                                            lineNumber: 183,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -566,7 +573,7 @@ function PlayerCardForm({ initialData }) {
                                                     children: "Secondary Role (Optional)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 190,
+                                                    lineNumber: 198,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -578,7 +585,7 @@ function PlayerCardForm({ initialData }) {
                                                             children: "None"
                                                         }, void 0, false, {
                                                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                            lineNumber: 195,
+                                                            lineNumber: 203,
                                                             columnNumber: 19
                                                         }, this),
                                                         gameRoles.map((role)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -586,31 +593,31 @@ function PlayerCardForm({ initialData }) {
                                                                 children: role
                                                             }, role, false, {
                                                                 fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                                lineNumber: 197,
+                                                                lineNumber: 205,
                                                                 columnNumber: 21
                                                             }, this))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 191,
+                                                    lineNumber: 199,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                            lineNumber: 189,
+                                            lineNumber: 197,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                    lineNumber: 152,
+                                    lineNumber: 160,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                            lineNumber: 150,
+                            lineNumber: 158,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -621,7 +628,7 @@ function PlayerCardForm({ initialData }) {
                                     children: "Stats & Details"
                                 }, void 0, false, {
                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                    lineNumber: 208,
+                                    lineNumber: 216,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -635,7 +642,7 @@ function PlayerCardForm({ initialData }) {
                                                     children: "K/D Ratio"
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 211,
+                                                    lineNumber: 219,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -645,13 +652,13 @@ function PlayerCardForm({ initialData }) {
                                                     placeholder: "e.g. 3.5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 212,
+                                                    lineNumber: 220,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                            lineNumber: 210,
+                                            lineNumber: 218,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -662,7 +669,7 @@ function PlayerCardForm({ initialData }) {
                                                     children: "Avg Damage"
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 221,
+                                                    lineNumber: 229,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -671,13 +678,13 @@ function PlayerCardForm({ initialData }) {
                                                     placeholder: "e.g. 800"
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 222,
+                                                    lineNumber: 230,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                            lineNumber: 220,
+                                            lineNumber: 228,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -688,7 +695,7 @@ function PlayerCardForm({ initialData }) {
                                                     children: "Experience (Years)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 230,
+                                                    lineNumber: 238,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -697,13 +704,13 @@ function PlayerCardForm({ initialData }) {
                                                     placeholder: "e.g. 2"
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 231,
+                                                    lineNumber: 239,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                            lineNumber: 229,
+                                            lineNumber: 237,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -714,7 +721,7 @@ function PlayerCardForm({ initialData }) {
                                                     children: "Device Model"
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 239,
+                                                    lineNumber: 247,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -722,13 +729,13 @@ function PlayerCardForm({ initialData }) {
                                                     placeholder: "e.g. iPhone 14 Pro"
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 240,
+                                                    lineNumber: 248,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                            lineNumber: 238,
+                                            lineNumber: 246,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -739,7 +746,7 @@ function PlayerCardForm({ initialData }) {
                                                     children: "Availability"
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 244,
+                                                    lineNumber: 252,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -747,25 +754,25 @@ function PlayerCardForm({ initialData }) {
                                                     placeholder: "e.g. 6pm - 10pm IST"
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 245,
+                                                    lineNumber: 253,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                            lineNumber: 243,
+                                            lineNumber: 251,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                    lineNumber: 209,
+                                    lineNumber: 217,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                            lineNumber: 207,
+                            lineNumber: 215,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -779,7 +786,7 @@ function PlayerCardForm({ initialData }) {
                                             children: "Achievements"
                                         }, void 0, false, {
                                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                            lineNumber: 253,
+                                            lineNumber: 261,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -795,20 +802,20 @@ function PlayerCardForm({ initialData }) {
                                                     className: "mr-2 h-4 w-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 260,
+                                                    lineNumber: 268,
                                                     columnNumber: 17
                                                 }, this),
                                                 "Add"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                            lineNumber: 254,
+                                            lineNumber: 262,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                    lineNumber: 252,
+                                    lineNumber: 260,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -826,7 +833,7 @@ function PlayerCardForm({ initialData }) {
                                                                 className: "flex-1"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                                lineNumber: 268,
+                                                                lineNumber: 276,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -839,18 +846,18 @@ function PlayerCardForm({ initialData }) {
                                                                     className: "h-4 w-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                                    lineNumber: 280,
+                                                                    lineNumber: 288,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                                lineNumber: 273,
+                                                                lineNumber: 281,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                        lineNumber: 267,
+                                                        lineNumber: 275,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -861,7 +868,7 @@ function PlayerCardForm({ initialData }) {
                                                                 children: "Proof (Optional):"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                                lineNumber: 284,
+                                                                lineNumber: 292,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$image$2d$upload$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ImageUpload"], {
@@ -872,19 +879,19 @@ function PlayerCardForm({ initialData }) {
                                                                 className: "h-20 w-20"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                                lineNumber: 285,
+                                                                lineNumber: 293,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                        lineNumber: 283,
+                                                        lineNumber: 291,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, field.id, true, {
                                                 fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                lineNumber: 266,
+                                                lineNumber: 274,
                                                 columnNumber: 17
                                             }, this)),
                                         fields.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -892,19 +899,19 @@ function PlayerCardForm({ initialData }) {
                                             children: "No achievements added yet."
                                         }, void 0, false, {
                                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                            lineNumber: 296,
+                                            lineNumber: 304,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                    lineNumber: 264,
+                                    lineNumber: 272,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                            lineNumber: 251,
+                            lineNumber: 259,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -915,7 +922,7 @@ function PlayerCardForm({ initialData }) {
                                     children: "Socials"
                                 }, void 0, false, {
                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                    lineNumber: 305,
+                                    lineNumber: 313,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -929,62 +936,12 @@ function PlayerCardForm({ initialData }) {
                                                     children: "Discord ID"
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 308,
+                                                    lineNumber: 316,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
                                                     ...form.register("socials.discord"),
                                                     placeholder: "username#1234"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 309,
-                                                    columnNumber: 17
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                            lineNumber: 307,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "space-y-2",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                    className: "text-sm font-medium",
-                                                    children: "Instagram"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 312,
-                                                    columnNumber: 17
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
-                                                    ...form.register("socials.instagram"),
-                                                    placeholder: "@username"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 313,
-                                                    columnNumber: 17
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                            lineNumber: 311,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "space-y-2",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                    className: "text-sm font-medium",
-                                                    children: "YouTube"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                                    lineNumber: 316,
-                                                    columnNumber: 17
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
-                                                    ...form.register("socials.youtube"),
-                                                    placeholder: "Channel Link"
                                                 }, void 0, false, {
                                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
                                                     lineNumber: 317,
@@ -995,17 +952,67 @@ function PlayerCardForm({ initialData }) {
                                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
                                             lineNumber: 315,
                                             columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "space-y-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                    className: "text-sm font-medium",
+                                                    children: "Instagram"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
+                                                    lineNumber: 320,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
+                                                    ...form.register("socials.instagram"),
+                                                    placeholder: "@username"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
+                                                    lineNumber: 321,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
+                                            lineNumber: 319,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "space-y-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                    className: "text-sm font-medium",
+                                                    children: "YouTube"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
+                                                    lineNumber: 324,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
+                                                    ...form.register("socials.youtube"),
+                                                    placeholder: "Channel Link"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
+                                                    lineNumber: 325,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
+                                            lineNumber: 323,
+                                            columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                    lineNumber: 306,
+                                    lineNumber: 314,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                            lineNumber: 304,
+                            lineNumber: 312,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$rosterup$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1020,7 +1027,7 @@ function PlayerCardForm({ initialData }) {
                                             className: "mr-2 h-4 w-4 animate-spin"
                                         }, void 0, false, {
                                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                            lineNumber: 326,
+                                            lineNumber: 334,
                                             columnNumber: 19
                                         }, this),
                                         "Saving..."
@@ -1031,7 +1038,7 @@ function PlayerCardForm({ initialData }) {
                                             className: "mr-2 h-4 w-4"
                                         }, void 0, false, {
                                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                            lineNumber: 331,
+                                            lineNumber: 339,
                                             columnNumber: 19
                                         }, this),
                                         "Save Profile"
@@ -1039,29 +1046,29 @@ function PlayerCardForm({ initialData }) {
                                 }, void 0, true)
                             }, void 0, false, {
                                 fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                                lineNumber: 323,
+                                lineNumber: 331,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                            lineNumber: 322,
+                            lineNumber: 330,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                    lineNumber: 130,
+                    lineNumber: 138,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-                lineNumber: 129,
+                lineNumber: 137,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/rosterup-web/src/components/profile/PlayerCardForm.tsx",
-        lineNumber: 122,
+        lineNumber: 130,
         columnNumber: 5
     }, this);
 }
