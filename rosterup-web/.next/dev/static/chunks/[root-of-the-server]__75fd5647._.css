@@ -572,6 +572,10 @@ body {
   top: 1rem;
 }
 
+.left-2 {
+  left: .5rem;
+}
+
 .-z-10 {
   z-index: -10;
 }
@@ -587,6 +591,16 @@ body {
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.-mx-1 {
+  margin-left: -.25rem;
+  margin-right: -.25rem;
+}
+
+.my-1 {
+  margin-top: .25rem;
+  margin-bottom: .25rem;
 }
 
 .-ml-2 {
@@ -635,6 +649,10 @@ body {
 
 .mt-4 {
   margin-top: 1rem;
+}
+
+.ml-auto {
+  margin-left: auto;
 }
 
 .line-clamp-2 {
@@ -772,6 +790,10 @@ body {
   height: 100%;
 }
 
+.h-px {
+  height: 1px;
+}
+
 .min-h-\[100px\] {
   min-height: 100px;
 }
@@ -896,6 +918,10 @@ body {
   min-width: 160px;
 }
 
+.min-w-\[8rem\] {
+  min-width: 8rem;
+}
+
 .max-w-2xl {
   max-width: 42rem;
 }
@@ -966,6 +992,10 @@ body {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.cursor-default {
+  cursor: default;
 }
 
 .touch-none {
@@ -1451,6 +1481,10 @@ body {
   background-clip: text;
 }
 
+.fill-current {
+  fill: currentColor;
+}
+
 .object-cover {
   -o-object-fit: cover;
   object-fit: cover;
@@ -1486,6 +1520,10 @@ body {
 
 .p-\[1px\] {
   padding: 1px;
+}
+
+.p-1 {
+  padding: .25rem;
 }
 
 .px-2 {
@@ -1575,6 +1613,14 @@ body {
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pl-8 {
+  padding-left: 2rem;
+}
+
+.pr-2 {
+  padding-right: .5rem;
 }
 
 .text-left {
@@ -1676,6 +1722,10 @@ body {
 
 .tracking-wider {
   letter-spacing: .05em;
+}
+
+.tracking-widest {
+  letter-spacing: .1em;
 }
 
 .text-\[\#5865F2\] {
@@ -1799,6 +1849,10 @@ body {
 
 .opacity-70 {
   opacity: .7;
+}
+
+.opacity-60 {
+  opacity: .6;
 }
 
 .shadow-2xl {
@@ -2102,9 +2156,17 @@ body {
   background-color: #ef44441a;
 }
 
+.focus\:bg-accent:focus {
+  background-color: hsl(var(--accent));
+}
+
 .focus\:text-red-500:focus {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity, 1));
+}
+
+.focus\:text-accent-foreground:focus {
+  color: hsl(var(--accent-foreground));
 }
 
 .focus\:outline-none:focus {
@@ -2169,8 +2231,20 @@ body {
   opacity: 1;
 }
 
+.data-\[disabled\]\:pointer-events-none[data-disabled] {
+  pointer-events: none;
+}
+
 .data-\[state\=open\]\:bg-secondary[data-state="open"] {
   background-color: hsl(var(--secondary));
+}
+
+.data-\[state\=open\]\:bg-accent[data-state="open"] {
+  background-color: hsl(var(--accent));
+}
+
+.data-\[disabled\]\:opacity-50[data-disabled] {
+  opacity: .5;
 }
 
 .data-\[state\=closed\]\:duration-300[data-state="closed"] {
