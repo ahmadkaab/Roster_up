@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 import { ClipboardList, LayoutDashboard, Menu, MessageSquare, PlusCircle, Search, Swords, UserCircle, Users } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const playerNav = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
@@ -41,7 +41,26 @@ export function TopBar() {
   const pathname = usePathname();
   const { profile } = useAuth();
   const [open, setOpen] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const navItems = profile?.user_type === "team_admin" ? teamNav : playerNav;
+  const supabase = createClient();
+
+  useEffect(() => {
+    async function getAvatar() {
+      if (!profile?.id) return;
+      
+      const { data } = await supabase
+        .from('profiles')
+        .select('avatar_url')
+        .eq('id', profile.id)
+        .single();
+        
+      if (data?.avatar_url) {
+        setAvatarUrl(data.avatar_url);
+      }
+    }
+    getAvatar();
+  }, [profile, supabase]);
 
   return (
     <div className="flex h-16 items-center justify-between border-b border-white/10 bg-white/5 px-6 backdrop-blur-md">
@@ -99,8 +118,8 @@ export function TopBar() {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Avatar className="h-8 w-8 cursor-pointer ring-2 ring-transparent transition-all hover:ring-primary">
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarImage src={avatarUrl || "https://github.com/shadcn.png"} />
+              <AvatarFallback>{profile?.full_name?.slice(0, 2).toUpperCase() || "CN"}</AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56 border-white/10 bg-black/90 backdrop-blur-xl">

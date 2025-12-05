@@ -1,4 +1,80 @@
 {
-  "node": {},
+  "node": {
+    "40016b2989d40d63111b61eb81a75aeaffa00b116e": {
+      "workers": {
+        "app/(dashboard)/dashboard/page": {
+          "moduleId": "[project]/rosterup-web/.next-internal/server/app/(dashboard)/dashboard/page/actions.js { ACTIONS_MODULE0 => \"[project]/rosterup-web/src/actions/friends.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "acceptFriendRequest",
+          "filename": "rosterup-web/src/actions/friends.ts"
+        }
+      },
+      "layer": {
+        "app/(dashboard)/dashboard/page": "action-browser"
+      },
+      "exportedName": "acceptFriendRequest",
+      "filename": "rosterup-web/src/actions/friends.ts"
+    },
+    "00b5ece5edc832479f85ee476004fa2c4e1f3c2378": {
+      "workers": {
+        "app/(dashboard)/dashboard/page": {
+          "moduleId": "[project]/rosterup-web/.next-internal/server/app/(dashboard)/dashboard/page/actions.js { ACTIONS_MODULE0 => \"[project]/rosterup-web/src/actions/friends.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getFriends",
+          "filename": "rosterup-web/src/actions/friends.ts"
+        }
+      },
+      "layer": {
+        "app/(dashboard)/dashboard/page": "action-browser"
+      },
+      "exportedName": "getFriends",
+      "filename": "rosterup-web/src/actions/friends.ts"
+    },
+    "00696765927aa2e8da5c7fd1673b29b24e96a7998b": {
+      "workers": {
+        "app/(dashboard)/dashboard/page": {
+          "moduleId": "[project]/rosterup-web/.next-internal/server/app/(dashboard)/dashboard/page/actions.js { ACTIONS_MODULE0 => \"[project]/rosterup-web/src/actions/friends.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getPendingRequests",
+          "filename": "rosterup-web/src/actions/friends.ts"
+        }
+      },
+      "layer": {
+        "app/(dashboard)/dashboard/page": "action-browser"
+      },
+      "exportedName": "getPendingRequests",
+      "filename": "rosterup-web/src/actions/friends.ts"
+    },
+    "40bfc6ef447e123136f23c7087771d0ff4433fb730": {
+      "workers": {
+        "app/(dashboard)/dashboard/page": {
+          "moduleId": "[project]/rosterup-web/.next-internal/server/app/(dashboard)/dashboard/page/actions.js { ACTIONS_MODULE0 => \"[project]/rosterup-web/src/actions/friends.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "rejectFriendRequest",
+          "filename": "rosterup-web/src/actions/friends.ts"
+        }
+      },
+      "layer": {
+        "app/(dashboard)/dashboard/page": "action-browser"
+      },
+      "exportedName": "rejectFriendRequest",
+      "filename": "rosterup-web/src/actions/friends.ts"
+    },
+    "40b394699fb866452df9923a1f32be5d94a03cb2d6": {
+      "workers": {
+        "app/(dashboard)/dashboard/page": {
+          "moduleId": "[project]/rosterup-web/.next-internal/server/app/(dashboard)/dashboard/page/actions.js { ACTIONS_MODULE0 => \"[project]/rosterup-web/src/actions/friends.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "removeFriend",
+          "filename": "rosterup-web/src/actions/friends.ts"
+        }
+      },
+      "layer": {
+        "app/(dashboard)/dashboard/page": "action-browser"
+      },
+      "exportedName": "removeFriend",
+      "filename": "rosterup-web/src/actions/friends.ts"
+    }
+  },
   "edge": {}
 }

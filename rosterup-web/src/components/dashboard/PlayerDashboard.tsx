@@ -1,5 +1,7 @@
 "use client";
 
+import { FriendsList } from "@/components/friends/FriendsList";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -18,13 +20,21 @@ export function PlayerDashboard() {
   useEffect(() => {
     async function fetchPlayerCard() {
       if (!user) return;
-      const { data, error } = await supabase
+      const { data: cardData, error: cardError } = await supabase
         .from("player_cards")
         .select("*, games(name)")
         .eq("player_id", user.id)
         .single();
       
-      if (data) setPlayerCard(data);
+      if (cardData) {
+        const { data: profileData } = await supabase
+          .from("profiles")
+          .select("avatar_url")
+          .eq("id", user.id)
+          .single();
+          
+        setPlayerCard({ ...cardData, avatar_url: profileData?.avatar_url });
+      }
       setLoading(false);
     }
     fetchPlayerCard();
@@ -61,9 +71,15 @@ export function PlayerDashboard() {
     <div className="space-y-6">
       {/* Welcome Section */}
       <div className="flex items-center justify-between rounded-xl border border-white/10 bg-gradient-to-r from-primary/20 to-accent/20 p-6">
-        <div>
-          <h1 className="text-2xl font-bold text-white">Welcome back, {playerCard.ign}!</h1>
-          <p className="text-white/80">Ready to find your next team?</p>
+        <div className="flex items-center gap-4">
+          <Avatar className="h-16 w-16 border-2 border-white/20">
+            <AvatarImage src={playerCard.avatar_url} />
+            <AvatarFallback className="text-lg">{playerCard.ign?.slice(0, 2).toUpperCase()}</AvatarFallback>
+          </Avatar>
+          <div>
+            <h1 className="text-2xl font-bold text-white">Welcome back, {playerCard.ign}!</h1>
+            <p className="text-white/80">Ready to find your next team?</p>
+          </div>
         </div>
         <div className="flex gap-2">
           <Link href={`/player/${user?.id}`}>
@@ -136,10 +152,10 @@ export function PlayerDashboard() {
           <CardContent>
             <div className="flex flex-wrap gap-2">
               {playerCard.achievements && playerCard.achievements.length > 0 ? (
-                playerCard.achievements.map((achievement: string, i: number) => (
+                playerCard.achievements.map((achievement: any, i: number) => (
                   <Badge key={i} variant="secondary" className="bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20">
                     <Trophy className="mr-1 h-3 w-3" />
-                    {achievement}
+                    {typeof achievement === 'string' ? achievement : achievement.value}
                   </Badge>
                 ))
               ) : (
@@ -197,9 +213,7 @@ export function PlayerDashboard() {
         </Card>
       </div>
 
-import { FriendsList } from "@/components/friends/FriendsList";
 
-// ...
 
       {/* Friends Section */}
       <FriendsList />

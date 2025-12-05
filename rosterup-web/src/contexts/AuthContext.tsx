@@ -18,8 +18,8 @@ type AuthContextType = {
   user: User | null;
   session: Session | null;
   profile: Profile | null;
-  loading: boolean;
   signOut: () => Promise<void>;
+  refreshProfile: () => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -87,7 +87,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, profile, loading, signOut }}>
+    <AuthContext.Provider value={{ user, session, profile, loading, signOut, refreshProfile: () => fetchProfile(user?.id!) }}>
       {children}
     </AuthContext.Provider>
   );

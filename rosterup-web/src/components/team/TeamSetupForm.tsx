@@ -1,12 +1,14 @@
 "use client";
 
+import { ImageUpload } from "@/components/ui/image-upload";
+
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/contexts/AuthContext";
@@ -31,7 +33,7 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 export function TeamSetupForm({ initialData }: { initialData?: any }) {
-  const { user } = useAuth();
+  const { user, refreshProfile } = useAuth();
   const { toast } = useToast();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -71,10 +73,21 @@ export function TeamSetupForm({ initialData }: { initialData?: any }) {
         error = updateError;
       } else {
         // Create new team
+        // Create new team
         const { error: insertError } = await supabase
           .from("teams")
           .insert(payload);
         error = insertError;
+
+        // Upgrade user to team_admin if not already
+        if (!error) {
+          const { error: profileError } = await supabase
+            .from("profiles")
+            .update({ user_type: "team_admin" })
+            .eq("id", user.id);
+          
+          if (profileError) console.error("Error upgrading user role:", profileError);
+        }
       }
 
       if (error) throw error;
@@ -85,6 +98,7 @@ export function TeamSetupForm({ initialData }: { initialData?: any }) {
           : "Team created successfully!",
         "success"
       );
+      await refreshProfile();
       router.push("/dashboard");
       router.refresh();
     } catch (error: any) {
@@ -149,13 +163,14 @@ export function TeamSetupForm({ initialData }: { initialData?: any }) {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium">Logo URL (Optional)</label>
-            <Input {...form.register("logo_url")} placeholder="https://..." />
-            {form.formState.errors.logo_url && (
-              <p className="text-xs text-destructive">
-                {form.formState.errors.logo_url.message}
-              </p>
-            )}
+            <label className="text-sm font-medium">Team Logo</label>
+            <ImageUpload
+              bucket="avatars"
+              value={form.watch("logo_url") || ""}
+              onChange={(url) => form.setValue("logo_url", url)}
+              onRemove={() => form.setValue("logo_url", "")}
+              className="h-32 w-32 rounded-full"
+            />
           </div>
 
           <div className="flex justify-end">

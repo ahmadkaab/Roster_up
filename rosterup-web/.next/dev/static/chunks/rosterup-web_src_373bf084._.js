@@ -98,7 +98,8 @@ function AuthProvider({ children }) {
             session,
             profile,
             loading,
-            signOut
+            signOut,
+            refreshProfile: ()=>fetchProfile(user?.id)
         },
         children: children
     }, void 0, false, {

@@ -1,4 +1,20 @@
 {
-  "node": {},
+  "node": {
+    "401dc02dc6c8f3e61f24e9c38f70383e04e10ee295": {
+      "workers": {
+        "app/player/[id]/page": {
+          "moduleId": "[project]/rosterup-web/.next-internal/server/app/player/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/rosterup-web/src/actions/friends.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "sendFriendRequest",
+          "filename": "rosterup-web/src/actions/friends.ts"
+        }
+      },
+      "layer": {
+        "app/player/[id]/page": "action-browser"
+      },
+      "exportedName": "sendFriendRequest",
+      "filename": "rosterup-web/src/actions/friends.ts"
+    }
+  },
   "edge": {}
 }

@@ -1,11 +1,13 @@
 "use client";
 
+import { AddFriendButton } from "@/components/friends/AddFriendButton";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/contexts/AuthContext";
 import { createClient } from "@/lib/supabase/client";
-import { ArrowLeft, Crosshair, Gamepad2, Instagram, MessageSquare, Swords, Trophy, User, Youtube } from "lucide-react";
+import { ArrowLeft, Crosshair, Gamepad2, Instagram, MessageSquare, Swords, Trophy, Youtube } from "lucide-react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -73,8 +75,13 @@ export default function PublicProfilePage() {
 
         {/* Profile Header */}
         <div className="flex flex-col items-center gap-6 rounded-2xl border border-white/10 bg-gradient-to-b from-primary/10 to-transparent p-8 text-center md:flex-row md:text-left">
-          <div className="flex h-24 w-24 items-center justify-center rounded-full bg-primary/20 ring-4 ring-primary/10">
-            <User className="h-10 w-10 text-primary" />
+          <div className="relative h-24 w-24">
+            <Avatar className="h-24 w-24 border-4 border-primary/10">
+              <AvatarImage src={playerCard.avatar_url} />
+              <AvatarFallback className="bg-primary/20 text-2xl text-primary">
+                {playerCard.ign?.slice(0, 2).toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
           </div>
           <div className="flex-1 space-y-2">
             <h1 className="text-4xl font-bold tracking-tight text-white">{playerCard.ign}</h1>
@@ -88,9 +95,7 @@ export default function PublicProfilePage() {
               )}
             </div>
           </div>
-import { AddFriendButton } from "@/components/friends/AddFriendButton";
 
-// ...
 
           <div className="flex gap-4">
             {user && user.id !== playerCard.player_id && (
@@ -136,6 +141,7 @@ import { AddFriendButton } from "@/components/friends/AddFriendButton";
                 <MessageSquare className="h-4 w-4" />
                 Message
               </Button>
+              </>
             )}
           </div>
         </div>
@@ -191,10 +197,10 @@ import { AddFriendButton } from "@/components/friends/AddFriendButton";
             <CardContent>
               <div className="flex flex-wrap gap-2">
                 {playerCard.achievements && playerCard.achievements.length > 0 ? (
-                  playerCard.achievements.map((achievement: string, i: number) => (
+                  playerCard.achievements.map((achievement: any, i: number) => (
                     <Badge key={i} className="bg-yellow-500/10 px-3 py-1 text-base text-yellow-500 hover:bg-yellow-500/20">
                       <Trophy className="mr-2 h-4 w-4" />
-                      {achievement}
+                      {typeof achievement === 'string' ? achievement : achievement.value}
                     </Badge>
                   ))
                 ) : (

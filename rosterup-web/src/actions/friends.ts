@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
 
 export async function sendFriendRequest(friendId: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) throw new Error("Unauthorized");
@@ -36,7 +36,7 @@ export async function sendFriendRequest(friendId: string) {
 }
 
 export async function acceptFriendRequest(friendshipId: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) throw new Error("Unauthorized");
@@ -52,7 +52,7 @@ export async function acceptFriendRequest(friendshipId: string) {
 }
 
 export async function rejectFriendRequest(friendshipId: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) throw new Error("Unauthorized");
@@ -68,7 +68,7 @@ export async function rejectFriendRequest(friendshipId: string) {
 }
 
 export async function removeFriend(friendshipId: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) throw new Error("Unauthorized");
@@ -85,7 +85,7 @@ export async function removeFriend(friendshipId: string) {
 }
 
 export async function getFriends() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) return [];
@@ -127,7 +127,7 @@ export async function getFriends() {
 }
 
 export async function getPendingRequests() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) return { incoming: [], outgoing: [] };
