@@ -1,4 +1,20 @@
 {
-  "node": {},
+  "node": {
+    "40a902976a7375e7f3b87ed2f3fa963b5051db938e": {
+      "workers": {
+        "app/(dashboard)/recruitments/manage/page": {
+          "moduleId": 63085,
+          "async": false,
+          "exportedName": "sendEmail",
+          "filename": "rosterup-web/src/actions/email.ts"
+        }
+      },
+      "layer": {
+        "app/(dashboard)/recruitments/manage/page": "action-browser"
+      },
+      "exportedName": "sendEmail",
+      "filename": "rosterup-web/src/actions/email.ts"
+    }
+  },
   "edge": {}
 }

@@ -1,4 +1,80 @@
 {
-  "node": {},
+  "node": {
+    "40555064b6b26df3fa77763fbf8b76fd172b2a3905": {
+      "workers": {
+        "app/(dashboard)/dashboard/page": {
+          "moduleId": 61915,
+          "async": false,
+          "exportedName": "acceptFriendRequest",
+          "filename": "rosterup-web/src/actions/friends.ts"
+        }
+      },
+      "layer": {
+        "app/(dashboard)/dashboard/page": "action-browser"
+      },
+      "exportedName": "acceptFriendRequest",
+      "filename": "rosterup-web/src/actions/friends.ts"
+    },
+    "001be9402dc9e3a65ca7952a819d3bfeb25870ef82": {
+      "workers": {
+        "app/(dashboard)/dashboard/page": {
+          "moduleId": 61915,
+          "async": false,
+          "exportedName": "getFriends",
+          "filename": "rosterup-web/src/actions/friends.ts"
+        }
+      },
+      "layer": {
+        "app/(dashboard)/dashboard/page": "action-browser"
+      },
+      "exportedName": "getFriends",
+      "filename": "rosterup-web/src/actions/friends.ts"
+    },
+    "00cb9e4b611d1f3678f51f86e65f73320d64e28873": {
+      "workers": {
+        "app/(dashboard)/dashboard/page": {
+          "moduleId": 61915,
+          "async": false,
+          "exportedName": "getPendingRequests",
+          "filename": "rosterup-web/src/actions/friends.ts"
+        }
+      },
+      "layer": {
+        "app/(dashboard)/dashboard/page": "action-browser"
+      },
+      "exportedName": "getPendingRequests",
+      "filename": "rosterup-web/src/actions/friends.ts"
+    },
+    "40c249a8e3cd8cfba3f76bde8c4075967b2c7bbdf3": {
+      "workers": {
+        "app/(dashboard)/dashboard/page": {
+          "moduleId": 61915,
+          "async": false,
+          "exportedName": "rejectFriendRequest",
+          "filename": "rosterup-web/src/actions/friends.ts"
+        }
+      },
+      "layer": {
+        "app/(dashboard)/dashboard/page": "action-browser"
+      },
+      "exportedName": "rejectFriendRequest",
+      "filename": "rosterup-web/src/actions/friends.ts"
+    },
+    "4055069065a776a12b60c283059efebaf7dd03d5a7": {
+      "workers": {
+        "app/(dashboard)/dashboard/page": {
+          "moduleId": 61915,
+          "async": false,
+          "exportedName": "removeFriend",
+          "filename": "rosterup-web/src/actions/friends.ts"
+        }
+      },
+      "layer": {
+        "app/(dashboard)/dashboard/page": "action-browser"
+      },
+      "exportedName": "removeFriend",
+      "filename": "rosterup-web/src/actions/friends.ts"
+    }
+  },
   "edge": {}
 }

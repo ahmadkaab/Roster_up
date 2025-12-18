@@ -20,6 +20,7 @@ type AuthContextType = {
   profile: Profile | null;
   signOut: () => Promise<void>;
   refreshProfile: () => Promise<void>;
+  loading: boolean;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);

@@ -142,7 +142,6 @@ export default function PublicProfilePage() {
                 Message
               </Button>
               </>
-              </>
             )}
             {user && user.id === playerCard.player_id && (
               <Link href="/profile/edit">

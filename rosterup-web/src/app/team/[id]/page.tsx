@@ -3,10 +3,11 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useAuth } from "@/contexts/AuthContext";
 import { createClient } from "@/lib/supabase/client";
 import { ArrowLeft, Gamepad2, Globe, MapPin, MessageSquare, Shield, Trophy, Users } from "lucide-react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type Team = {
@@ -15,6 +16,7 @@ type Team = {
   tier: string;
   region: string;
   logo_url: string | null;
+  owner_id: string;
 };
 
 type RosterPlayer = {

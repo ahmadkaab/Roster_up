@@ -1,6 +1,9 @@
 1:"$Sreact.fragment"
-2:I[82855,["/_next/static/chunks/e902efa7cce9e0a3.js","/_next/static/chunks/44bb0b71c8f05183.js","/_next/static/chunks/b3ca332ed1d877a2.js","/_next/static/chunks/dc30090df18a6aec.js","/_next/static/chunks/9ac004421668a182.js","/_next/static/chunks/b4b19a7bd082b6c2.js","/_next/static/chunks/b8fff39b2288c256.js"],"TeamSetupForm"]
-3:I[60422,["/_next/static/chunks/1625e7b00d28016e.js","/_next/static/chunks/f7e5666ea92050d2.js"],"OutletBoundary"]
-4:"$Sreact.suspense"
-0:{"buildId":"YLDw7F0OEWs3o2Ib_I-ic","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"max-w-2xl mx-auto space-y-6","children":[["$","div",null,{"children":[["$","h1",null,{"className":"text-3xl font-bold text-primary","children":"Setup Your Team"}],["$","p",null,{"className":"text-muted-foreground","children":"Create your team profile to manage recruitments and applications."}]]}],["$","$L2",null,{}]]}],[["$","script","script-0",{"src":"/_next/static/chunks/b4b19a7bd082b6c2.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/b8fff39b2288c256.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
-5:null
+2:I[61075,["/_next/static/chunks/1625e7b00d28016e.js","/_next/static/chunks/3bc3bbb1d981c59e.js"],"ClientPageRoot"]
+3:I[333,["/_next/static/chunks/deef1c6f3770d470.js","/_next/static/chunks/44bb0b71c8f05183.js","/_next/static/chunks/3ab1a8a0314cb00e.js","/_next/static/chunks/57ac96b65d08d0e6.js","/_next/static/chunks/2efff805f4c184b8.js","/_next/static/chunks/6576e19695f69307.js","/_next/static/chunks/420582c821d5a62c.js","/_next/static/chunks/67ae751499a708b4.js","/_next/static/chunks/d045819bd23fec20.js"],"default"]
+6:I[60422,["/_next/static/chunks/1625e7b00d28016e.js","/_next/static/chunks/3bc3bbb1d981c59e.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+0:{"buildId":"kluJicFGT_veV_ulweYND","rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/_next/static/chunks/420582c821d5a62c.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/67ae751499a708b4.js","async":true}],["$","script","script-2",{"src":"/_next/static/chunks/d045819bd23fec20.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"loading":null,"isPartial":false}
+4:{}
+5:{}
+8:null

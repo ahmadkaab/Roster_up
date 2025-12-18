@@ -48,7 +48,7 @@ async function testChatSystem() {
   
   // Client for User 1
   const { data: session1 } = await supabase.auth.signInWithPassword({ email: email1, password });
-  const client1 = createClient(supabaseUrl, supabaseKey, {
+  const client1 = createClient(supabaseUrl!, supabaseKey!, {
     global: { headers: { Authorization: `Bearer ${session1.session?.access_token}` } }
   });
 
@@ -85,7 +85,7 @@ async function testChatSystem() {
   // 4. Reply (User 2 replies)
   console.log('User 2 replying...');
   const { data: session2 } = await supabase.auth.signInWithPassword({ email: email2, password });
-  const client2 = createClient(supabaseUrl, supabaseKey, {
+  const client2 = createClient(supabaseUrl!, supabaseKey!, {
     global: { headers: { Authorization: `Bearer ${session2.session?.access_token}` } }
   });
 

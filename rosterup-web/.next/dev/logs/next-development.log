@@ -1,6 +1,0 @@
-[00:01:01.118] Server  LOG      ○ Compiling middleware ...
-[00:01:15.344] Server  LOG      ✓ Ready in 68.5s
-[00:01:18.687] Server  LOG      ○ Compiling / ...
-[00:01:53.793] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:11:19.406] Server  LOG      ✓ Compiled in 1604ms
-[00:11:40.824] Server  LOG      ✓ Compiled in 1349ms

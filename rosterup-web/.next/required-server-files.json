@@ -62,7 +62,12 @@
           "search": ""
         }
       ],
-      "remotePatterns": [],
+      "remotePatterns": [
+        {
+          "protocol": "https",
+          "hostname": "**.supabase.co"
+        }
+      ],
       "qualities": [
         75
       ],
