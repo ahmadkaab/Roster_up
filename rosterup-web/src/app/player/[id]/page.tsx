@@ -142,6 +142,15 @@ export default function PublicProfilePage() {
                 Message
               </Button>
               </>
+              </>
+            )}
+            {user && user.id === playerCard.player_id && (
+              <Link href="/profile/edit">
+                <Button variant="outline" className="gap-2">
+                  <Gamepad2 className="h-4 w-4" />
+                  Edit Profile
+                </Button>
+              </Link>
             )}
           </div>
         </div>

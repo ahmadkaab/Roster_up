@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 const teamTiers = ["T1", "T2", "T3", "T4", "Amateur"] as const;
-const gamesList = ["BGMI", "Valorant", "Free Fire", "COD Mobile"];
+const gamesList = ["BGMI"];
 const gameRoles = ["IGL", "Scout", "Sniper", "Support", "Flex", "Entry Fragger"];
 
 const formSchema = z.object({
@@ -126,19 +126,8 @@ export function RecruitmentForm() {
       <CardContent>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <div className="grid gap-4 md:grid-cols-2">
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Game</label>
-              <select
-                {...form.register("game")}
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                {gamesList.map((game) => (
-                  <option key={game} value={game}>
-                    {game}
-                  </option>
-                ))}
-              </select>
-            </div>
+            {/* Game selection removed - Defaulting to BGMI */}
+            <input type="hidden" {...form.register("game")} value="BGMI" />
 
             <div className="space-y-2">
               <label className="text-sm font-medium">Role Needed</label>

@@ -5,19 +5,19 @@ import { ClipboardList, Gamepad2, Search, Shield, Swords, Users } from "lucide-r
 export default function Home() {
   const features = [
     {
-      title: "Find Your Team",
-      description: "Browse thousands of active teams looking for players like you. Filter by rank, role, and region.",
+      title: "Talent Scout",
+      description: "Actively hunt for top-tier players. Filter by roles, achievements, and verified stats.",
       icon: <Search className="h-6 w-6" />,
     },
     {
-      title: "Manage Roster",
-      description: "Streamline your recruitment process. Review applications, track stats, and build your dream lineup.",
+      title: "Roster Command",
+      description: "Manage your active lineup. Assign roles, handle benchings, and build a cohesive unit.",
       icon: <Users className="h-6 w-6" />,
     },
     {
-      title: "Scrim Finder",
-      description: "Schedule practice matches with other teams. Automated booking and result tracking coming soon.",
-      icon: <Swords className="h-6 w-6" />,
+      title: "Financial Contracts",
+      description: "Professionalize your team. Track player salaries, prize splits, and contract duration.",
+      icon: <ClipboardList className="h-6 w-6" />, /* Changed icon */
     },
     {
       title: "Player Profiles",
@@ -25,9 +25,9 @@ export default function Home() {
       icon: <Gamepad2 className="h-6 w-6" />,
     },
     {
-      title: "Team Management",
-      description: "Comprehensive dashboard to manage your organization, from recruitment to tournament schedules.",
-      icon: <ClipboardList className="h-6 w-6" />,
+      title: "BGMI Focused",
+      description: "Built specifically for the BGMI ecosystem. No clutter, just tools for the game you play.",
+      icon: <Swords className="h-6 w-6" />, /* Reusing Swords for 'Battle' context */
     },
     {
       title: "Verified & Secure",

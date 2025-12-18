@@ -1,13 +1,3 @@
 {
-  "/(auth)/login/page": "app/(auth)/login/page.js",
-  "/(dashboard)/applications/page": "app/(dashboard)/applications/page.js",
-  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
-  "/(dashboard)/profile/create/page": "app/(dashboard)/profile/create/page.js",
-  "/(dashboard)/profile/page": "app/(dashboard)/profile/page.js",
-  "/(dashboard)/recruitments/new/page": "app/(dashboard)/recruitments/new/page.js",
-  "/(dashboard)/team/setup/page": "app/(dashboard)/team/setup/page.js",
-  "/(dashboard)/tryouts/page": "app/(dashboard)/tryouts/page.js",
-  "/debug/page": "app/debug/page.js",
-  "/page": "app/page.js",
-  "/player/[id]/page": "app/player/[id]/page.js"
+  "/page": "app/page.js"
 }

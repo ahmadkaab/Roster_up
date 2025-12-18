@@ -90,7 +90,7 @@ export function TeamDashboard() {
               .from("recruitment_applications")
               .select("*, player_cards(*)")
               .in("recruitment_id", ids)
-              .eq("status", "accepted");
+              .eq("status", "selected");
 
             if (acceptedApps) {
               const grouped: Record<string, RosterPlayer[]> = {};

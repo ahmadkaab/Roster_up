@@ -1759,7 +1759,7 @@ function TeamDashboard() {
                             }).in("recruitment_id", ids).eq("status", "pending");
                             applicationCount = count || 0;
                             // Get Accepted Applications (Roster)
-                            const { data: acceptedApps } = await supabase.from("recruitment_applications").select("*, player_cards(*)").in("recruitment_id", ids).eq("status", "accepted");
+                            const { data: acceptedApps } = await supabase.from("recruitment_applications").select("*, player_cards(*)").in("recruitment_id", ids).eq("status", "selected");
                             if (acceptedApps) {
                                 const grouped = {};
                                 acceptedApps.forEach({

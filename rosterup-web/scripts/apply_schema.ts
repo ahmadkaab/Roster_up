@@ -24,7 +24,7 @@ async function applySchema() {
   try {
     await client.connect();
     
-    const schemaPath = path.resolve(process.cwd(), 'notifications_schema.sql');
+    const schemaPath = path.resolve(process.cwd(), 'monetization_schema.sql');
     const schemaSql = fs.readFileSync(schemaPath, 'utf8');
 
     console.log('Applying schema...');

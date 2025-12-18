@@ -26,7 +26,7 @@ export function HeroSection() {
           className="mx-auto mb-6 flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary backdrop-blur-md"
         >
           <Trophy className="h-4 w-4" />
-          <span>The #1 Esports Recruitment Platform</span>
+          <span>The #1 Esports Management Platform</span>
         </motion.div>
 
         <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-7xl md:text-8xl">
@@ -86,8 +86,8 @@ export function HeroSection() {
             <Trophy className="h-5 w-5" />
           </div>
           <div>
-            <p className="text-sm font-medium text-white">Tournaments</p>
-            <p className="text-xs text-muted-foreground">50+ Active</p>
+            <p className="text-sm font-medium text-white">Contracts Signed</p>
+            <p className="text-xs text-muted-foreground">$50k+ processed</p>
           </div>
         </div>
       </motion.div>

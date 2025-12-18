@@ -5,7 +5,16 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useAuth } from "@/contexts/AuthContext";
 import { cn } from "@/lib/utils";
-import { ClipboardList, LayoutDashboard, Menu, MessageSquare, PlusCircle, Swords, UserCircle, Users } from "lucide-react";
+import {
+  ClipboardList,
+  LayoutDashboard,
+  Menu,
+  MessageSquare,
+  PlusCircle,
+  Swords,
+  UserCircle,
+  Users,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -21,6 +30,8 @@ const playerNav = [
 const teamNav = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "My Team", href: "/team/setup", icon: Users },
+  { name: "Finance", href: "/contracts", icon: UserCircle },
+  { name: "Talent Scout", href: "/scout", icon: UserCircle },
   { name: "Post Recruitment", href: "/recruitments/new", icon: PlusCircle },
   { name: "Applicants", href: "/recruitments/manage", icon: ClipboardList },
   { name: "Messages", href: "/messages", icon: MessageSquare },
@@ -73,7 +84,10 @@ export function MobileNav() {
             <span className="sr-only">Toggle menu</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="w-64 border-white/10 bg-background/95 backdrop-blur-xl p-0">
+        <SheetContent
+          side="left"
+          className="w-64 border-white/10 bg-background/95 backdrop-blur-xl p-0"
+        >
           <div className="flex h-16 items-center border-b border-white/10 px-6">
             <h1 className="text-xl font-bold text-primary">RosterUp</h1>
           </div>

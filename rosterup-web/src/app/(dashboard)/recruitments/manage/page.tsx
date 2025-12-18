@@ -71,13 +71,15 @@ export default function ManageApplicationsPage() {
           player_id,
           status,
           created_at,
-          player:player_cards!player_id (
-            ign,
-            primary_role,
-            secondary_role,
-            kd_ratio,
-            avg_damage,
-            device_model
+          profile:profiles!player_id (
+            player_card:player_cards (
+              ign,
+              primary_role,
+              secondary_role,
+              kd_ratio,
+              avg_damage,
+              device_model
+            )
           ),
           recruitment:recruitments!recruitment_id (
             role_needed,
@@ -92,13 +94,29 @@ export default function ManageApplicationsPage() {
 
       if (error) throw error;
 
-      // Transform data to match Applicant type if needed
-      // The select above should return the structure we want mostly
-      // But Supabase returns arrays for joins sometimes if not 1:1
-      // player_cards is 1:1 with profiles, but here we join via player_id on application
-      // Let's check the data structure in console if it fails, but this looks correct for 1:1 relationships
+      // Transform data to match Applicant type
+      const formattedApplicants = data.map((app: any) => ({
+        id: app.id,
+        player_id: app.player_id,
+        status: app.status,
+        created_at: app.created_at,
+        player: app.profile?.player_card?.[0] || app.profile?.player_card || {
+          ign: "Unknown",
+          primary_role: "Unknown",
+          secondary_role: null,
+          kd_ratio: 0,
+          avg_damage: 0,
+          device_model: null,
+        },
+        recruitment: {
+          role_needed: app.recruitment?.role_needed || "Unknown",
+          game: {
+            name: app.recruitment?.game?.name || "Unknown",
+          },
+        },
+      }));
       
-      setApplicants(data as any);
+      setApplicants(formattedApplicants as Applicant[]);
     } catch (error) {
       console.error("Error fetching applicants:", error);
     } finally {

@@ -1,3 +1,4 @@
+import { NotificationsListContent } from "@/components/notifications/NotificationsListContent";
 import { Separator } from "@/components/ui/separator";
 
 export default function NotificationsPage() {
@@ -10,6 +11,8 @@ export default function NotificationsPage() {
         </p>
       </div>
       <Separator />
+      <NotificationsListContent />
     </div>
   );
 }
+

@@ -47,7 +47,7 @@ export function ApplicantCard({
       // 1. Update Application Status
       const { error } = await supabase
         .from("recruitment_applications")
-        .update({ status: newStatus === "selected" ? "accepted" : "rejected" }) // Map 'selected' to 'accepted' if DB uses 'accepted'
+        .update({ status: newStatus }) 
         .eq("id", application.id);
 
       if (error) throw error;
