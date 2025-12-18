@@ -42,6 +42,26 @@ app-example
 # generated native folders
 /ios
 /android
+# Next.js / Build outputs
 .next/
 out/
 build/
+*.tsbuildinfo
+
+# Lock files (use package.json only)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Dev/Internal
+.agent/
+BUILD_INSTRUCTIONS.md
+schema*.sql
+scripts/
